@@ -1,5 +1,5 @@
 === Self Captcha Standalone ===
-Contributors: YOUR_WPORG_USERNAME
+Contributors: christianoerick
 Tags: captcha, spam, security, woocommerce, anti-spam
 Requires at least: 6.3
 Tested up to: 7.1
