@@ -189,7 +189,7 @@ Ao ativar, o plugin cria suas quatro tabelas e uma chave de assinatura aleatóri
 | **Cadastro** | `wp-login.php?action=register`, Minha conta do WooCommerce, `wp-signup.php` do multisite | `registration_errors`, `woocommerce_process_registration_errors`, `wpmu_validate_user_signup` |
 | **Recuperar senha** | `wp-login.php?action=lostpassword` e Minha conta do WooCommerce | `lostpassword_post`, disparado pelos dois. Administradores que enviam o link de redefinição pela tela de Usuários não são afetados |
 | **Comentários** | Acima do botão de enviar (oculto para moderadores) | `preprocess_comment`. Pingbacks e trackbacks não são afetados |
-| **Checkout do WooCommerce** | Acima de *Finalizar pedido* no checkout em blocos e no clássico, e na página *Pagar pedido* | Store API (`woocommerce_store_api_checkout_update_order_from_request`, ao fechar o pedido), `woocommerce_after_checkout_validation`, `woocommerce_before_pay_action` |
+| **Checkout do WooCommerce** | Acima de *Finalizar pedido* no checkout em blocos e na página *Pagar pedido*; no checkout clássico, onde você escolher (veja Configurações) | Store API (`woocommerce_store_api_checkout_update_order_from_request`, ao fechar o pedido), `woocommerce_after_checkout_validation`, `woocommerce_before_pay_action` |
 | **Contact Form 7** | Onde você colocar `[selfcap]` | `wpcf7_spam`. Só formulários que têm a tag são conferidos |
 
 Cada opção cobre todos os formulários do mesmo tipo: proteger o *Login* protege o `wp-login.php` **e** o login do WooCommerce, então um nunca serve de atalho para o outro.
@@ -207,6 +207,8 @@ Todas as configurações ficam em **Selfcap → Configurações**.
 | Bloquear login por XML-RPC | Ligado | Fecha o login por XML-RPC, o atalho clássico para driblar um captcha de login. Desligue só para o app do WordPress no celular ou um serviço que entra por XML-RPC |
 | Tema do widget | Automático | Claro, escuro, ou segue o sistema do visitante |
 | Idioma do widget | Automático | Inglês, português, espanhol, ou segue o navegador do visitante |
+| Alinhamento do widget | Esquerda | Esquerda, centro ou direita. O widget mantém a própria largura dentro de uma linha de largura total |
+| Posição no checkout do WooCommerce | Acima do botão Finalizar pedido | Checkout clássico: acima do botão *Finalizar pedido* visível (acompanha o botão quando o tema o muda de lugar ou duplica), antes ou depois do pagamento, antes ou depois dos dados de cobrança, ou antes de qualquer elemento indicado por um seletor CSS |
 | Idioma do plugin | Automático | Idioma da tela do admin e das mensagens de erro. Automático segue o WordPress |
 | Dificuldade | 18 | Bits da prova de trabalho, de 10 a 24. Cada passo dobra o trabalho |
 | Bloqueio automático | Ligado | Bloqueios temporários com volume de ataque |
@@ -251,6 +253,7 @@ function minha_newsletter(): void
 |---|---|---|
 | `theme` | `auto`, `light`, `dark` | A configuração |
 | `language` | `auto`, `en`, `pt`, `es` | A configuração |
+| `align` | `left`, `center`, `right` | A configuração |
 
 ```text
 [selfcap theme="dark" language="pt"]
@@ -526,7 +529,7 @@ wp i18n make-mo languages
 
 ```bash
 bin/build-zip.sh
-# dist/selfcap-1.0.0.zip
+# dist/selfcap-1.0.1.zip
 ```
 
 O plugin passa no [Plugin Check](https://wordpress.org/plugins/plugin-check/) oficial sem erros nem avisos:

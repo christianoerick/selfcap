@@ -38,11 +38,14 @@ class Selfcap_Forms
         add_action('woocommerce_register_form', [self::class, 'print_for_register']);
         add_action('woocommerce_lostpassword_form', [self::class, 'print_for_lostpassword']);
         add_filter('woocommerce_process_registration_errors', [self::class, 'check_woo_register'], 10, 1);
-        add_action('woocommerce_review_order_before_submit', [self::class, 'print_for_woo_checkout']);
+        // The checkout widget goes on the hook of the position chosen in the settings.
+        foreach (array_unique(Selfcap_Plugin::CHECKOUT_HOOKS) as $hook) {
+            add_action($hook, [self::class, 'print_for_woo_checkout']);
+        }
         add_action('woocommerce_after_checkout_validation', [self::class, 'check_woo_checkout'], 10, 2);
 
         // WooCommerce "Pay for order" page: paying an existing order again, a favourite of card testers.
-        add_action('woocommerce_pay_order_before_submit', [self::class, 'print_for_woo_checkout']);
+        add_action('woocommerce_pay_order_before_submit', [self::class, 'print_for_woo_pay']);
         add_action('woocommerce_before_pay_action', [self::class, 'check_woo_pay']);
 
         // Multisite sign-up (wp-signup.php) instead of wp-login.php?action=register.
@@ -95,9 +98,32 @@ class Selfcap_Forms
         self::print_if('lostpassword');
     }
 
+    /** Classic checkout: printed only on the hook of the chosen position; forms.js does the rest. */
     public static function print_for_woo_checkout(): void
     {
-        self::print_if('woo_checkout');
+        if (! Selfcap_Plugin::protects('woo_checkout')) {
+            return;
+        }
+
+        $options = Selfcap_Plugin::options();
+        $hooks = Selfcap_Plugin::CHECKOUT_HOOKS;
+        $position = isset($hooks[$options['checkout_position']]) ? $options['checkout_position'] : 'button';
+
+        if (current_action() !== $hooks[$position]) {
+            return;
+        }
+
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo Selfcap_Plugin::widget(['position' => $position, 'selector' => $options['checkout_selector']]);
+    }
+
+    /** Pay for order: always right above its pay button. */
+    public static function print_for_woo_pay(): void
+    {
+        if (Selfcap_Plugin::protects('woo_checkout')) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo Selfcap_Plugin::widget(['position' => 'button']);
+        }
     }
 
     /** Requests that never show the form (XML-RPC, REST, application passwords) are not checked. */

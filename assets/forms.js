@@ -14,35 +14,86 @@
     renew(event.target && event.target.querySelector && event.target.querySelector('.self-captcha'))
   })
 
-  // ---- WooCommerce classic checkout ----
-  if (window.jQuery) {
-    var $ = window.jQuery
-    var kept = null
+  // ---- WooCommerce classic checkout and Pay for order ----
+  // Some themes duplicate the payment box or move the Place order button, so the
+  // widget can be printed more than once or far from the button. One widget is
+  // kept, and placed where the settings say (data-position on the widget):
+  //   button   → right above the visible Place order button (default)
+  //   selector → right before the element matching data-selector
+  //   others   → where WooCommerce printed it (before/after payment or billing)
+  var visible = function (el) {
+    return !!(el && el.getClientRects().length)
+  }
 
-    var current = function () {
-      return document.querySelector('form.checkout .self-captcha')
+  var placeTarget = function (form, widget) {
+    var position = widget.getAttribute('data-position') || ''
+
+    if (position === 'selector') {
+      try {
+        return document.querySelector(widget.getAttribute('data-selector') || '')
+      } catch (error) {
+        return null
+      }
     }
 
-    $(function () {
-      kept = current()
+    if (position !== 'button') return null
+
+    var buttons = form.querySelectorAll('#place_order, [name="woocommerce_checkout_place_order"], [name="woocommerce_pay"]')
+    for (var i = 0; i < buttons.length; i++) if (visible(buttons[i])) return buttons[i]
+    return buttons[0] || null
+  }
+
+  var kept = null
+  var arranging = false
+
+  var arrange = function () {
+    var form = document.querySelector('form.checkout, form#order_review')
+    if (!form || arranging) return
+
+    var all = Array.prototype.slice.call(form.querySelectorAll('.self-captcha'))
+    if (!all.length) return
+
+    arranging = true
+
+    // WooCommerce rebuilds the payment box on every totals refresh: a widget the
+    // visitor already solved is put back in place of the fresh copy.
+    var live = kept && kept.dataset.selfCaptchaId ? kept : all[0]
+    if (!live.isConnected) all[0].replaceWith(live)
+
+    all.forEach(function (widget) {
+      if (widget !== live && widget.isConnected) widget.remove()
     })
 
-    // WooCommerce swaps the payment box on every totals refresh, which would
-    // drop a widget the visitor already solved: put the live one back.
-    $(document.body).on('updated_checkout', function () {
-      var fresh = current()
-      if (!fresh) return
+    var target = placeTarget(form, live)
+    if (target && target.parentNode && target.previousElementSibling !== live) {
+      target.parentNode.insertBefore(live, target)
+    }
 
-      if (kept && fresh !== kept && kept.dataset.selfCaptchaId) {
-        fresh.replaceWith(kept)
-      } else {
-        captcha.render(fresh)
-        kept = fresh
-      }
-    })
+    if (!live.dataset.selfCaptchaId) captcha.render(live)
+    kept = live
+    arranging = false
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrange)
+  else arrange()
+
+  // Themes often rearrange the checkout after load: follow them, briefly.
+  var watched = document.querySelector('form.checkout, form#order_review')
+  if (watched && window.MutationObserver) {
+    var pending = null
+    new MutationObserver(function () {
+      clearTimeout(pending)
+      pending = setTimeout(arrange, 50)
+    }).observe(watched, { childList: true, subtree: true })
+  }
+
+  if (window.jQuery) {
+    var $ = window.jQuery
+
+    $(document.body).on('updated_checkout', arrange)
 
     $(document.body).on('checkout_error', function () {
-      renew(current())
+      renew(kept)
     })
   }
 

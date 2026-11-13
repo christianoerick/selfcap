@@ -189,7 +189,7 @@ Al activarse, el plugin crea sus cuatro tablas y una clave de firma aleatoria. N
 | **Registro** | `wp-login.php?action=register`, Mi cuenta de WooCommerce, `wp-signup.php` de multisitio | `registration_errors`, `woocommerce_process_registration_errors`, `wpmu_validate_user_signup` |
 | **Recuperar contraseña** | `wp-login.php?action=lostpassword` y Mi cuenta de WooCommerce | `lostpassword_post`, que disparan los dos. Los administradores que envían el enlace de restablecimiento desde la pantalla de Usuarios no se ven afectados |
 | **Comentarios** | Encima del botón de enviar (oculto para los moderadores) | `preprocess_comment`. Los pingbacks y trackbacks no se ven afectados |
-| **Pago de WooCommerce** | Encima de *Realizar el pedido* en el pago en bloques y en el clásico, y en la página *Pagar el pedido* | Store API (`woocommerce_store_api_checkout_update_order_from_request`, al realizar el pedido), `woocommerce_after_checkout_validation`, `woocommerce_before_pay_action` |
+| **Pago de WooCommerce** | Encima de *Realizar el pedido* en el pago en bloques y en la página *Pagar el pedido*; en el pago clásico, donde elijas (ver Ajustes) | Store API (`woocommerce_store_api_checkout_update_order_from_request`, al realizar el pedido), `woocommerce_after_checkout_validation`, `woocommerce_before_pay_action` |
 | **Contact Form 7** | Donde pongas `[selfcap]` | `wpcf7_spam`. Solo se comprueban los formularios que tienen la etiqueta |
 
 Cada opción cubre todos los formularios de su tipo: proteger el *Inicio de sesión* protege `wp-login.php` **y** el inicio de sesión de WooCommerce, así que uno nunca sirve de atajo para el otro.
@@ -207,6 +207,8 @@ Todos los ajustes están en **Selfcap → Ajustes**.
 | Bloquear el inicio de sesión por XML-RPC | Activado | Cierra el inicio de sesión por XML-RPC, el atajo clásico para esquivar un captcha de inicio de sesión. Desactívalo solo para la app móvil de WordPress o un servicio que inicia sesión por XML-RPC |
 | Tema del widget | Automático | Claro, oscuro, o según el sistema del visitante |
 | Idioma del widget | Automático | Inglés, portugués, español, o según el navegador del visitante |
+| Alineación del widget | Izquierda | Izquierda, centro o derecha. El widget mantiene su propio ancho dentro de una fila de ancho completo |
+| Posición en el pago de WooCommerce | Encima del botón Realizar el pedido | Pago clásico: encima del botón *Realizar el pedido* visible (lo sigue cuando el tema lo mueve o lo duplica), antes o después del pago, antes o después de los datos de facturación, o antes de cualquier elemento indicado con un selector CSS |
 | Idioma del plugin | Automático | Idioma del panel y de los mensajes de error. Automático sigue a WordPress |
 | Dificultad | 18 | Bits de la prueba de trabajo, de 10 a 24. Cada paso duplica el trabajo |
 | Bloqueo automático | Activado | Bloqueos temporales ante volumen de ataque |
@@ -251,6 +253,7 @@ function mi_boletin(): void
 |---|---|---|
 | `theme` | `auto`, `light`, `dark` | El ajuste |
 | `language` | `auto`, `en`, `pt`, `es` | El ajuste |
+| `align` | `left`, `center`, `right` | El ajuste |
 
 ```text
 [selfcap theme="dark" language="es"]
@@ -526,7 +529,7 @@ wp i18n make-mo languages
 
 ```bash
 bin/build-zip.sh
-# dist/selfcap-1.0.0.zip
+# dist/selfcap-1.0.1.zip
 ```
 
 El plugin pasa el [Plugin Check](https://wordpress.org/plugins/plugin-check/) oficial sin errores ni avisos:

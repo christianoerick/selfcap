@@ -4,7 +4,7 @@ Tags: captcha, spam, security, woocommerce, anti-spam
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,10 +109,18 @@ The readable source of `assets/widget.js` is in `assets/src/`. It is bundled wit
 
 == Changelog ==
 
+= 1.0.1 =
+* Position of the widget on the WooCommerce checkout: above the Place order button (follows the button when the theme moves it), before or after payment, before or after billing, or before any element by CSS selector.
+* Widget alignment: left, center or right, in a full-width row.
+* Themes that print the checkout widget twice end up with a single one.
+
 = 1.0.0 =
 * First release.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Choose where the captcha goes on the WooCommerce checkout, and its alignment.
 
 = 1.0.0 =
 First release.

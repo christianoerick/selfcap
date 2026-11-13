@@ -189,7 +189,7 @@ On activation the plugin creates its four tables and a random signing key. There
 | **Registration** | `wp-login.php?action=register`, WooCommerce My Account, multisite `wp-signup.php` | `registration_errors`, `woocommerce_process_registration_errors`, `wpmu_validate_user_signup` |
 | **Lost password** | `wp-login.php?action=lostpassword` and WooCommerce My Account | `lostpassword_post`, which both fire. Administrators sending a reset link from the Users screen are not affected |
 | **Comments** | Above the submit button (hidden for moderators) | `preprocess_comment`. Pingbacks and trackbacks are not affected |
-| **WooCommerce checkout** | Above *Place order* on the block and the classic checkout, and on the *Pay for order* page | Store API (`woocommerce_store_api_checkout_update_order_from_request`, on placing the order), `woocommerce_after_checkout_validation`, `woocommerce_before_pay_action` |
+| **WooCommerce checkout** | Above *Place order* on the block checkout and on the *Pay for order* page; on the classic checkout, where you choose (see Settings) | Store API (`woocommerce_store_api_checkout_update_order_from_request`, on placing the order), `woocommerce_after_checkout_validation`, `woocommerce_before_pay_action` |
 | **Contact Form 7** | Wherever you place `[selfcap]` | `wpcf7_spam`. Only forms that contain the tag are checked |
 
 Each setting covers every form of its kind: protecting *Login* protects `wp-login.php` **and** WooCommerce's login, so one is never a way around the other.
@@ -207,6 +207,8 @@ All settings live in **Selfcap → Settings**.
 | Block logins over XML-RPC | On | Closes XML-RPC login, the classic way around a login captcha. Turn it off only for the WordPress mobile app or a service that logs in over XML-RPC |
 | Widget theme | Automatic | Light, dark, or follow the visitor's system |
 | Widget language | Automatic | English, Portuguese, Spanish, or follow the visitor's browser |
+| Widget alignment | Left | Left, center or right. The widget keeps its own width inside a full-width row |
+| Position on the WooCommerce checkout | Above the Place order button | Classic checkout: above the visible *Place order* button (it follows the button when a theme moves or duplicates it), before or after payment, before or after billing, or before any element you name with a CSS selector |
 | Plugin language | Automatic | Language of the admin screen and of the error messages. Automatic follows WordPress |
 | Difficulty | 18 | Proof-of-work bits, from 10 to 24. Each step doubles the work |
 | Automatic blocking | On | Temporary blocks on attack-like volume |
@@ -251,6 +253,7 @@ function my_newsletter(): void
 |---|---|---|
 | `theme` | `auto`, `light`, `dark` | The setting |
 | `language` | `auto`, `en`, `pt`, `es` | The setting |
+| `align` | `left`, `center`, `right` | The setting |
 
 ```text
 [selfcap theme="dark" language="pt"]
@@ -526,7 +529,7 @@ wp i18n make-mo languages
 
 ```bash
 bin/build-zip.sh
-# dist/selfcap-1.0.0.zip
+# dist/selfcap-1.0.1.zip
 ```
 
 The plugin passes the official [Plugin Check](https://wordpress.org/plugins/plugin-check/) with no errors or warnings:

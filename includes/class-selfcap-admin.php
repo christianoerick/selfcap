@@ -67,6 +67,7 @@ class Selfcap_Admin
             'forms' => array_values(array_intersect(array_keys(Selfcap_Plugin::forms()), (array) ($input['forms'] ?? []))),
             'theme' => in_array($input['theme'] ?? '', ['auto', 'light', 'dark'], true) ? $input['theme'] : 'auto',
             'language' => in_array($input['language'] ?? '', ['auto', 'en', 'pt', 'es'], true) ? $input['language'] : 'auto',
+            'align' => in_array($input['align'] ?? '', ['left', 'center', 'right'], true) ? $input['align'] : 'left',
             'plugin_language' => in_array($input['plugin_language'] ?? '', ['auto', 'en', 'pt', 'es'], true) ? $input['plugin_language'] : 'auto',
             'difficulty' => max(10, min(24, (int) ($input['difficulty'] ?? 18))),
             'auto_block' => empty($input['auto_block']) ? 0 : 1,
@@ -74,6 +75,9 @@ class Selfcap_Admin
             'block_xmlrpc' => empty($input['block_xmlrpc']) ? 0 : 1,
             'trusted_proxies' => implode("\n", $proxies),
             'retention_days' => max(1, min(365, (int) ($input['retention_days'] ?? 30))),
+            'checkout_position' => array_key_exists((string) ($input['checkout_position'] ?? ''), Selfcap_Plugin::CHECKOUT_HOOKS) ? $input['checkout_position'] : 'button',
+            // A CSS selector, only ever used by querySelector() in the browser.
+            'checkout_selector' => substr(trim(sanitize_text_field((string) ($input['checkout_selector'] ?? ''))), 0, 200),
         ];
     }
 
@@ -794,6 +798,24 @@ class Selfcap_Admin
                             </div>
                         </div>
                     </div>
+
+                    <?php if (class_exists('WooCommerce')) : ?>
+                        <div class="scs-option is-stacked">
+                            <div class="scs-option__text">
+                                <strong><label for="scs-checkout-position"><?php esc_html_e('Position on the WooCommerce checkout', 'selfcap'); ?></label></strong>
+                                <span><?php esc_html_e('"Above the Place order button" finds the visible button even when the theme moves it. The custom element option takes a CSS selector, for layouts the other options do not fit.', 'selfcap'); ?></span>
+                            </div>
+                            <div class="scs-option__control scs-field">
+                                <select id="scs-checkout-position" name="<?php echo esc_attr($name); ?>[checkout_position]">
+                                    <?php foreach (Selfcap_Plugin::checkout_positions() as $value => [$label]) : ?>
+                                        <option value="<?php echo esc_attr($value); ?>" <?php selected($options['checkout_position'], $value); ?>><?php echo esc_html($label); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <label class="scs-label" for="scs-checkout-selector" style="margin-top:10px"><?php esc_html_e('CSS selector (custom element only)', 'selfcap'); ?></label>
+                                <input id="scs-checkout-selector" type="text" class="code" name="<?php echo esc_attr($name); ?>[checkout_selector]" value="<?php echo esc_attr($options['checkout_selector']); ?>" placeholder=".checkout-right #place_order">
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </section>
 
                 <section class="scs-card">
@@ -824,6 +846,20 @@ class Selfcap_Admin
                                 <option value="auto" <?php selected($options['language'], 'auto'); ?>><?php esc_html_e('Automatic', 'selfcap'); ?></option>
                                 <?php foreach ($languages as $value => $label) : ?>
                                     <option value="<?php echo esc_attr($value); ?>" <?php selected($options['language'], $value); ?>><?php echo esc_html($label); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="scs-option">
+                        <div class="scs-option__text">
+                            <strong><label for="scs-align"><?php esc_html_e('Widget alignment', 'selfcap'); ?></label></strong>
+                            <span><?php esc_html_e('The widget sits in a full-width row on every form; choose where it lines up.', 'selfcap'); ?></span>
+                        </div>
+                        <div class="scs-option__control">
+                            <select id="scs-align" name="<?php echo esc_attr($name); ?>[align]">
+                                <?php foreach (['left' => __('Left', 'selfcap'), 'center' => __('Center', 'selfcap'), 'right' => __('Right', 'selfcap')] as $value => $label) : ?>
+                                    <option value="<?php echo esc_attr($value); ?>" <?php selected($options['align'], $value); ?>><?php echo esc_html($label); ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

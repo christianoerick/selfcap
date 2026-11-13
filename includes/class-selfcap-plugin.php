@@ -144,11 +144,14 @@ class Selfcap_Plugin
             'forms' => ['login', 'register', 'lostpassword', 'comments'],
             'theme' => 'auto',
             'language' => 'auto',
+            'align' => 'left',
             'plugin_language' => 'auto',
             'difficulty' => 18,
             'auto_block' => 1,
             'ip_headers' => 1,
             'block_xmlrpc' => 1,
+            'checkout_position' => 'button',
+            'checkout_selector' => '',
             'trusted_proxies' => '',
             'retention_days' => 30,
         ]);
@@ -309,7 +312,44 @@ class Selfcap_Plugin
         wp_enqueue_script('selfcap-forms');
     }
 
-    /** The widget markup. `$attributes` accepts theme and language, to force one for a single form. */
+    /**
+     * Where the widget can go on the WooCommerce checkout: setting value => [label, WooCommerce hook].
+     * "button" and "selector" are printed before the submit button and moved by forms.js.
+     */
+    public const CHECKOUT_HOOKS = [
+        'button' => 'woocommerce_review_order_before_submit',
+        'before_payment' => 'woocommerce_review_order_before_payment',
+        'after_payment' => 'woocommerce_review_order_after_payment',
+        'before_billing' => 'woocommerce_before_checkout_billing_form',
+        'after_billing' => 'woocommerce_after_checkout_billing_form',
+        'selector' => 'woocommerce_review_order_before_submit',
+    ];
+
+    /** The same positions with their labels, for the settings screen (translations are loaded by then). */
+    public static function checkout_positions(): array
+    {
+        $labels = [
+            'button' => __('Above the Place order button', 'selfcap'),
+            'before_payment' => __('Before payment', 'selfcap'),
+            'after_payment' => __('After payment', 'selfcap'),
+            'before_billing' => __('Before billing', 'selfcap'),
+            'after_billing' => __('After billing', 'selfcap'),
+            'selector' => __('Before a custom element (CSS selector)', 'selfcap'),
+        ];
+
+        $positions = [];
+
+        foreach (self::CHECKOUT_HOOKS as $key => $hook) {
+            $positions[$key] = [$labels[$key], $hook];
+        }
+
+        return $positions;
+    }
+
+    /**
+     * The widget markup. `$attributes` accepts theme, language and align, to force one for a single form,
+     * and `position` / `selector`, read by forms.js to place the checkout widget.
+     */
     public static function widget($attributes = []): string
     {
         if (! self::is_enabled()) {
@@ -322,13 +362,24 @@ class Selfcap_Plugin
         $attributes = is_array($attributes) ? $attributes : [];
         $theme = in_array($attributes['theme'] ?? '', ['auto', 'light', 'dark'], true) ? $attributes['theme'] : $options['theme'];
         $language = in_array($attributes['language'] ?? '', ['auto', 'en', 'pt', 'es'], true) ? $attributes['language'] : $options['language'];
+        $align = in_array($attributes['align'] ?? '', ['left', 'center', 'right'], true) ? $attributes['align'] : $options['align'];
+        $justify = ['left' => 'flex-start', 'center' => 'center', 'right' => 'flex-end'][$align] ?? 'flex-start';
+
+        $place = '';
+
+        if (array_key_exists((string) ($attributes['position'] ?? ''), self::CHECKOUT_HOOKS)) {
+            $place = sprintf(' data-position="%s" data-selector="%s"', esc_attr($attributes['position']), esc_attr((string) ($attributes['selector'] ?? '')));
+        }
 
         // The site key is a constant: this captcha serves only this WordPress site.
         return sprintf(
-            '<div class="self-captcha" data-sitekey="local" data-endpoint="%s" data-theme="%s" data-language="%s" style="margin:0 0 16px"></div>',
+            // A full-width row, so the widget can sit left, centred or right whatever the form layout.
+            '<div class="self-captcha" data-sitekey="local" data-endpoint="%s" data-theme="%s" data-language="%s"%s style="display:flex;justify-content:%s;width:100%%;margin:0 0 16px"></div>',
             esc_url(rest_url('selfcap/v1')),
             esc_attr($theme),
-            esc_attr($language)
+            esc_attr($language),
+            $place,
+            esc_attr($justify)
         );
     }
 
