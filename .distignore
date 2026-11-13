@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.distignore
+.wordpress-org
+README.md
+bin
+dist
+tests
+node_modules
+.DS_Store
+docs
+README.*.md

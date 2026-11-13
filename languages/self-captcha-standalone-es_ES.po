@@ -1,0 +1,572 @@
+# Copyright (C) 2026 Christiano Erick
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Self Captcha Standalone 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/self-captcha-standalone\n"
+"Last-Translator: Christiano Erick\n"
+"Language-Team: Spanish (Spain)\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-13T17:26:14-03:00\n"
+"PO-Revision-Date: 2026-11-13 00:00+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: self-captcha-standalone\n"
+
+#. Plugin Name of the plugin
+#: self-captcha-standalone.php
+msgid "Self Captcha Standalone"
+msgstr "Self Captcha Standalone"
+
+#. Plugin URI of the plugin
+#: self-captcha-standalone.php
+msgid "https://github.com/christianoerick/self-captcha-standalone"
+msgstr ""
+
+#. Description of the plugin
+#: self-captcha-standalone.php
+msgid "A privacy-friendly captcha that runs entirely inside your WordPress site: a checkbox widget backed by proof-of-work, with no third-party service and no external server."
+msgstr "Un captcha respetuoso con la privacidad que funciona por completo dentro de tu sitio WordPress: una casilla de verificación respaldada por prueba de trabajo, sin servicios de terceros y sin servidor externo."
+
+#. Author of the plugin
+#: self-captcha-standalone.php
+msgid "Christiano Erick"
+msgstr "Christiano Erick"
+
+#: includes/class-selfcap-admin.php:50
+#: includes/class-selfcap-admin.php:139
+msgid "Settings"
+msgstr "Ajustes"
+
+#: includes/class-selfcap-admin.php:90
+#: includes/class-selfcap-admin.php:114
+msgid "Not allowed."
+msgstr "No permitido."
+
+#: includes/class-selfcap-admin.php:137
+msgid "Overview"
+msgstr "Resumen"
+
+#: includes/class-selfcap-admin.php:138
+msgid "IP rules"
+msgstr "Reglas de IP"
+
+#: includes/class-selfcap-admin.php:156
+msgid "Your own captcha, running entirely on this site."
+msgstr "Tu propio captcha, funcionando por completo en este sitio."
+
+#. translators: %d: number of protected forms
+#: includes/class-selfcap-admin.php:162
+#, php-format
+msgid "Protecting %d form"
+msgid_plural "Protecting %d forms"
+msgstr[0] "Protegiendo %d formulario"
+msgstr[1] "Protegiendo %d formularios"
+
+#: includes/class-selfcap-admin.php:164
+msgid "Disabled"
+msgstr "Desactivado"
+
+#: includes/class-selfcap-admin.php:170
+msgid "Sections"
+msgstr "Secciones"
+
+#: includes/class-selfcap-admin.php:181
+msgid "Most recent visitors show up with a private IP address. Your site is probably behind a proxy or load balancer that is not recognised, so per-visitor limits and automatic blocking cannot work."
+msgstr "La mayoría de los visitantes recientes aparecen con una dirección IP privada. Probablemente el sitio está detrás de un proxy o balanceador de carga que no se reconoce, así que los límites por visitante y el bloqueo automático no pueden funcionar."
+
+#: includes/class-selfcap-admin.php:182
+msgid "Check the visitor IP settings"
+msgstr "Revisa los ajustes de IP del visitante"
+
+#: includes/class-selfcap-admin.php:188
+msgid "The captcha is switched off by SELF_CAPTCHA_DISABLE in wp-config.php."
+msgstr "El captcha está desactivado por SELF_CAPTCHA_DISABLE en wp-config.php."
+
+#: includes/class-selfcap-admin.php:262
+#: includes/class-selfcap-admin.php:283
+msgid "Approved"
+msgstr "Aprobadas"
+
+#: includes/class-selfcap-admin.php:263
+#: includes/class-selfcap-admin.php:287
+msgid "Refused"
+msgstr "Rechazadas"
+
+#: includes/class-selfcap-admin.php:264
+#: includes/class-selfcap-admin.php:291
+msgid "Blocked"
+msgstr "Bloqueadas"
+
+#: includes/class-selfcap-admin.php:268
+msgid "Activity"
+msgstr "Actividad"
+
+#: includes/class-selfcap-admin.php:269
+msgid "Period"
+msgstr "Período"
+
+#. translators: %d: number of days
+#: includes/class-selfcap-admin.php:274
+#, php-format
+msgid "%d days"
+msgstr "%d días"
+
+#. translators: %s: percentage
+#: includes/class-selfcap-admin.php:285
+#: includes/class-selfcap-admin.php:289
+#, php-format
+msgid "%s of the answers"
+msgstr "%s de las respuestas"
+
+#: includes/class-selfcap-admin.php:286
+msgid "No answers yet"
+msgstr "Aún no hay respuestas"
+
+#: includes/class-selfcap-admin.php:290
+msgid "Bots and failed checks"
+msgstr "Bots y verificaciones fallidas"
+
+#: includes/class-selfcap-admin.php:291
+msgid "Stopped by an IP rule"
+msgstr "Detenidas por una regla de IP"
+
+#: includes/class-selfcap-admin.php:292
+#: includes/class-selfcap-admin.php:319
+msgid "Challenges issued"
+msgstr "Desafíos emitidos"
+
+#: includes/class-selfcap-admin.php:292
+msgid "Times the widget was shown"
+msgstr "Veces que se mostró el widget"
+
+#: includes/class-selfcap-admin.php:293
+#: includes/class-selfcap-admin.php:320
+msgid "Forms validated"
+msgstr "Formularios validados"
+
+#: includes/class-selfcap-admin.php:293
+msgid "Submissions that got through"
+msgstr "Envíos que pasaron"
+
+#: includes/class-selfcap-admin.php:299
+#: includes/class-selfcap-admin.php:442
+msgid "Verifications per day"
+msgstr "Verificaciones por día"
+
+#: includes/class-selfcap-admin.php:310
+msgid "View as table"
+msgstr "Ver como tabla"
+
+#: includes/class-selfcap-admin.php:315
+msgid "Day"
+msgstr "Día"
+
+#: includes/class-selfcap-admin.php:340
+msgid "Verification log"
+msgstr "Registro de verificaciones"
+
+#: includes/class-selfcap-admin.php:344
+#: includes/class-selfcap-admin.php:365
+msgid "Result"
+msgstr "Resultado"
+
+#: includes/class-selfcap-admin.php:346
+msgid "All results"
+msgstr "Todos los resultados"
+
+#: includes/class-selfcap-admin.php:351
+#: includes/class-selfcap-admin.php:352
+#: includes/class-selfcap-admin.php:366
+msgid "IP address"
+msgstr "Dirección IP"
+
+#: includes/class-selfcap-admin.php:353
+msgid "Filter"
+msgstr "Filtrar"
+
+#: includes/class-selfcap-admin.php:355
+msgid "Clear"
+msgstr "Limpiar"
+
+#: includes/class-selfcap-admin.php:364
+msgid "When"
+msgstr "Cuándo"
+
+#: includes/class-selfcap-admin.php:367
+msgid "Score"
+msgstr "Puntuación"
+
+#: includes/class-selfcap-admin.php:368
+#: includes/class-selfcap-admin.php:707
+msgid "Reason"
+msgstr "Motivo"
+
+#: includes/class-selfcap-admin.php:369
+msgid "Solved in"
+msgstr "Resuelto en"
+
+#: includes/class-selfcap-admin.php:370
+msgid "Browser"
+msgstr "Navegador"
+
+#: includes/class-selfcap-admin.php:371
+#: includes/class-selfcap-admin.php:710
+msgid "Actions"
+msgstr "Acciones"
+
+#: includes/class-selfcap-admin.php:376
+msgid "No verifications to show yet."
+msgstr "Aún no hay verificaciones que mostrar."
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:384
+#, php-format
+msgid "%s ago"
+msgstr "hace %s"
+
+#: includes/class-selfcap-admin.php:398
+#: includes/class-selfcap-admin.php:668
+#: includes/class-selfcap-admin.php:726
+msgid "Block"
+msgstr "Bloquear"
+
+#: includes/class-selfcap-admin.php:462
+msgid "No verifications in this period yet."
+msgstr "Aún no hay verificaciones en este período."
+
+#. translators: %s: number of log entries
+#: includes/class-selfcap-admin.php:502
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] "%s registro"
+msgstr[1] "%s registros"
+
+#. translators: 1: first entry shown, 2: last entry shown, 3: total entries
+#: includes/class-selfcap-admin.php:506
+#, php-format
+msgid "%1$s–%2$s of %3$s"
+msgstr "%1$s–%2$s de %3$s"
+
+#: includes/class-selfcap-admin.php:515
+#: includes/class-selfcap-admin.php:516
+msgid "Per page"
+msgstr "Por página"
+
+#: includes/class-selfcap-admin.php:643
+msgid "Rule added."
+msgstr "Regla añadida."
+
+#: includes/class-selfcap-admin.php:644
+msgid "Rule removed."
+msgstr "Regla eliminada."
+
+#: includes/class-selfcap-admin.php:645
+msgid "That is not a valid IP address or CIDR range."
+msgstr "Eso no es una dirección IP ni un rango CIDR válido."
+
+#: includes/class-selfcap-admin.php:653
+msgid "Add a rule"
+msgstr "Añadir una regla"
+
+#: includes/class-selfcap-admin.php:655
+msgid "A blocked address cannot solve the captcha, so it cannot send the protected forms. An allow rule always wins and also keeps the address out of automatic blocking."
+msgstr "Una dirección bloqueada no puede resolver el captcha, así que no puede enviar los formularios protegidos. Una regla de permiso siempre gana y además mantiene la dirección fuera del bloqueo automático."
+
+#. translators: %s: IP address
+#: includes/class-selfcap-admin.php:658
+#, php-format
+msgid "Your address right now: %s"
+msgstr "Tu dirección ahora: %s"
+
+#: includes/class-selfcap-admin.php:666
+#: includes/class-selfcap-admin.php:704
+msgid "Action"
+msgstr "Acción"
+
+#: includes/class-selfcap-admin.php:669
+#: includes/class-selfcap-admin.php:726
+msgid "Allow"
+msgstr "Permitir"
+
+#: includes/class-selfcap-admin.php:673
+#: includes/class-selfcap-admin.php:705
+msgid "IP address or range"
+msgstr "Dirección IP o rango"
+
+#: includes/class-selfcap-admin.php:677
+msgid "Reason (optional)"
+msgstr "Motivo (opcional)"
+
+#: includes/class-selfcap-admin.php:681
+msgid "Duration"
+msgstr "Duración"
+
+#: includes/class-selfcap-admin.php:683
+msgid "Until removed"
+msgstr "Hasta que se elimine"
+
+#: includes/class-selfcap-admin.php:684
+msgid "1 hour"
+msgstr "1 hora"
+
+#: includes/class-selfcap-admin.php:685
+msgid "24 hours"
+msgstr "24 horas"
+
+#: includes/class-selfcap-admin.php:686
+msgid "7 days"
+msgstr "7 días"
+
+#: includes/class-selfcap-admin.php:687
+msgid "30 days"
+msgstr "30 días"
+
+#: includes/class-selfcap-admin.php:691
+msgid "Add rule"
+msgstr "Añadir regla"
+
+#: includes/class-selfcap-admin.php:698
+msgid "Rules"
+msgstr "Reglas"
+
+#: includes/class-selfcap-admin.php:706
+msgid "Source"
+msgstr "Origen"
+
+#: includes/class-selfcap-admin.php:708
+msgid "Created"
+msgstr "Creada"
+
+#: includes/class-selfcap-admin.php:709
+msgid "Expires"
+msgstr "Caduca"
+
+#: includes/class-selfcap-admin.php:715
+msgid "No rules yet. Attackers blocked automatically will show up here."
+msgstr "Aún no hay reglas. Los atacantes bloqueados automáticamente aparecerán aquí."
+
+#: includes/class-selfcap-admin.php:730
+#: includes/class-selfcap-admin.php:810
+#: includes/class-selfcap-admin.php:824
+#: includes/class-selfcap-admin.php:839
+msgid "Automatic"
+msgstr "Automático"
+
+#: includes/class-selfcap-admin.php:730
+msgid "Manual"
+msgstr "Manual"
+
+#: includes/class-selfcap-admin.php:736
+msgid "Never"
+msgstr "Nunca"
+
+#: includes/class-selfcap-admin.php:738
+msgid "Expired"
+msgstr "Caducada"
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:741
+#, php-format
+msgid "In %s"
+msgstr "En %s"
+
+#: includes/class-selfcap-admin.php:746
+msgid "Remove this rule?"
+msgstr "¿Eliminar esta regla?"
+
+#: includes/class-selfcap-admin.php:746
+msgid "Remove"
+msgstr "Eliminar"
+
+#: includes/class-selfcap-admin.php:774
+msgid "Protection"
+msgstr "Protección"
+
+#: includes/class-selfcap-admin.php:775
+msgid "Turn the captcha on and choose where it shows up."
+msgstr "Activa el captcha y elige dónde aparece."
+
+#: includes/class-selfcap-admin.php:778
+msgid "Captcha enabled"
+msgstr "Captcha activado"
+
+#: includes/class-selfcap-admin.php:778
+msgid "Locked out of the login? Add define('SELF_CAPTCHA_DISABLE', true); to wp-config.php."
+msgstr "¿No puedes iniciar sesión? Añade define('SELF_CAPTCHA_DISABLE', true); a wp-config.php."
+
+#: includes/class-selfcap-admin.php:783
+msgid "Protected forms"
+msgstr "Formularios protegidos"
+
+#: includes/class-selfcap-admin.php:784
+msgid "For any other form use the [self_captcha] shortcode and self_captcha_verify() in its handler."
+msgstr "Para cualquier otro formulario, usa el shortcode [self_captcha] y self_captcha_verify() en el código que recibe el envío."
+
+#: includes/class-selfcap-admin.php:800
+msgid "Appearance and language"
+msgstr "Apariencia e idioma"
+
+#: includes/class-selfcap-admin.php:801
+msgid "How the widget looks to visitors and which language this plugin speaks."
+msgstr "Cómo ven el widget los visitantes y en qué idioma habla este plugin."
+
+#: includes/class-selfcap-admin.php:805
+msgid "Widget theme"
+msgstr "Tema del widget"
+
+#: includes/class-selfcap-admin.php:806
+msgid "Automatic follows the visitor's system."
+msgstr "Automático sigue el sistema del visitante."
+
+#: includes/class-selfcap-admin.php:810
+msgid "Light"
+msgstr "Claro"
+
+#: includes/class-selfcap-admin.php:810
+msgid "Dark"
+msgstr "Oscuro"
+
+#: includes/class-selfcap-admin.php:819
+msgid "Widget language"
+msgstr "Idioma del widget"
+
+#: includes/class-selfcap-admin.php:820
+msgid "Automatic follows the visitor's browser."
+msgstr "Automático sigue el navegador del visitante."
+
+#: includes/class-selfcap-admin.php:834
+msgid "Plugin language"
+msgstr "Idioma del plugin"
+
+#: includes/class-selfcap-admin.php:835
+msgid "This screen and the messages shown when a form is refused. Automatic follows the WordPress language."
+msgstr "Esta pantalla y los mensajes que se muestran cuando se rechaza un formulario. Automático sigue el idioma de WordPress."
+
+#: includes/class-selfcap-admin.php:849
+msgid "Security"
+msgstr "Seguridad"
+
+#: includes/class-selfcap-admin.php:850
+msgid "How hard the captcha is for bots and what happens to attackers."
+msgstr "Qué tan difícil es el captcha para los bots y qué ocurre con los atacantes."
+
+#: includes/class-selfcap-admin.php:854
+msgid "Difficulty"
+msgstr "Dificultad"
+
+#: includes/class-selfcap-admin.php:855
+msgid "Work the visitor's browser does in the background, from 10 to 24. Each step doubles it. 18 takes well under a second on a phone."
+msgstr "Trabajo que el navegador del visitante hace en segundo plano, de 10 a 24. Cada paso lo duplica. 18 tarda mucho menos de un segundo en un móvil."
+
+#: includes/class-selfcap-admin.php:863
+msgid "Block logins over XML-RPC"
+msgstr "Bloquear el inicio de sesión por XML-RPC"
+
+#: includes/class-selfcap-admin.php:863
+msgid "XML-RPC accepts a username and password without any form, so attackers use it to get around the login captcha. Turn this off only if you use the WordPress mobile app or a service that logs in over XML-RPC."
+msgstr "XML-RPC acepta usuario y contraseña sin pasar por ningún formulario, por eso los atacantes lo usan para esquivar el captcha del inicio de sesión. Desactívalo solo si usas la app móvil de WordPress o algún servicio que inicia sesión por XML-RPC."
+
+#: includes/class-selfcap-admin.php:864
+msgid "Automatic blocking"
+msgstr "Bloqueo automático"
+
+#: includes/class-selfcap-admin.php:864
+msgid "Temporarily blocks addresses that behave like an attack, only on attack-like volume inside 10 minutes. Blocks last 15 minutes, then 1 hour, then 24 hours for repeat offenders."
+msgstr "Bloquea temporalmente las direcciones que se comportan como un ataque, solo con volumen de ataque dentro de 10 minutos. El bloqueo dura 15 minutos, luego 1 hora y luego 24 horas para los reincidentes."
+
+#: includes/class-selfcap-admin.php:869
+msgid "Keep the log for (days)"
+msgstr "Conservar el registro durante (días)"
+
+#: includes/class-selfcap-admin.php:870
+msgid "Older verification log entries are deleted every day."
+msgstr "Los registros de verificación más antiguos se eliminan cada día."
+
+#: includes/class-selfcap-admin.php:879
+msgid "Visitor IP address"
+msgstr "Dirección IP del visitante"
+
+#: includes/class-selfcap-admin.php:880
+msgid "Needed when the site is behind Cloudflare, a load balancer or another proxy."
+msgstr "Necesario cuando el sitio está detrás de Cloudflare, de un balanceador de carga o de otro proxy."
+
+#: includes/class-selfcap-admin.php:883
+msgid "Read the real IP behind a proxy"
+msgstr "Leer la IP real detrás de un proxy"
+
+#: includes/class-selfcap-admin.php:883
+msgid "Forwarding headers are only believed when the connection comes from Cloudflare, a private address or a proxy listed below."
+msgstr "Las cabeceras de reenvío solo se aceptan cuando la conexión viene de Cloudflare, de una dirección privada o de un proxy de la lista de abajo."
+
+#: includes/class-selfcap-admin.php:888
+msgid "Address detected for you now"
+msgstr "Dirección detectada para ti ahora"
+
+#: includes/class-selfcap-admin.php:889
+msgid "If this is not your own public IP, add your proxy to the list below."
+msgstr "Si esta no es tu IP pública, añade tu proxy a la lista de abajo."
+
+#: includes/class-selfcap-admin.php:896
+msgid "Other trusted proxies"
+msgstr "Otros proxies de confianza"
+
+#: includes/class-selfcap-admin.php:897
+msgid "IP address or CIDR range, one per line."
+msgstr "Dirección IP o rango CIDR, uno por línea."
+
+#: includes/class-selfcap-admin.php:907
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: includes/class-selfcap-plugin.php:110
+msgid "To protect forms against bots, this site runs its own captcha. When you see the captcha, your browser solves a small computation and sends technical signals (browser type, screen size, how the checkbox was clicked). The site stores your IP address, browser user agent and the result of each verification for a limited time, to detect attacks and block abusive addresses. This data stays on this site and is not shared with any third party."
+msgstr "Para proteger los formularios contra bots, este sitio usa un captcha propio. Cuando aparece el captcha, tu navegador resuelve un pequeño cálculo y envía señales técnicas (tipo de navegador, tamaño de pantalla, cómo se hizo clic en la casilla). El sitio guarda tu dirección IP, el user agent del navegador y el resultado de cada verificación durante un tiempo limitado, para detectar ataques y bloquear direcciones abusivas. Estos datos permanecen en este sitio y no se comparten con terceros."
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login (WordPress and WooCommerce)"
+msgstr "Inicio de sesión (WordPress y WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login"
+msgstr "Inicio de sesión"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration (WordPress and WooCommerce)"
+msgstr "Registro (WordPress y WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration"
+msgstr "Registro"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password (WordPress and WooCommerce)"
+msgstr "Recuperar contraseña (WordPress y WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password"
+msgstr "Recuperar contraseña"
+
+#: includes/class-selfcap-plugin.php:126
+msgid "Comments"
+msgstr "Comentarios"
+
+#: includes/class-selfcap-plugin.php:130
+msgid "WooCommerce checkout"
+msgstr "Pago de WooCommerce"
+
+#: includes/class-selfcap-plugin.php:134
+msgid "Contact Form 7 (add the [self_captcha] tag to the form)"
+msgstr "Contact Form 7 (añade la etiqueta [self_captcha] al formulario)"
+
+#: includes/class-selfcap-plugin.php:352
+msgid "Please confirm you are not a robot."
+msgstr "Confirma que no eres un robot."
+
+#: includes/class-selfcap-plugin.php:358
+msgid "Captcha verification failed. Please try again."
+msgstr "La verificación del captcha falló. Inténtalo de nuevo."
