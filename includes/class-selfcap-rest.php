@@ -15,7 +15,7 @@ class Selfcap_Rest
     public static function routes(): void
     {
         foreach (['challenge', 'verify'] as $route) {
-            register_rest_route('self-captcha/v1', '/'.$route, [
+            register_rest_route('selfcap/v1', '/'.$route, [
                 'methods' => 'POST',
                 'callback' => [self::class, $route],
                 'permission_callback' => '__return_true',

@@ -8,11 +8,11 @@ if (! defined('ABSPATH')) {
 class Selfcap_Forms
 {
     /** Namespace of the token in the WooCommerce block checkout request. */
-    private const STORE_API_NAMESPACE = 'self-captcha';
+    private const STORE_API_NAMESPACE = 'selfcap';
 
     public static function register(): void
     {
-        add_shortcode('self_captcha', [Selfcap_Plugin::class, 'widget']);
+        add_shortcode('selfcap', [Selfcap_Plugin::class, 'widget']);
         add_action('login_enqueue_scripts', [self::class, 'login_assets']);
 
         // WordPress core
@@ -158,8 +158,8 @@ class Selfcap_Forms
     public static function print_for_signup($errors): void
     {
         if (Selfcap_Plugin::protects('register') && ! is_user_logged_in()) {
-            if (is_wp_error($errors) && $errors->get_error_message('self_captcha')) {
-                echo '<p class="error">'.esc_html($errors->get_error_message('self_captcha')).'</p>';
+            if (is_wp_error($errors) && $errors->get_error_message('selfcap')) {
+                echo '<p class="error">'.esc_html($errors->get_error_message('selfcap')).'</p>';
             }
 
             echo Selfcap_Plugin::widget(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -176,7 +176,7 @@ class Selfcap_Forms
         $verified = Selfcap_Plugin::verify();
 
         if (is_wp_error($verified)) {
-            $result['errors']->add('self_captcha', $verified->get_error_message());
+            $result['errors']->add('selfcap', $verified->get_error_message());
         }
 
         return $result;
@@ -296,7 +296,7 @@ class Selfcap_Forms
             'schema_callback' => static function (): array {
                 return [
                     'token' => [
-                        'description' => 'Self Captcha response token',
+                        'description' => 'Selfcap response token',
                         'type' => 'string',
                         'context' => [],
                         'optional' => true,
@@ -334,7 +334,7 @@ class Selfcap_Forms
 
         if (is_wp_error($result)) {
             throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException(
-                'self_captcha', // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+                'selfcap', // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
                 esc_html($result->get_error_message()),
                 400
             );
@@ -346,7 +346,7 @@ class Selfcap_Forms
     public static function cf7_tag(): void
     {
         if (function_exists('wpcf7_add_form_tag')) {
-            wpcf7_add_form_tag('self_captcha', [Selfcap_Plugin::class, 'widget']);
+            wpcf7_add_form_tag('selfcap', [Selfcap_Plugin::class, 'widget']);
         }
     }
 
@@ -358,8 +358,8 @@ class Selfcap_Forms
 
         $form = function_exists('wpcf7_get_current_contact_form') ? wpcf7_get_current_contact_form() : null;
 
-        // Only forms that actually include the [self_captcha] tag are checked.
-        if (! $form || empty($form->scan_form_tags(['type' => 'self_captcha']))) {
+        // Only forms that actually include the [selfcap] tag are checked.
+        if (! $form || empty($form->scan_form_tags(['type' => 'selfcap']))) {
             return $spam;
         }
 

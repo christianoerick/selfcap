@@ -56,7 +56,7 @@
     var send = function (token) {
       var actions = data.dispatch(STORE)
       var set = actions && (actions.setExtensionData || actions.__internalSetExtensionData)
-      if (set) set('self-captcha', { token: token || '' })
+      if (set) set('selfcap', { token: token || '' })
     }
 
     var mount = function () {

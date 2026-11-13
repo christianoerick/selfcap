@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name: Self Captcha Standalone
+ * Plugin Name: Selfcap – Self-Hosted Captcha
  * Description: A privacy-friendly captcha that runs entirely inside your WordPress site: a checkbox widget backed by proof-of-work, with no third-party service and no external server.
  * Version: 1.0.0
  * Requires at least: 6.3
  * Requires PHP: 7.4
- * Plugin URI: https://github.com/christianoerick/self-captcha-standalone
+ * Plugin URI: https://github.com/christianoerick/selfcap
  * Author: Christiano Erick
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: self-captcha-standalone
+ * Text Domain: selfcap
  * Domain Path: /languages
  */
 
@@ -38,14 +38,14 @@ Selfcap_Rest::register();
 Selfcap_Forms::register();
 Selfcap_Admin::register();
 
-if (! function_exists('self_captcha_verify')) {
+if (! function_exists('selfcap_verify')) {
     /**
      * Validates the captcha of the current request. For custom forms:
      *
-     *     echo do_shortcode('[self_captcha]');           // in the form
-     *     if (! self_captcha_verify()) { wp_die('...'); } // in the handler
+     *     echo do_shortcode('[selfcap]');           // in the form
+     *     if (! selfcap_verify()) { wp_die('...'); } // in the handler
      */
-    function self_captcha_verify(?string $token = null): bool
+    function selfcap_verify(?string $token = null): bool
     {
         return Selfcap_Plugin::verify($token) === true;
     }

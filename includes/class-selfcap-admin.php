@@ -4,10 +4,10 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-/** wp-admin > Self Captcha: overview (totals, chart, log), IP rules and settings. */
+/** wp-admin > Selfcap: overview (totals, chart, log), IP rules and settings. */
 class Selfcap_Admin
 {
-    private const SLUG = 'self-captcha';
+    private const SLUG = 'selfcap';
 
     /** Rows per page in the verification log. The admin's last choice is remembered. */
     private const PER_PAGE_OPTIONS = [10, 25, 50];
@@ -30,7 +30,7 @@ class Selfcap_Admin
 
     public static function menu(): void
     {
-        add_menu_page('Self Captcha', 'Self Captcha', 'manage_options', self::SLUG, [self::class, 'page'], 'dashicons-shield', 81);
+        add_menu_page('Selfcap', 'Selfcap', 'manage_options', self::SLUG, [self::class, 'page'], 'dashicons-shield', 81);
     }
 
     public static function assets(string $hook): void
@@ -47,7 +47,7 @@ class Selfcap_Admin
 
     public static function action_links(array $links): array
     {
-        array_unshift($links, '<a href="'.esc_url(self::url('settings')).'">'.esc_html__('Settings', 'self-captcha-standalone').'</a>');
+        array_unshift($links, '<a href="'.esc_url(self::url('settings')).'">'.esc_html__('Settings', 'selfcap').'</a>');
 
         return $links;
     }
@@ -87,7 +87,7 @@ class Selfcap_Admin
     public static function add_rule(): void
     {
         if (! current_user_can('manage_options')) {
-            wp_die(esc_html__('Not allowed.', 'self-captcha-standalone'), '', ['response' => 403]);
+            wp_die(esc_html__('Not allowed.', 'selfcap'), '', ['response' => 403]);
         }
 
         check_admin_referer('selfcap_add_rule');
@@ -111,7 +111,7 @@ class Selfcap_Admin
     public static function delete_rule(): void
     {
         if (! current_user_can('manage_options')) {
-            wp_die(esc_html__('Not allowed.', 'self-captcha-standalone'), '', ['response' => 403]);
+            wp_die(esc_html__('Not allowed.', 'selfcap'), '', ['response' => 403]);
         }
 
         $id = isset($_GET['rule']) ? absint($_GET['rule']) : 0;
@@ -134,9 +134,9 @@ class Selfcap_Admin
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'overview';
         $tabs = [
-            'overview' => __('Overview', 'self-captcha-standalone'),
-            'rules' => __('IP rules', 'self-captcha-standalone'),
-            'settings' => __('Settings', 'self-captcha-standalone'),
+            'overview' => __('Overview', 'selfcap'),
+            'rules' => __('IP rules', 'selfcap'),
+            'settings' => __('Settings', 'selfcap'),
         ];
 
         if (! isset($tabs[$tab])) {
@@ -152,22 +152,22 @@ class Selfcap_Admin
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.400-2.900 8-7 9.500-4.100-1.500-7-5.100-7-9.500V6z"/><path d="M9 12l2.200 2.200L15 10.500"/></svg>
                 </span>
                 <div class="scs-title">
-                    <h1>Self Captcha <span class="scs-version">v<?php echo esc_html(SELFCAP_VERSION); ?></span></h1>
-                    <p><?php esc_html_e('Your own captcha, running entirely on this site.', 'self-captcha-standalone'); ?></p>
+                    <h1>Selfcap <span class="scs-version">v<?php echo esc_html(SELFCAP_VERSION); ?></span></h1>
+                    <p><?php esc_html_e('Your own captcha, running entirely on this site.', 'selfcap'); ?></p>
                 </div>
                 <span class="scs-status <?php echo $enabled ? 'is-on' : ''; ?>">
                     <?php
                     if ($enabled) {
                         /* translators: %d: number of protected forms */
-                        echo esc_html(sprintf(_n('Protecting %d form', 'Protecting %d forms', $forms, 'self-captcha-standalone'), $forms));
+                        echo esc_html(sprintf(_n('Protecting %d form', 'Protecting %d forms', $forms, 'selfcap'), $forms));
                     } else {
-                        esc_html_e('Disabled', 'self-captcha-standalone');
+                        esc_html_e('Disabled', 'selfcap');
                     }
                     ?>
                 </span>
             </header>
 
-            <nav class="scs-tabs" aria-label="<?php esc_attr_e('Sections', 'self-captcha-standalone'); ?>">
+            <nav class="scs-tabs" aria-label="<?php esc_attr_e('Sections', 'selfcap'); ?>">
                 <?php foreach ($tabs as $key => $label) : ?>
                     <a class="<?php echo $key === $tab ? 'is-active' : ''; ?>" href="<?php echo esc_url(self::url($key)); ?>" <?php echo $key === $tab ? 'aria-current="page"' : ''; ?>><?php echo esc_html($label); ?></a>
                 <?php endforeach; ?>
@@ -178,14 +178,14 @@ class Selfcap_Admin
             <?php if (self::proxy_unrecognised()) : ?>
                 <div class="notice notice-warning inline">
                     <p>
-                        <?php esc_html_e('Most recent visitors show up with a private IP address. Your site is probably behind a proxy or load balancer that is not recognised, so per-visitor limits and automatic blocking cannot work.', 'self-captcha-standalone'); ?>
-                        <a href="<?php echo esc_url(self::url('settings')); ?>"><?php esc_html_e('Check the visitor IP settings', 'self-captcha-standalone'); ?></a>
+                        <?php esc_html_e('Most recent visitors show up with a private IP address. Your site is probably behind a proxy or load balancer that is not recognised, so per-visitor limits and automatic blocking cannot work.', 'selfcap'); ?>
+                        <a href="<?php echo esc_url(self::url('settings')); ?>"><?php esc_html_e('Check the visitor IP settings', 'selfcap'); ?></a>
                     </p>
                 </div>
             <?php endif; ?>
 
-            <?php if (defined('SELF_CAPTCHA_DISABLE') && SELF_CAPTCHA_DISABLE) : ?>
-                <div class="notice notice-warning inline"><p><?php esc_html_e('The captcha is switched off by SELF_CAPTCHA_DISABLE in wp-config.php.', 'self-captcha-standalone'); ?></p></div>
+            <?php if (defined('SELFCAP_DISABLE') && SELFCAP_DISABLE) : ?>
+                <div class="notice notice-warning inline"><p><?php esc_html_e('The captcha is switched off by SELFCAP_DISABLE in wp-config.php.', 'selfcap'); ?></p></div>
             <?php endif; ?>
 
             <?php
@@ -259,19 +259,19 @@ class Selfcap_Admin
 
         $answered = $totals['passed'] + $totals['failed'];
         $labels = [
-            'passed' => __('Approved', 'self-captcha-standalone'),
-            'failed' => __('Refused', 'self-captcha-standalone'),
-            'blocked' => __('Blocked', 'self-captcha-standalone'),
+            'passed' => __('Approved', 'selfcap'),
+            'failed' => __('Refused', 'selfcap'),
+            'blocked' => __('Blocked', 'selfcap'),
         ];
         ?>
         <div class="scs-row">
-            <h2><?php esc_html_e('Activity', 'self-captcha-standalone'); ?></h2>
-            <div class="scs-seg" role="group" aria-label="<?php esc_attr_e('Period', 'self-captcha-standalone'); ?>">
+            <h2><?php esc_html_e('Activity', 'selfcap'); ?></h2>
+            <div class="scs-seg" role="group" aria-label="<?php esc_attr_e('Period', 'selfcap'); ?>">
                 <?php foreach (self::RANGES as $option) : ?>
                     <a class="<?php echo $option === $range ? 'is-active' : ''; ?>" href="<?php echo esc_url(self::url('overview', ['days' => $option])); ?>" <?php echo $option === $range ? 'aria-current="true"' : ''; ?>>
                         <?php
                         /* translators: %d: number of days */
-                        echo esc_html(sprintf(__('%d days', 'self-captcha-standalone'), $option));
+                        echo esc_html(sprintf(__('%d days', 'selfcap'), $option));
                         ?>
                     </a>
                 <?php endforeach; ?>
@@ -280,23 +280,23 @@ class Selfcap_Admin
 
         <div class="scs-stats">
             <?php
-            self::stat(__('Approved', 'self-captcha-standalone'), $totals['passed'], $answered > 0
+            self::stat(__('Approved', 'selfcap'), $totals['passed'], $answered > 0
                 /* translators: %s: percentage */
-                ? sprintf(__('%s of the answers', 'self-captcha-standalone'), self::percent($totals['passed'], $answered))
-                : __('No answers yet', 'self-captcha-standalone'), 'passed');
-            self::stat(__('Refused', 'self-captcha-standalone'), $totals['failed'], $answered > 0
+                ? sprintf(__('%s of the answers', 'selfcap'), self::percent($totals['passed'], $answered))
+                : __('No answers yet', 'selfcap'), 'passed');
+            self::stat(__('Refused', 'selfcap'), $totals['failed'], $answered > 0
                 /* translators: %s: percentage */
-                ? sprintf(__('%s of the answers', 'self-captcha-standalone'), self::percent($totals['failed'], $answered))
-                : __('Bots and failed checks', 'self-captcha-standalone'), 'failed');
-            self::stat(__('Blocked', 'self-captcha-standalone'), $totals['blocked'], __('Stopped by an IP rule', 'self-captcha-standalone'), 'blocked');
-            self::stat(__('Challenges issued', 'self-captcha-standalone'), $totals['challenges'], __('Times the widget was shown', 'self-captcha-standalone'));
-            self::stat(__('Forms validated', 'self-captcha-standalone'), $totals['validated'], __('Submissions that got through', 'self-captcha-standalone'));
+                ? sprintf(__('%s of the answers', 'selfcap'), self::percent($totals['failed'], $answered))
+                : __('Bots and failed checks', 'selfcap'), 'failed');
+            self::stat(__('Blocked', 'selfcap'), $totals['blocked'], __('Stopped by an IP rule', 'selfcap'), 'blocked');
+            self::stat(__('Challenges issued', 'selfcap'), $totals['challenges'], __('Times the widget was shown', 'selfcap'));
+            self::stat(__('Forms validated', 'selfcap'), $totals['validated'], __('Submissions that got through', 'selfcap'));
             ?>
         </div>
 
         <section class="scs-card">
             <div class="scs-row">
-                <h2><?php esc_html_e('Verifications per day', 'self-captcha-standalone'); ?></h2>
+                <h2><?php esc_html_e('Verifications per day', 'selfcap'); ?></h2>
                 <ul class="scs-legend">
                     <?php foreach ($labels as $key => $label) : ?>
                         <li><span class="scs-key is-<?php echo esc_attr($key); ?>"></span><?php echo esc_html($label); ?></li>
@@ -307,17 +307,17 @@ class Selfcap_Admin
             <?php self::chart($series, $peak, $range, $labels); ?>
 
             <details class="scs-details">
-                <summary><?php esc_html_e('View as table', 'self-captcha-standalone'); ?></summary>
+                <summary><?php esc_html_e('View as table', 'selfcap'); ?></summary>
                 <div class="scs-table-wrap">
                     <table class="scs-table">
                         <thead>
                             <tr>
-                                <th><?php esc_html_e('Day', 'self-captcha-standalone'); ?></th>
+                                <th><?php esc_html_e('Day', 'selfcap'); ?></th>
                                 <?php foreach ($labels as $label) : ?>
                                     <th class="is-num"><?php echo esc_html($label); ?></th>
                                 <?php endforeach; ?>
-                                <th class="is-num"><?php esc_html_e('Challenges issued', 'self-captcha-standalone'); ?></th>
-                                <th class="is-num"><?php esc_html_e('Forms validated', 'self-captcha-standalone'); ?></th>
+                                <th class="is-num"><?php esc_html_e('Challenges issued', 'selfcap'); ?></th>
+                                <th class="is-num"><?php esc_html_e('Forms validated', 'selfcap'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -337,22 +337,22 @@ class Selfcap_Admin
 
         <section class="scs-card">
             <div class="scs-row">
-                <h2><?php esc_html_e('Verification log', 'self-captcha-standalone'); ?></h2>
+                <h2><?php esc_html_e('Verification log', 'selfcap'); ?></h2>
                 <form method="get" class="scs-filters">
                     <input type="hidden" name="page" value="<?php echo esc_attr(self::SLUG); ?>">
                     <input type="hidden" name="days" value="<?php echo esc_attr($range); ?>">
-                    <label class="screen-reader-text" for="scs-result"><?php esc_html_e('Result', 'self-captcha-standalone'); ?></label>
+                    <label class="screen-reader-text" for="scs-result"><?php esc_html_e('Result', 'selfcap'); ?></label>
                     <select id="scs-result" name="result">
-                        <option value=""><?php esc_html_e('All results', 'self-captcha-standalone'); ?></option>
+                        <option value=""><?php esc_html_e('All results', 'selfcap'); ?></option>
                         <?php foreach ($labels as $value => $label) : ?>
                             <option value="<?php echo esc_attr($value); ?>" <?php selected($result, $value); ?>><?php echo esc_html($label); ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <label class="screen-reader-text" for="scs-ip"><?php esc_html_e('IP address', 'self-captcha-standalone'); ?></label>
-                    <input id="scs-ip" type="search" name="ip" value="<?php echo esc_attr($ip); ?>" placeholder="<?php esc_attr_e('IP address', 'self-captcha-standalone'); ?>">
-                    <button type="submit" class="button"><?php esc_html_e('Filter', 'self-captcha-standalone'); ?></button>
+                    <label class="screen-reader-text" for="scs-ip"><?php esc_html_e('IP address', 'selfcap'); ?></label>
+                    <input id="scs-ip" type="search" name="ip" value="<?php echo esc_attr($ip); ?>" placeholder="<?php esc_attr_e('IP address', 'selfcap'); ?>">
+                    <button type="submit" class="button"><?php esc_html_e('Filter', 'selfcap'); ?></button>
                     <?php if ($result !== '' || $ip !== '') : ?>
-                        <a href="<?php echo esc_url(self::url('overview', ['days' => $range])); ?>"><?php esc_html_e('Clear', 'self-captcha-standalone'); ?></a>
+                        <a href="<?php echo esc_url(self::url('overview', ['days' => $range])); ?>"><?php esc_html_e('Clear', 'selfcap'); ?></a>
                     <?php endif; ?>
                 </form>
             </div>
@@ -361,19 +361,19 @@ class Selfcap_Admin
                 <table class="scs-table">
                     <thead>
                         <tr>
-                            <th><?php esc_html_e('When', 'self-captcha-standalone'); ?></th>
-                            <th><?php esc_html_e('Result', 'self-captcha-standalone'); ?></th>
-                            <th><?php esc_html_e('IP address', 'self-captcha-standalone'); ?></th>
-                            <th class="is-num"><?php esc_html_e('Score', 'self-captcha-standalone'); ?></th>
-                            <th><?php esc_html_e('Reason', 'self-captcha-standalone'); ?></th>
-                            <th class="is-num scs-hide-s"><?php esc_html_e('Solved in', 'self-captcha-standalone'); ?></th>
-                            <th class="scs-hide-s"><?php esc_html_e('Browser', 'self-captcha-standalone'); ?></th>
-                            <th><span class="screen-reader-text"><?php esc_html_e('Actions', 'self-captcha-standalone'); ?></span></th>
+                            <th><?php esc_html_e('When', 'selfcap'); ?></th>
+                            <th><?php esc_html_e('Result', 'selfcap'); ?></th>
+                            <th><?php esc_html_e('IP address', 'selfcap'); ?></th>
+                            <th class="is-num"><?php esc_html_e('Score', 'selfcap'); ?></th>
+                            <th><?php esc_html_e('Reason', 'selfcap'); ?></th>
+                            <th class="is-num scs-hide-s"><?php esc_html_e('Solved in', 'selfcap'); ?></th>
+                            <th class="scs-hide-s"><?php esc_html_e('Browser', 'selfcap'); ?></th>
+                            <th><span class="screen-reader-text"><?php esc_html_e('Actions', 'selfcap'); ?></span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if ($rows === []) : ?>
-                            <tr><td colspan="8" class="scs-none"><?php esc_html_e('No verifications to show yet.', 'self-captcha-standalone'); ?></td></tr>
+                            <tr><td colspan="8" class="scs-none"><?php esc_html_e('No verifications to show yet.', 'selfcap'); ?></td></tr>
                         <?php endif; ?>
                         <?php foreach ($rows as $row) : ?>
                             <?php $key = isset($labels[$row->result]) ? $row->result : 'blocked'; ?>
@@ -381,7 +381,7 @@ class Selfcap_Admin
                                 <td class="is-nowrap" title="<?php echo esc_attr(wp_date('Y-m-d H:i:s', (int) $row->created_at)); ?>">
                                     <?php
                                     /* translators: %s: time span, like "5 minutes" */
-                                    echo esc_html(sprintf(__('%s ago', 'self-captcha-standalone'), human_time_diff((int) $row->created_at, $now)));
+                                    echo esc_html(sprintf(__('%s ago', 'selfcap'), human_time_diff((int) $row->created_at, $now)));
                                     ?>
                                     <span class="scs-sub"><?php echo esc_html(wp_date('M j, H:i', (int) $row->created_at)); ?></span>
                                 </td>
@@ -395,7 +395,7 @@ class Selfcap_Admin
                                 </td>
                                 <td class="is-num scs-hide-s"><?php echo $row->solve_ms === null ? '' : esc_html(number_format_i18n((int) $row->solve_ms).' ms'); ?></td>
                                 <td class="scs-hide-s" title="<?php echo esc_attr($row->user_agent); ?>"><?php echo esc_html(self::browser((string) $row->user_agent)); ?></td>
-                                <td class="scs-actions is-num"><a href="<?php echo esc_url(self::url('rules', ['prefill' => $row->ip])); ?>"><?php esc_html_e('Block', 'self-captcha-standalone'); ?></a></td>
+                                <td class="scs-actions is-num"><a href="<?php echo esc_url(self::url('rules', ['prefill' => $row->ip])); ?>"><?php esc_html_e('Block', 'selfcap'); ?></a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -439,7 +439,7 @@ class Selfcap_Admin
                 <span>0</span>
             </div>
             <div class="scs-chart__plot">
-                <div class="scs-chart__cols" role="list" aria-label="<?php esc_attr_e('Verifications per day', 'self-captcha-standalone'); ?>">
+                <div class="scs-chart__cols" role="list" aria-label="<?php esc_attr_e('Verifications per day', 'selfcap'); ?>">
                     <?php foreach ($series as $point) : ?>
                         <?php
                         $date = wp_date(get_option('date_format'), $point['time']);
@@ -459,7 +459,7 @@ class Selfcap_Admin
                     <?php endforeach; ?>
                 </div>
                 <?php if ($peak === 0) : ?>
-                    <div class="scs-empty"><?php esc_html_e('No verifications in this period yet.', 'self-captcha-standalone'); ?></div>
+                    <div class="scs-empty"><?php esc_html_e('No verifications in this period yet.', 'selfcap'); ?></div>
                 <?php endif; ?>
             </div>
             <div class="scs-chart__x" aria-hidden="true">
@@ -499,11 +499,11 @@ class Selfcap_Admin
                     <?php
                     if ($total === 0) {
                         /* translators: %s: number of log entries */
-                        echo esc_html(sprintf(_n('%s entry', '%s entries', $total, 'self-captcha-standalone'), number_format_i18n($total)));
+                        echo esc_html(sprintf(_n('%s entry', '%s entries', $total, 'selfcap'), number_format_i18n($total)));
                     } else {
                         echo esc_html(sprintf(
                             /* translators: 1: first entry shown, 2: last entry shown, 3: total entries */
-                            __('%1$s–%2$s of %3$s', 'self-captcha-standalone'),
+                            __('%1$s–%2$s of %3$s', 'selfcap'),
                             number_format_i18n(min($total, ($paged - 1) * $per_page + 1)),
                             number_format_i18n(min($total, $paged * $per_page)),
                             number_format_i18n($total)
@@ -512,8 +512,8 @@ class Selfcap_Admin
                     ?>
                 </span>
                 <span class="scs-per-page">
-                    <span class="scs-per-page__label"><?php esc_html_e('Per page', 'self-captcha-standalone'); ?></span>
-                    <span class="scs-seg is-small" role="group" aria-label="<?php esc_attr_e('Per page', 'self-captcha-standalone'); ?>">
+                    <span class="scs-per-page__label"><?php esc_html_e('Per page', 'selfcap'); ?></span>
+                    <span class="scs-seg is-small" role="group" aria-label="<?php esc_attr_e('Per page', 'selfcap'); ?>">
                         <?php foreach (self::PER_PAGE_OPTIONS as $option) : ?>
                             <a class="<?php echo $option === $per_page ? 'is-active' : ''; ?>" href="<?php echo esc_url(add_query_arg('per_page', $option, $base)); ?>" <?php echo $option === $per_page ? 'aria-current="true"' : ''; ?>><?php echo esc_html(number_format_i18n($option)); ?></a>
                         <?php endforeach; ?>
@@ -640,9 +640,9 @@ class Selfcap_Admin
 
         $prefill = Selfcap_IP::is_valid_range($prefill) ? $prefill : '';
         $notices = [
-            'added' => ['success', __('Rule added.', 'self-captcha-standalone')],
-            'deleted' => ['success', __('Rule removed.', 'self-captcha-standalone')],
-            'invalid' => ['error', __('That is not a valid IP address or CIDR range.', 'self-captcha-standalone')],
+            'added' => ['success', __('Rule added.', 'selfcap')],
+            'deleted' => ['success', __('Rule removed.', 'selfcap')],
+            'invalid' => ['error', __('That is not a valid IP address or CIDR range.', 'selfcap')],
         ];
 
         if (isset($notices[$notice])) {
@@ -650,12 +650,12 @@ class Selfcap_Admin
         }
         ?>
         <section class="scs-card">
-            <h2><?php esc_html_e('Add a rule', 'self-captcha-standalone'); ?></h2>
+            <h2><?php esc_html_e('Add a rule', 'selfcap'); ?></h2>
             <p class="scs-hint">
-                <?php esc_html_e('A blocked address cannot solve the captcha, so it cannot send the protected forms. An allow rule always wins and also keeps the address out of automatic blocking.', 'self-captcha-standalone'); ?>
+                <?php esc_html_e('A blocked address cannot solve the captcha, so it cannot send the protected forms. An allow rule always wins and also keeps the address out of automatic blocking.', 'selfcap'); ?>
                 <?php
                 /* translators: %s: IP address */
-                echo wp_kses(sprintf(__('Your address right now: %s', 'self-captcha-standalone'), '<code>'.esc_html(Selfcap_Plugin::client_ip()).'</code>'), ['code' => []]);
+                echo wp_kses(sprintf(__('Your address right now: %s', 'selfcap'), '<code>'.esc_html(Selfcap_Plugin::client_ip()).'</code>'), ['code' => []]);
                 ?>
             </p>
 
@@ -663,56 +663,56 @@ class Selfcap_Admin
                 <input type="hidden" name="action" value="selfcap_add_rule">
                 <?php wp_nonce_field('selfcap_add_rule'); ?>
                 <div class="scs-field">
-                    <label for="scs-type"><?php esc_html_e('Action', 'self-captcha-standalone'); ?></label>
+                    <label for="scs-type"><?php esc_html_e('Action', 'selfcap'); ?></label>
                     <select id="scs-type" name="type">
-                        <option value="block"><?php esc_html_e('Block', 'self-captcha-standalone'); ?></option>
-                        <option value="allow"><?php esc_html_e('Allow', 'self-captcha-standalone'); ?></option>
+                        <option value="block"><?php esc_html_e('Block', 'selfcap'); ?></option>
+                        <option value="allow"><?php esc_html_e('Allow', 'selfcap'); ?></option>
                     </select>
                 </div>
                 <div class="scs-field">
-                    <label for="scs-range"><?php esc_html_e('IP address or range', 'self-captcha-standalone'); ?></label>
+                    <label for="scs-range"><?php esc_html_e('IP address or range', 'selfcap'); ?></label>
                     <input id="scs-range" type="text" name="ip_range" required value="<?php echo esc_attr($prefill); ?>" placeholder="203.0.113.7 / 203.0.113.0/24" class="code">
                 </div>
                 <div class="scs-field">
-                    <label for="scs-reason"><?php esc_html_e('Reason (optional)', 'self-captcha-standalone'); ?></label>
+                    <label for="scs-reason"><?php esc_html_e('Reason (optional)', 'selfcap'); ?></label>
                     <input id="scs-reason" type="text" name="reason" maxlength="250">
                 </div>
                 <div class="scs-field">
-                    <label for="scs-hours"><?php esc_html_e('Duration', 'self-captcha-standalone'); ?></label>
+                    <label for="scs-hours"><?php esc_html_e('Duration', 'selfcap'); ?></label>
                     <select id="scs-hours" name="hours">
-                        <option value="0"><?php esc_html_e('Until removed', 'self-captcha-standalone'); ?></option>
-                        <option value="1"><?php esc_html_e('1 hour', 'self-captcha-standalone'); ?></option>
-                        <option value="24"><?php esc_html_e('24 hours', 'self-captcha-standalone'); ?></option>
-                        <option value="168"><?php esc_html_e('7 days', 'self-captcha-standalone'); ?></option>
-                        <option value="720"><?php esc_html_e('30 days', 'self-captcha-standalone'); ?></option>
+                        <option value="0"><?php esc_html_e('Until removed', 'selfcap'); ?></option>
+                        <option value="1"><?php esc_html_e('1 hour', 'selfcap'); ?></option>
+                        <option value="24"><?php esc_html_e('24 hours', 'selfcap'); ?></option>
+                        <option value="168"><?php esc_html_e('7 days', 'selfcap'); ?></option>
+                        <option value="720"><?php esc_html_e('30 days', 'selfcap'); ?></option>
                     </select>
                 </div>
                 <div class="scs-field">
-                    <button type="submit" class="button button-primary"><?php esc_html_e('Add rule', 'self-captcha-standalone'); ?></button>
+                    <button type="submit" class="button button-primary"><?php esc_html_e('Add rule', 'selfcap'); ?></button>
                 </div>
             </form>
         </section>
 
         <section class="scs-card">
             <div class="scs-row">
-                <h2><?php esc_html_e('Rules', 'self-captcha-standalone'); ?></h2>
+                <h2><?php esc_html_e('Rules', 'selfcap'); ?></h2>
             </div>
             <div class="scs-table-wrap">
                 <table class="scs-table">
                     <thead>
                         <tr>
-                            <th><?php esc_html_e('Action', 'self-captcha-standalone'); ?></th>
-                            <th><?php esc_html_e('IP address or range', 'self-captcha-standalone'); ?></th>
-                            <th><?php esc_html_e('Source', 'self-captcha-standalone'); ?></th>
-                            <th><?php esc_html_e('Reason', 'self-captcha-standalone'); ?></th>
-                            <th class="scs-hide-s"><?php esc_html_e('Created', 'self-captcha-standalone'); ?></th>
-                            <th><?php esc_html_e('Expires', 'self-captcha-standalone'); ?></th>
-                            <th><span class="screen-reader-text"><?php esc_html_e('Actions', 'self-captcha-standalone'); ?></span></th>
+                            <th><?php esc_html_e('Action', 'selfcap'); ?></th>
+                            <th><?php esc_html_e('IP address or range', 'selfcap'); ?></th>
+                            <th><?php esc_html_e('Source', 'selfcap'); ?></th>
+                            <th><?php esc_html_e('Reason', 'selfcap'); ?></th>
+                            <th class="scs-hide-s"><?php esc_html_e('Created', 'selfcap'); ?></th>
+                            <th><?php esc_html_e('Expires', 'selfcap'); ?></th>
+                            <th><span class="screen-reader-text"><?php esc_html_e('Actions', 'selfcap'); ?></span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if ($rules === []) : ?>
-                            <tr><td colspan="7" class="scs-none"><?php esc_html_e('No rules yet. Attackers blocked automatically will show up here.', 'self-captcha-standalone'); ?></td></tr>
+                            <tr><td colspan="7" class="scs-none"><?php esc_html_e('No rules yet. Attackers blocked automatically will show up here.', 'selfcap'); ?></td></tr>
                         <?php endif; ?>
                         <?php foreach ($rules as $rule) : ?>
                             <?php
@@ -723,27 +723,27 @@ class Selfcap_Admin
                                 <td>
                                     <span class="scs-badge">
                                         <span class="scs-key is-<?php echo $rule->type === 'allow' ? 'passed' : 'blocked'; ?>"></span>
-                                        <?php echo esc_html($rule->type === 'allow' ? __('Allow', 'self-captcha-standalone') : __('Block', 'self-captcha-standalone')); ?>
+                                        <?php echo esc_html($rule->type === 'allow' ? __('Allow', 'selfcap') : __('Block', 'selfcap')); ?>
                                     </span>
                                 </td>
                                 <td><code><?php echo esc_html($rule->ip_range); ?></code></td>
-                                <td><?php echo esc_html($rule->source === 'auto' ? __('Automatic', 'self-captcha-standalone') : __('Manual', 'self-captcha-standalone')); ?></td>
+                                <td><?php echo esc_html($rule->source === 'auto' ? __('Automatic', 'selfcap') : __('Manual', 'selfcap')); ?></td>
                                 <td><?php echo esc_html((string) $rule->reason); ?></td>
                                 <td class="is-nowrap scs-hide-s"><?php echo esc_html(wp_date('M j, H:i', (int) $rule->created_at)); ?></td>
                                 <td class="is-nowrap">
                                     <?php
                                     if ($rule->expires_at === null) {
-                                        esc_html_e('Never', 'self-captcha-standalone');
+                                        esc_html_e('Never', 'selfcap');
                                     } elseif ($expired) {
-                                        esc_html_e('Expired', 'self-captcha-standalone');
+                                        esc_html_e('Expired', 'selfcap');
                                     } else {
                                         /* translators: %s: time span, like "5 minutes" */
-                                        echo esc_html(sprintf(__('In %s', 'self-captcha-standalone'), human_time_diff($now, (int) $rule->expires_at)));
+                                        echo esc_html(sprintf(__('In %s', 'selfcap'), human_time_diff($now, (int) $rule->expires_at)));
                                     }
                                     ?>
                                 </td>
                                 <td class="scs-actions is-num">
-                                    <a class="scs-danger" href="<?php echo esc_url($remove); ?>" data-confirm="<?php esc_attr_e('Remove this rule?', 'self-captcha-standalone'); ?>"><?php esc_html_e('Remove', 'self-captcha-standalone'); ?></a>
+                                    <a class="scs-danger" href="<?php echo esc_url($remove); ?>" data-confirm="<?php esc_attr_e('Remove this rule?', 'selfcap'); ?>"><?php esc_html_e('Remove', 'selfcap'); ?></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -771,17 +771,17 @@ class Selfcap_Admin
 
             <div class="scs-settings">
                 <section class="scs-card">
-                    <h2><?php esc_html_e('Protection', 'self-captcha-standalone'); ?></h2>
-                    <p class="scs-hint"><?php esc_html_e('Turn the captcha on and choose where it shows up.', 'self-captcha-standalone'); ?></p>
+                    <h2><?php esc_html_e('Protection', 'selfcap'); ?></h2>
+                    <p class="scs-hint"><?php esc_html_e('Turn the captcha on and choose where it shows up.', 'selfcap'); ?></p>
 
                     <?php
-                    self::toggle('enabled', $options, __('Captcha enabled', 'self-captcha-standalone'), __('Locked out of the login? Add define(\'SELF_CAPTCHA_DISABLE\', true); to wp-config.php.', 'self-captcha-standalone'));
+                    self::toggle('enabled', $options, __('Captcha enabled', 'selfcap'), __('Locked out of the login? Add define(\'SELFCAP_DISABLE\', true); to wp-config.php.', 'selfcap'));
                     ?>
 
                     <div class="scs-option is-stacked">
                         <div class="scs-option__text">
-                            <strong><?php esc_html_e('Protected forms', 'self-captcha-standalone'); ?></strong>
-                            <span><?php esc_html_e('For any other form use the [self_captcha] shortcode and self_captcha_verify() in its handler.', 'self-captcha-standalone'); ?></span>
+                            <strong><?php esc_html_e('Protected forms', 'selfcap'); ?></strong>
+                            <span><?php esc_html_e('For any other form use the [selfcap] shortcode and selfcap_verify() in its handler.', 'selfcap'); ?></span>
                         </div>
                         <div class="scs-option__control">
                             <div class="scs-checks">
@@ -797,17 +797,17 @@ class Selfcap_Admin
                 </section>
 
                 <section class="scs-card">
-                    <h2><?php esc_html_e('Appearance and language', 'self-captcha-standalone'); ?></h2>
-                    <p class="scs-hint"><?php esc_html_e('How the widget looks to visitors and which language this plugin speaks.', 'self-captcha-standalone'); ?></p>
+                    <h2><?php esc_html_e('Appearance and language', 'selfcap'); ?></h2>
+                    <p class="scs-hint"><?php esc_html_e('How the widget looks to visitors and which language this plugin speaks.', 'selfcap'); ?></p>
 
                     <div class="scs-option">
                         <div class="scs-option__text">
-                            <strong><label for="scs-theme"><?php esc_html_e('Widget theme', 'self-captcha-standalone'); ?></label></strong>
-                            <span><?php esc_html_e('Automatic follows the visitor\'s system.', 'self-captcha-standalone'); ?></span>
+                            <strong><label for="scs-theme"><?php esc_html_e('Widget theme', 'selfcap'); ?></label></strong>
+                            <span><?php esc_html_e('Automatic follows the visitor\'s system.', 'selfcap'); ?></span>
                         </div>
                         <div class="scs-option__control">
                             <select id="scs-theme" name="<?php echo esc_attr($name); ?>[theme]">
-                                <?php foreach (['auto' => __('Automatic', 'self-captcha-standalone'), 'light' => __('Light', 'self-captcha-standalone'), 'dark' => __('Dark', 'self-captcha-standalone')] as $value => $label) : ?>
+                                <?php foreach (['auto' => __('Automatic', 'selfcap'), 'light' => __('Light', 'selfcap'), 'dark' => __('Dark', 'selfcap')] as $value => $label) : ?>
                                     <option value="<?php echo esc_attr($value); ?>" <?php selected($options['theme'], $value); ?>><?php echo esc_html($label); ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -816,12 +816,12 @@ class Selfcap_Admin
 
                     <div class="scs-option">
                         <div class="scs-option__text">
-                            <strong><label for="scs-language"><?php esc_html_e('Widget language', 'self-captcha-standalone'); ?></label></strong>
-                            <span><?php esc_html_e('Automatic follows the visitor\'s browser.', 'self-captcha-standalone'); ?></span>
+                            <strong><label for="scs-language"><?php esc_html_e('Widget language', 'selfcap'); ?></label></strong>
+                            <span><?php esc_html_e('Automatic follows the visitor\'s browser.', 'selfcap'); ?></span>
                         </div>
                         <div class="scs-option__control">
                             <select id="scs-language" name="<?php echo esc_attr($name); ?>[language]">
-                                <option value="auto" <?php selected($options['language'], 'auto'); ?>><?php esc_html_e('Automatic', 'self-captcha-standalone'); ?></option>
+                                <option value="auto" <?php selected($options['language'], 'auto'); ?>><?php esc_html_e('Automatic', 'selfcap'); ?></option>
                                 <?php foreach ($languages as $value => $label) : ?>
                                     <option value="<?php echo esc_attr($value); ?>" <?php selected($options['language'], $value); ?>><?php echo esc_html($label); ?></option>
                                 <?php endforeach; ?>
@@ -831,12 +831,12 @@ class Selfcap_Admin
 
                     <div class="scs-option">
                         <div class="scs-option__text">
-                            <strong><label for="scs-plugin-language"><?php esc_html_e('Plugin language', 'self-captcha-standalone'); ?></label></strong>
-                            <span><?php esc_html_e('This screen and the messages shown when a form is refused. Automatic follows the WordPress language.', 'self-captcha-standalone'); ?></span>
+                            <strong><label for="scs-plugin-language"><?php esc_html_e('Plugin language', 'selfcap'); ?></label></strong>
+                            <span><?php esc_html_e('This screen and the messages shown when a form is refused. Automatic follows the WordPress language.', 'selfcap'); ?></span>
                         </div>
                         <div class="scs-option__control">
                             <select id="scs-plugin-language" name="<?php echo esc_attr($name); ?>[plugin_language]">
-                                <option value="auto" <?php selected($options['plugin_language'], 'auto'); ?>><?php esc_html_e('Automatic', 'self-captcha-standalone'); ?></option>
+                                <option value="auto" <?php selected($options['plugin_language'], 'auto'); ?>><?php esc_html_e('Automatic', 'selfcap'); ?></option>
                                 <?php foreach ($languages as $value => $label) : ?>
                                     <option value="<?php echo esc_attr($value); ?>" <?php selected($options['plugin_language'], $value); ?>><?php echo esc_html($label); ?></option>
                                 <?php endforeach; ?>
@@ -846,13 +846,13 @@ class Selfcap_Admin
                 </section>
 
                 <section class="scs-card">
-                    <h2><?php esc_html_e('Security', 'self-captcha-standalone'); ?></h2>
-                    <p class="scs-hint"><?php esc_html_e('How hard the captcha is for bots and what happens to attackers.', 'self-captcha-standalone'); ?></p>
+                    <h2><?php esc_html_e('Security', 'selfcap'); ?></h2>
+                    <p class="scs-hint"><?php esc_html_e('How hard the captcha is for bots and what happens to attackers.', 'selfcap'); ?></p>
 
                     <div class="scs-option">
                         <div class="scs-option__text">
-                            <strong><label for="scs-difficulty"><?php esc_html_e('Difficulty', 'self-captcha-standalone'); ?></label></strong>
-                            <span><?php esc_html_e('Work the visitor\'s browser does in the background, from 10 to 24. Each step doubles it. 18 takes well under a second on a phone.', 'self-captcha-standalone'); ?></span>
+                            <strong><label for="scs-difficulty"><?php esc_html_e('Difficulty', 'selfcap'); ?></label></strong>
+                            <span><?php esc_html_e('Work the visitor\'s browser does in the background, from 10 to 24. Each step doubles it. 18 takes well under a second on a phone.', 'selfcap'); ?></span>
                         </div>
                         <div class="scs-option__control">
                             <input id="scs-difficulty" type="number" min="10" max="24" name="<?php echo esc_attr($name); ?>[difficulty]" value="<?php echo esc_attr($options['difficulty']); ?>">
@@ -860,14 +860,14 @@ class Selfcap_Admin
                     </div>
 
                     <?php
-                    self::toggle('block_xmlrpc', $options, __('Block logins over XML-RPC', 'self-captcha-standalone'), __('XML-RPC accepts a username and password without any form, so attackers use it to get around the login captcha. Turn this off only if you use the WordPress mobile app or a service that logs in over XML-RPC.', 'self-captcha-standalone'));
-                    self::toggle('auto_block', $options, __('Automatic blocking', 'self-captcha-standalone'), __('Temporarily blocks addresses that behave like an attack, only on attack-like volume inside 10 minutes. Blocks last 15 minutes, then 1 hour, then 24 hours for repeat offenders.', 'self-captcha-standalone'));
+                    self::toggle('block_xmlrpc', $options, __('Block logins over XML-RPC', 'selfcap'), __('XML-RPC accepts a username and password without any form, so attackers use it to get around the login captcha. Turn this off only if you use the WordPress mobile app or a service that logs in over XML-RPC.', 'selfcap'));
+                    self::toggle('auto_block', $options, __('Automatic blocking', 'selfcap'), __('Temporarily blocks addresses that behave like an attack, only on attack-like volume inside 10 minutes. Blocks last 15 minutes, then 1 hour, then 24 hours for repeat offenders.', 'selfcap'));
                     ?>
 
                     <div class="scs-option">
                         <div class="scs-option__text">
-                            <strong><label for="scs-retention"><?php esc_html_e('Keep the log for (days)', 'self-captcha-standalone'); ?></label></strong>
-                            <span><?php esc_html_e('Older verification log entries are deleted every day.', 'self-captcha-standalone'); ?></span>
+                            <strong><label for="scs-retention"><?php esc_html_e('Keep the log for (days)', 'selfcap'); ?></label></strong>
+                            <span><?php esc_html_e('Older verification log entries are deleted every day.', 'selfcap'); ?></span>
                         </div>
                         <div class="scs-option__control">
                             <input id="scs-retention" type="number" min="1" max="365" name="<?php echo esc_attr($name); ?>[retention_days]" value="<?php echo esc_attr($options['retention_days']); ?>">
@@ -876,25 +876,25 @@ class Selfcap_Admin
                 </section>
 
                 <section class="scs-card">
-                    <h2><?php esc_html_e('Visitor IP address', 'self-captcha-standalone'); ?></h2>
-                    <p class="scs-hint"><?php esc_html_e('Needed when the site is behind Cloudflare, a load balancer or another proxy.', 'self-captcha-standalone'); ?></p>
+                    <h2><?php esc_html_e('Visitor IP address', 'selfcap'); ?></h2>
+                    <p class="scs-hint"><?php esc_html_e('Needed when the site is behind Cloudflare, a load balancer or another proxy.', 'selfcap'); ?></p>
 
                     <?php
-                    self::toggle('ip_headers', $options, __('Read the real IP behind a proxy', 'self-captcha-standalone'), __('Forwarding headers are only believed when the connection comes from Cloudflare, a private address or a proxy listed below.', 'self-captcha-standalone'));
+                    self::toggle('ip_headers', $options, __('Read the real IP behind a proxy', 'selfcap'), __('Forwarding headers are only believed when the connection comes from Cloudflare, a private address or a proxy listed below.', 'selfcap'));
                     ?>
 
                     <div class="scs-option is-stacked">
                         <div class="scs-option__text">
-                            <strong><?php esc_html_e('Address detected for you now', 'self-captcha-standalone'); ?></strong>
-                            <span><?php esc_html_e('If this is not your own public IP, add your proxy to the list below.', 'self-captcha-standalone'); ?></span>
+                            <strong><?php esc_html_e('Address detected for you now', 'selfcap'); ?></strong>
+                            <span><?php esc_html_e('If this is not your own public IP, add your proxy to the list below.', 'selfcap'); ?></span>
                             <code class="scs-code"><?php echo esc_html(Selfcap_Plugin::client_ip()); ?></code>
                         </div>
                     </div>
 
                     <div class="scs-option is-stacked">
                         <div class="scs-option__text">
-                            <strong><label for="scs-proxies"><?php esc_html_e('Other trusted proxies', 'self-captcha-standalone'); ?></label></strong>
-                            <span><?php esc_html_e('IP address or CIDR range, one per line.', 'self-captcha-standalone'); ?></span>
+                            <strong><label for="scs-proxies"><?php esc_html_e('Other trusted proxies', 'selfcap'); ?></label></strong>
+                            <span><?php esc_html_e('IP address or CIDR range, one per line.', 'selfcap'); ?></span>
                         </div>
                         <div class="scs-option__control scs-field">
                             <textarea id="scs-proxies" name="<?php echo esc_attr($name); ?>[trusted_proxies]" rows="3" class="code"><?php echo esc_textarea($options['trusted_proxies']); ?></textarea>
@@ -904,7 +904,7 @@ class Selfcap_Admin
             </div>
 
             <div class="scs-save">
-                <button type="submit" class="button button-primary"><?php esc_html_e('Save changes', 'self-captcha-standalone'); ?></button>
+                <button type="submit" class="button button-primary"><?php esc_html_e('Save changes', 'selfcap'); ?></button>
             </div>
         </form>
         <?php

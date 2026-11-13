@@ -2,7 +2,7 @@
 /**
  * Integration tests. They empty the captcha tables, so run them on a test site only:
  *
- *     wp eval-file wp-content/plugins/self-captcha-standalone/tests/run.php
+ *     wp eval-file wp-content/plugins/selfcap/tests/run.php
  */
 
 if (! defined('ABSPATH') || ! class_exists('Selfcap_Engine')) {
@@ -424,13 +424,13 @@ $check('challenge through the plugin', $status, 200);
 [, $verified] = $live->verify(Selfcap_Plugin::context(), $issued['challenge'], $solve($issued['salt'], $issued['difficulty']), $human());
 
 $_POST[SELFCAP_FIELD] = $verified['token'];
-$check('self_captcha_verify() accepts the posted token', self_captcha_verify(), true);
-$check('a second hook in the same request does not burn it', self_captcha_verify(), true);
+$check('selfcap_verify() accepts the posted token', selfcap_verify(), true);
+$check('a second hook in the same request does not burn it', selfcap_verify(), true);
 $check('validated only once', (int) $GLOBALS['wpdb']->get_var('SELECT validated FROM '.Selfcap_Store::table('stats')), 1);
 
 $_POST[SELFCAP_FIELD] = '';
-$check('missing token is refused', self_captcha_verify(), false);
-$check('forged token is refused', self_captcha_verify('abc.def'), false);
+$check('missing token is refused', selfcap_verify(), false);
+$check('forged token is refused', selfcap_verify('abc.def'), false);
 
 // ---- Housekeeping -------------------------------------------------------
 $wipe();

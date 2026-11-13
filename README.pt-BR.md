@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/banner-pt.svg" alt="Self Captcha Standalone: seu próprio captcha, dentro do WordPress" width="100%">
+  <img src="docs/images/banner-pt.svg" alt="Selfcap: seu próprio captcha, dentro do WordPress" width="100%">
 </p>
 
 <p align="center">
@@ -16,7 +16,7 @@
 
 ---
 
-O **Self Captcha Standalone** protege os formulários do seu WordPress com uma caixinha simples de *"Não sou um robô"*, e tudo acontece no seu próprio site. O WordPress emite o desafio, confere a resposta, guarda o registro e bloqueia atacantes. Não há serviço de terceiros, conta para criar, chaves de API nem nada enviado para outra empresa.
+O **Selfcap** protege os formulários do seu WordPress com uma caixinha simples de *"Não sou um robô"*, e tudo acontece no seu próprio site. O WordPress emite o desafio, confere a resposta, guarda o registro e bloqueia atacantes. Não há serviço de terceiros, conta para criar, chaves de API nem nada enviado para outra empresa.
 
 <p align="center">
   <picture>
@@ -50,9 +50,9 @@ O **Self Captcha Standalone** protege os formulários do seu WordPress com uma c
 
 ## Por que um captcha próprio
 
-Os serviços de captcha hospedados funcionam bem, mas têm um preço: o navegador de cada visitante conversa com outra empresa, você precisa de conta e chaves, e depende da disponibilidade e dos termos de outra pessoa. O Self Captcha Standalone mantém tudo dentro do seu WordPress.
+Os serviços de captcha hospedados funcionam bem, mas têm um preço: o navegador de cada visitante conversa com outra empresa, você precisa de conta e chaves, e depende da disponibilidade e dos termos de outra pessoa. O Selfcap mantém tudo dentro do seu WordPress.
 
-| | Serviço de captcha hospedado | Self Captcha Standalone |
+| | Serviço de captcha hospedado | Selfcap |
 |---|---|---|
 | Navegador do visitante fala com terceiros | Sim | **Não** |
 | Conta e chaves de API | Obrigatórias | **Nenhuma** |
@@ -77,8 +77,8 @@ Os serviços de captcha hospedados funcionam bem, mas têm um preço: o navegado
 
 - 🔐 Login, cadastro, recuperar senha e comentários, no `wp-login.php`, no Minha conta do WooCommerce e no cadastro do multisite
 - 🛒 Checkout do WooCommerce, **tanto** em blocos quanto no clássico `[woocommerce_checkout]`, com o widget logo acima do botão *Finalizar pedido*, além da página *Pagar pedido*
-- ✉️ Contact Form 7, com a tag `[self_captcha]`
-- 🧩 Qualquer outro formulário, com o shortcode `[self_captcha]` e `self_captcha_verify()`
+- ✉️ Contact Form 7, com a tag `[selfcap]`
+- 🧩 Qualquer outro formulário, com o shortcode `[selfcap]` e `selfcap_verify()`
 
 **Painel**
 
@@ -124,7 +124,7 @@ sequenceDiagram
     autonumber
     participant B as Navegador do visitante
     participant W as Seu WordPress
-    B->>W: POST /wp-json/self-captcha/v1/challenge
+    B->>W: POST /wp-json/selfcap/v1/challenge
     W-->>B: Desafio assinado (salt + dificuldade)
     Note over B: Web Workers resolvem a prova de trabalho<br/>enquanto o visitante preenche o formulário
     B->>W: Clique → POST /verify (solução + sinais do navegador)
@@ -150,7 +150,7 @@ Nada desse fluxo sai do seu servidor.
 | PHP | 7.4 (testado até 8.3) |
 | Banco de dados | MySQL ou MariaDB, nas versões suportadas pelo WordPress |
 | Navegador | Qualquer navegador moderno. Usa Web Workers quando permitido, com alternativa na thread principal |
-| API REST | A rota `/wp-json/self-captcha/v1/` precisa estar acessível para visitantes |
+| API REST | A rota `/wp-json/selfcap/v1/` precisa estar acessível para visitantes |
 
 WooCommerce e Contact Form 7 são opcionais. As opções deles só aparecem nas configurações quando esses plugins estão ativos.
 
@@ -158,15 +158,15 @@ WooCommerce e Contact Form 7 são opcionais. As opções deles só aparecem nas 
 
 **A partir de um zip**
 
-1. Baixe o `self-captcha-standalone-x.y.z.zip`, ou gere um a partir do código com `bin/build-zip.sh`.
+1. Baixe o `selfcap-x.y.z.zip`, ou gere um a partir do código com `bin/build-zip.sh`.
 2. No wp-admin, vá em **Plugins → Adicionar novo → Enviar plugin**, escolha o zip e ative.
 
 **A partir do código**
 
 ```bash
 cd wp-content/plugins
-git clone https://github.com/christianoerick/self-captcha-standalone.git
-wp plugin activate self-captcha-standalone
+git clone https://github.com/christianoerick/selfcap.git
+wp plugin activate selfcap
 ```
 
 Ao ativar, o plugin cria suas quatro tabelas e uma chave de assinatura aleatória. Não há mais nada para configurar.
@@ -174,12 +174,12 @@ Ao ativar, o plugin cria suas quatro tabelas e uma chave de assinatura aleatóri
 ## Primeiros passos
 
 1. **Ative o plugin.** Login, cadastro, recuperar senha e comentários ficam protegidos na hora.
-2. Abra **Self Captcha → Configurações** e marque os outros formulários que quer proteger (WooCommerce, Contact Form 7).
-3. **Só no Contact Form 7:** adicione a tag `[self_captcha]` em cada formulário, onde o widget deve aparecer.
+2. Abra **Selfcap → Configurações** e marque os outros formulários que quer proteger (WooCommerce, Contact Form 7).
+3. **Só no Contact Form 7:** adicione a tag `[selfcap]` em cada formulário, onde o widget deve aparecer.
 4. Saia do admin e abra a página de login. O widget aparece; a verificação é um clique.
 
 > [!TIP]
-> Ficou sem conseguir entrar depois de mudar alguma configuração? Adicione `define('SELF_CAPTCHA_DISABLE', true);` ao `wp-config.php`. O captcha fica desligado até você remover a linha.
+> Ficou sem conseguir entrar depois de mudar alguma configuração? Adicione `define('SELFCAP_DISABLE', true);` ao `wp-config.php`. O captcha fica desligado até você remover a linha.
 
 ## Formulários suportados
 
@@ -190,7 +190,7 @@ Ao ativar, o plugin cria suas quatro tabelas e uma chave de assinatura aleatóri
 | **Recuperar senha** | `wp-login.php?action=lostpassword` e Minha conta do WooCommerce | `lostpassword_post`, disparado pelos dois. Administradores que enviam o link de redefinição pela tela de Usuários não são afetados |
 | **Comentários** | Acima do botão de enviar (oculto para moderadores) | `preprocess_comment`. Pingbacks e trackbacks não são afetados |
 | **Checkout do WooCommerce** | Acima de *Finalizar pedido* no checkout em blocos e no clássico, e na página *Pagar pedido* | Store API (`woocommerce_store_api_checkout_update_order_from_request`, ao fechar o pedido), `woocommerce_after_checkout_validation`, `woocommerce_before_pay_action` |
-| **Contact Form 7** | Onde você colocar `[self_captcha]` | `wpcf7_spam`. Só formulários que têm a tag são conferidos |
+| **Contact Form 7** | Onde você colocar `[selfcap]` | `wpcf7_spam`. Só formulários que têm a tag são conferidos |
 
 Cada opção cobre todos os formulários do mesmo tipo: proteger o *Login* protege o `wp-login.php` **e** o login do WooCommerce, então um nunca serve de atalho para o outro.
 
@@ -198,7 +198,7 @@ Formulários que enviam sem recarregar a página já são tratados: depois de um
 
 ## Configurações
 
-Todas as configurações ficam em **Self Captcha → Configurações**.
+Todas as configurações ficam em **Selfcap → Configurações**.
 
 | Configuração | Padrão | O que faz |
 |---|---|---|
@@ -223,7 +223,7 @@ Todas as configurações ficam em **Self Captcha → Configurações**.
     <input type="hidden" name="action" value="minha_newsletter">
     <input type="email" name="email" required>
 
-    <?php echo do_shortcode('[self_captcha]'); ?>
+    <?php echo do_shortcode('[selfcap]'); ?>
 
     <button type="submit">Assinar</button>
 </form>
@@ -235,7 +235,7 @@ add_action('admin_post_minha_newsletter', 'minha_newsletter');
 
 function minha_newsletter(): void
 {
-    if (! self_captcha_verify()) {
+    if (! selfcap_verify()) {
         wp_die('Confirme que você não é um robô.', '', ['response' => 403, 'back_link' => true]);
     }
 
@@ -243,7 +243,7 @@ function minha_newsletter(): void
 }
 ```
 
-`self_captcha_verify()` lê o token de `$_POST['captcha-response']`. Você também pode passar o token: `self_captcha_verify($token)`. Ela devolve `true` ou `false`, e chamar duas vezes na mesma requisição não gasta o token duas vezes.
+`selfcap_verify()` lê o token de `$_POST['captcha-response']`. Você também pode passar o token: `selfcap_verify($token)`. Ela devolve `true` ou `false`, e chamar duas vezes na mesma requisição não gasta o token duas vezes.
 
 **Atributos do shortcode**
 
@@ -253,7 +253,7 @@ function minha_newsletter(): void
 | `language` | `auto`, `en`, `pt`, `es` | A configuração |
 
 ```text
-[self_captcha theme="dark" language="pt"]
+[selfcap theme="dark" language="pt"]
 ```
 
 **API JavaScript.** Formulários que enviam com `fetch` ou AJAX podem usar a API do widget para ler o token e pedir de novo depois de uma recusa:
@@ -277,10 +277,10 @@ SelfCaptcha.reset(caixa);                     // o token foi gasto: mostra uma c
 
 ## Hooks e constantes
 
-Filtro **`self_captcha_config`**: todos os valores de ajuste num único array.
+Filtro **`selfcap_config`**: todos os valores de ajuste num único array.
 
 ```php
-add_filter('self_captcha_config', function (array $config): array {
+add_filter('selfcap_config', function (array $config): array {
     $config['token_ttl'] = 900;                // checkouts demorados
     $config['auto_block']['durations'] = [30, 240, 2880];
 
@@ -318,15 +318,15 @@ add_filter('self_captcha_config', function (array $config): array {
 
 </details>
 
-Filtro **`self_captcha_hostnames`**: domínios extras onde o widget pode rodar (mapeamento de domínio, um segundo domínio de idioma). As URLs do site e da home sempre são aceitas, com e sem `www.`.
+Filtro **`selfcap_hostnames`**: domínios extras onde o widget pode rodar (mapeamento de domínio, um segundo domínio de idioma). As URLs do site e da home sempre são aceitas, com e sem `www.`.
 
 ```php
-add_filter('self_captcha_hostnames', fn (array $hosts) => [...$hosts, 'loja.exemplo.com.br']);
+add_filter('selfcap_hostnames', fn (array $hosts) => [...$hosts, 'loja.exemplo.com.br']);
 ```
 
-Constante **`SELF_CAPTCHA_DISABLE`**: `define('SELF_CAPTCHA_DISABLE', true);` no `wp-config.php` desliga tudo.
+Constante **`SELFCAP_DISABLE`**: `define('SELFCAP_DISABLE', true);` no `wp-config.php` desliga tudo.
 
-Função **`self_captcha_verify(?string $token = null): bool`**: valida o envio atual, como mostrado acima.
+Função **`selfcap_verify(?string $token = null): bool`**: valida o envio atual, como mostrado acima.
 
 ## API REST
 
@@ -334,8 +334,8 @@ O widget conversa com duas rotas públicas do seu próprio site. Você só preci
 
 | Rota | Corpo | Sucesso |
 |---|---|---|
-| `POST /wp-json/self-captcha/v1/challenge` | `{}` | `{ success, challenge, salt, difficulty, expires_in }` |
-| `POST /wp-json/self-captcha/v1/verify` | `{ challenge, nonce, signals }` | `{ success, token, expires_in }` |
+| `POST /wp-json/selfcap/v1/challenge` | `{}` | `{ success, challenge, salt, difficulty, expires_in }` |
+| `POST /wp-json/selfcap/v1/verify` | `{ challenge, nonce, signals }` | `{ success, token, expires_in }` |
 
 Os erros voltam como `{ "success": false, "error": "<código>" }`:
 
@@ -408,7 +408,7 @@ O bloqueio dura **15 minutos**, depois **1 hora**, depois **24 horas** para rein
 ## Limitações conhecidas
 
 - **Botões de pagamento expresso** (Apple Pay, Google Pay e botões parecidos que aparecem antes do formulário de checkout) fecham o pedido sem o widget. Com o *Checkout do WooCommerce* protegido, eles são recusados até o visitante marcar a caixinha. Teste na sua loja e desligue a opção do checkout se depender deles.
-- **Formulários próprios de outros plugins** para login ou cadastro (login AJAX de um tema, um plugin de assinaturas) não mostram o widget, então não são conferidos. Proteja-os com o shortcode e `self_captcha_verify()`.
+- **Formulários próprios de outros plugins** para login ou cadastro (login AJAX de um tema, um plugin de assinaturas) não mostram o widget, então não são conferidos. Proteja-os com o shortcode e `selfcap_verify()`.
 - **Usuários logados** que comentam pela API REST não passam pelo captcha; é no cadastro que os bots são barrados.
 - **Uma CDN ou proxy com endereços públicos** que não seja a Cloudflare (CloudFront, Sucuri, Fastly…) precisa ser listada em *Outros proxies confiáveis*. Até lá, todos os visitantes dividem os endereços da CDN.
 
@@ -442,8 +442,8 @@ Uma tarefa diária do cron apaga os dados vencidos. **Excluir o plugin** pela te
 <details>
 <summary><b>O widget diz "Verificação indisponível" ou "Falha na verificação"</b></summary>
 
-- **"Verificação indisponível"** significa que o site recusou o widget: o captcha está desligado, ou a página está num domínio diferente do site WordPress. Adicione esse domínio com o filtro `self_captcha_hostnames`.
-- **"Falha na verificação"** logo depois do clique, toda vez, geralmente significa que o widget não alcança `/wp-json/self-captcha/v1/`. Confira se algum plugin de segurança ou regra de firewall está fechando a API REST para visitantes. O registro na **Visão geral** mostra o motivo quando a requisição chegou.
+- **"Verificação indisponível"** significa que o site recusou o widget: o captcha está desligado, ou a página está num domínio diferente do site WordPress. Adicione esse domínio com o filtro `selfcap_hostnames`.
+- **"Falha na verificação"** logo depois do clique, toda vez, geralmente significa que o widget não alcança `/wp-json/selfcap/v1/`. Confira se algum plugin de segurança ou regra de firewall está fechando a API REST para visitantes. O registro na **Visão geral** mostra o motivo quando a requisição chegou.
 </details>
 
 <details>
@@ -455,13 +455,13 @@ O site está atrás de um proxy que o plugin não reconhece; a tela do admin mos
 <details>
 <summary><b>Não consigo mais entrar no admin</b></summary>
 
-Adicione `define('SELF_CAPTCHA_DISABLE', true);` ao `wp-config.php`, entre, corrija a configuração e remova a linha. Ou adicione o seu IP como regra de **Liberar**.
+Adicione `define('SELFCAP_DISABLE', true);` ao `wp-config.php`, entre, corrija a configuração e remova a linha. Ou adicione o seu IP como regra de **Liberar**.
 </details>
 
 <details>
 <summary><b>O checkout demora mais que 5 minutos</b></summary>
 
-O widget se renova sozinho quando o token vence, então o visitante só clica de novo. Para dar mais tempo, aumente `token_ttl` com o filtro `self_captcha_config`.
+O widget se renova sozinho quando o token vence, então o visitante só clica de novo. Para dar mais tempo, aumente `token_ttl` com o filtro `selfcap_config`.
 </details>
 
 <details>
@@ -479,8 +479,8 @@ Pode, mas não há motivo para proteger o mesmo formulário duas vezes. Desligue
 ## Desenvolvimento
 
 ```text
-self-captcha-standalone/
-├── self-captcha-standalone.php   Inicialização: constantes, includes, hooks
+selfcap/
+├── selfcap.php   Inicialização: constantes, includes, hooks
 ├── includes/
 │   ├── class-selfcap-engine.php  Desafio, prova de trabalho, pontuação, tokens, bloqueio automático
 │   ├── class-selfcap-store.php   Tabelas, contadores, registro, totais, regras de IP
@@ -508,7 +508,7 @@ npx esbuild assets/src/widget.js --bundle --minify --format=iife --target=es2017
 **Rode os testes** num site descartável. Eles esvaziam as tabelas do plugin.
 
 ```bash
-wp eval-file wp-content/plugins/self-captcha-standalone/tests/run.php
+wp eval-file wp-content/plugins/selfcap/tests/run.php
 # OK - 93 checks passed
 ```
 
@@ -517,7 +517,7 @@ Eles cobrem o fluxo completo, desafios e tokens forjados ou repetidos, tokens us
 **Atualize as traduções** depois de mudar um texto:
 
 ```bash
-wp i18n make-pot . languages/self-captcha-standalone.pot --exclude=tests,assets,docs
+wp i18n make-pot . languages/selfcap.pot --exclude=tests,assets,docs
 # traduza languages/*.po e depois:
 wp i18n make-mo languages
 ```
@@ -526,13 +526,13 @@ wp i18n make-mo languages
 
 ```bash
 bin/build-zip.sh
-# dist/self-captcha-standalone-1.0.0.zip
+# dist/selfcap-1.0.0.zip
 ```
 
 O plugin passa no [Plugin Check](https://wordpress.org/plugins/plugin-check/) oficial sem erros nem avisos:
 
 ```bash
-wp plugin check self-captcha-standalone
+wp plugin check selfcap
 ```
 
 ## Como contribuir

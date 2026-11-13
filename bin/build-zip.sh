@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Builds dist/self-captcha-standalone-<version>.zip with only what ships (see .distignore).
+# Builds dist/selfcap-<version>.zip with only what ships (see .distignore).
 set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
-slug="self-captcha-standalone"
+slug="selfcap"
 version="$(sed -n 's/^ \* Version: //p' "$root/$slug.php")"
 work="$(mktemp -d)"
 

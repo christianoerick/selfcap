@@ -1,4 +1,4 @@
-/* Self Captcha admin screen. Scoped to .scs so nothing leaks into wp-admin. */
+/* Selfcap admin screen. Scoped to .scs so nothing leaks into wp-admin. */
 .scs {
   --scs-ink: #1d2327;
   --scs-ink-2: #50575e;

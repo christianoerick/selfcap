@@ -1,4 +1,4 @@
-/* Self Captcha admin: chart tooltip, keyboard navigation, confirmations. */
+/* Selfcap admin: chart tooltip, keyboard navigation, confirmations. */
 (function () {
   document.querySelectorAll('.scs [data-confirm]').forEach(function (link) {
     link.addEventListener('click', function (event) {

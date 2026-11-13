@@ -1,4 +1,4 @@
-=== Self Captcha Standalone ===
+=== Selfcap – Self-Hosted Captcha ===
 Contributors: christianoerick
 Tags: captcha, spam, security, woocommerce, anti-spam
 Requires at least: 6.3
@@ -12,7 +12,7 @@ A privacy-friendly captcha that runs entirely inside your WordPress site. No thi
 
 == Description ==
 
-Self Captcha Standalone protects your forms with a simple "I'm not a robot" checkbox. Everything happens on your own site: WordPress issues the challenge, checks the answer, keeps the log and blocks attackers. Nothing is sent to another company, and there is nothing to sign up for.
+Selfcap protects your forms with a simple "I'm not a robot" checkbox. Everything happens on your own site: WordPress issues the challenge, checks the answer, keeps the log and blocks attackers. Nothing is sent to another company, and there is nothing to sign up for.
 
 **How it protects**
 
@@ -27,8 +27,8 @@ Self Captcha Standalone protects your forms with a simple "I'm not a robot" chec
 
 * Login, registration, lost password and comments, on wp-login.php, WooCommerce My Account and multisite sign-up
 * WooCommerce checkout, in both the block checkout and the classic one, plus the Pay for order page
-* Contact Form 7, with the `[self_captcha]` tag
-* Any other form, with the `[self_captcha]` shortcode and `self_captcha_verify()`
+* Contact Form 7, with the `[selfcap]` tag
+* Any other form, with the `[selfcap]` shortcode and `selfcap_verify()`
 
 **Dashboard**
 
@@ -49,9 +49,9 @@ This plugin does not contact any external service. It stores, on your own databa
 
 1. Upload the plugin to `/wp-content/plugins/` or install it from the Plugins screen.
 2. Activate it. Login, registration, lost password and comments are protected right away.
-3. Open **Self Captcha > Settings** to choose which forms to protect, including WooCommerce and Contact Form 7 when those plugins are active.
+3. Open **Selfcap > Settings** to choose which forms to protect, including WooCommerce and Contact Form 7 when those plugins are active.
 
-For Contact Form 7, add the `[self_captcha]` tag to the form.
+For Contact Form 7, add the `[selfcap]` tag to the form.
 
 == Frequently Asked Questions ==
 
@@ -61,7 +61,7 @@ No. The challenge, the validation, the log and the blocking all run on your own 
 
 = I am locked out of the login. What now? =
 
-Add `define('SELF_CAPTCHA_DISABLE', true);` to `wp-config.php`. That switches the captcha off until you remove the line.
+Add `define('SELFCAP_DISABLE', true);` to `wp-config.php`. That switches the captcha off until you remove the line.
 
 = Does it work with page caching? =
 
@@ -69,7 +69,7 @@ Yes. The widget fetches its challenge after the page loads, so cached pages are 
 
 = Does it need the REST API? =
 
-Yes. The widget talks to `/wp-json/self-captcha/v1/` on your own site. If a security plugin closes the REST API to visitors, leave that route open.
+Yes. The widget talks to `/wp-json/selfcap/v1/` on your own site. If a security plugin closes the REST API to visitors, leave that route open.
 
 = My site is behind Cloudflare or a load balancer. Will it see the right IP? =
 
@@ -81,7 +81,7 @@ Browser signals can be forged by a dedicated bot. The real cost comes from the p
 
 = How do I protect a custom form? =
 
-Print the widget with `echo do_shortcode('[self_captcha]');` inside the form and call `self_captcha_verify()` in the code that handles the submission. It returns true or false.
+Print the widget with `echo do_shortcode('[selfcap]');` inside the form and call `selfcap_verify()` in the code that handles the submission. It returns true or false.
 
 = Does it work with express payment buttons (Apple Pay, Google Pay)? =
 
@@ -93,7 +93,7 @@ The app logs in over XML-RPC, which this plugin closes by default because attack
 
 = Can I change the thresholds? =
 
-Yes, with the `self_captcha_config` filter (timeouts, rate limit, blocking thresholds). Extra hostnames for the same site can be added with the `self_captcha_hostnames` filter.
+Yes, with the `selfcap_config` filter (timeouts, rate limit, blocking thresholds). Extra hostnames for the same site can be added with the `selfcap_hostnames` filter.
 
 = Where is the source of the widget? =
 

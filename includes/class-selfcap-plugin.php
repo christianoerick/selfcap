@@ -73,25 +73,25 @@ class Selfcap_Plugin
         $files = ['pt' => 'pt_BR', 'es' => 'es_ES'];
 
         return isset($files[$language])
-            ? plugin_dir_path(SELFCAP_FILE).'languages/self-captcha-standalone-'.$files[$language].'.mo'
+            ? plugin_dir_path(SELFCAP_FILE).'languages/selfcap-'.$files[$language].'.mo'
             : null;
     }
 
     public static function load_translations(): void
     {
-        unload_textdomain('self-captcha-standalone');
+        unload_textdomain('selfcap');
 
         $file = self::translation();
 
         if ($file !== null && is_readable($file)) {
-            load_textdomain('self-captcha-standalone', $file); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
+            load_textdomain('selfcap', $file); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
         }
     }
 
     /** Any other attempt to load this plugin's strings gets the chosen language too. */
     public static function translation_file($mofile, $domain)
     {
-        if ($domain !== 'self-captcha-standalone') {
+        if ($domain !== 'selfcap') {
             return $mofile;
         }
 
@@ -107,9 +107,9 @@ class Selfcap_Plugin
             return;
         }
 
-        $text = __('To protect forms against bots, this site runs its own captcha. When you see the captcha, your browser solves a small computation and sends technical signals (browser type, screen size, how the checkbox was clicked). The site stores your IP address, browser user agent and the result of each verification for a limited time, to detect attacks and block abusive addresses. This data stays on this site and is not shared with any third party.', 'self-captcha-standalone');
+        $text = __('To protect forms against bots, this site runs its own captcha. When you see the captcha, your browser solves a small computation and sends technical signals (browser type, screen size, how the checkbox was clicked). The site stores your IP address, browser user agent and the result of each verification for a limited time, to detect attacks and block abusive addresses. This data stays on this site and is not shared with any third party.', 'selfcap');
 
-        wp_add_privacy_policy_content('Self Captcha Standalone', wp_kses_post(wpautop($text)));
+        wp_add_privacy_policy_content('Selfcap', wp_kses_post(wpautop($text)));
     }
 
     // ---- Settings -------------------------------------------------------
@@ -120,18 +120,18 @@ class Selfcap_Plugin
         $woo = class_exists('WooCommerce');
 
         $forms = [
-            'login' => $woo ? __('Login (WordPress and WooCommerce)', 'self-captcha-standalone') : __('Login', 'self-captcha-standalone'),
-            'register' => $woo ? __('Registration (WordPress and WooCommerce)', 'self-captcha-standalone') : __('Registration', 'self-captcha-standalone'),
-            'lostpassword' => $woo ? __('Lost password (WordPress and WooCommerce)', 'self-captcha-standalone') : __('Lost password', 'self-captcha-standalone'),
-            'comments' => __('Comments', 'self-captcha-standalone'),
+            'login' => $woo ? __('Login (WordPress and WooCommerce)', 'selfcap') : __('Login', 'selfcap'),
+            'register' => $woo ? __('Registration (WordPress and WooCommerce)', 'selfcap') : __('Registration', 'selfcap'),
+            'lostpassword' => $woo ? __('Lost password (WordPress and WooCommerce)', 'selfcap') : __('Lost password', 'selfcap'),
+            'comments' => __('Comments', 'selfcap'),
         ];
 
         if ($woo) {
-            $forms['woo_checkout'] = __('WooCommerce checkout', 'self-captcha-standalone');
+            $forms['woo_checkout'] = __('WooCommerce checkout', 'selfcap');
         }
 
         if (defined('WPCF7_VERSION')) {
-            $forms['cf7'] = __('Contact Form 7 (add the [self_captcha] tag to the form)', 'self-captcha-standalone');
+            $forms['cf7'] = __('Contact Form 7 (add the [selfcap] tag to the form)', 'selfcap');
         }
 
         return $forms;
@@ -168,12 +168,12 @@ class Selfcap_Plugin
         return $options;
     }
 
-    /** Tuning. Change any value with the `self_captcha_config` filter. */
+    /** Tuning. Change any value with the `selfcap_config` filter. */
     public static function config(): array
     {
         $options = self::options();
 
-        return (array) apply_filters('self_captcha_config', [
+        return (array) apply_filters('selfcap_config', [
             // Seconds a challenge stays valid (time the visitor has to click).
             'challenge_ttl' => 180,
             // Seconds the token stays valid until the form is submitted.
@@ -217,10 +217,10 @@ class Selfcap_Plugin
         ]);
     }
 
-    /** define('SELF_CAPTCHA_DISABLE', true) in wp-config.php switches everything off (locked out of the login, for instance). */
+    /** define('SELFCAP_DISABLE', true) in wp-config.php switches everything off (locked out of the login, for instance). */
     public static function is_enabled(): bool
     {
-        return ! (defined('SELF_CAPTCHA_DISABLE') && SELF_CAPTCHA_DISABLE) && ! empty(self::options()['enabled']);
+        return ! (defined('SELFCAP_DISABLE') && SELFCAP_DISABLE) && ! empty(self::options()['enabled']);
     }
 
     public static function protects(string $form): bool
@@ -241,7 +241,7 @@ class Selfcap_Plugin
             ];
 
             /** Extra hostnames the widget may run on (domain mapping, multilingual domains). */
-            $hostnames = (array) apply_filters('self_captcha_hostnames', array_filter($hostnames));
+            $hostnames = (array) apply_filters('selfcap_hostnames', array_filter($hostnames));
 
             $engine = new Selfcap_Engine(self::config(), self::signing_key(), $hostnames);
         }
@@ -326,7 +326,7 @@ class Selfcap_Plugin
         // The site key is a constant: this captcha serves only this WordPress site.
         return sprintf(
             '<div class="self-captcha" data-sitekey="local" data-endpoint="%s" data-theme="%s" data-language="%s" style="margin:0 0 16px"></div>',
-            esc_url(rest_url('self-captcha/v1')),
+            esc_url(rest_url('selfcap/v1')),
             esc_attr($theme),
             esc_attr($language)
         );
@@ -352,13 +352,13 @@ class Selfcap_Plugin
         }
 
         if ($token === '') {
-            return new WP_Error('self_captcha_missing', __('Please confirm you are not a robot.', 'self-captcha-standalone'));
+            return new WP_Error('selfcap_missing', __('Please confirm you are not a robot.', 'selfcap'));
         }
 
         if (! isset($results[$token])) {
             $results[$token] = self::engine()->validate_token($token, self::client_ip()) === true
                 ? true
-                : new WP_Error('self_captcha_failed', __('Captcha verification failed. Please try again.', 'self-captcha-standalone'));
+                : new WP_Error('selfcap_failed', __('Captcha verification failed. Please try again.', 'selfcap'));
         }
 
         return $results[$token];
