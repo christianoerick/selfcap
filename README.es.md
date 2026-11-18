@@ -7,7 +7,7 @@
   <img alt="PHP 7.4+" src="https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white">
   <img alt="Listo para WooCommerce" src="https://img.shields.io/badge/WooCommerce-pago%20en%20bloques%20y%20cl%C3%A1sico-7f54b3?logo=woocommerce&logoColor=white">
   <img alt="Licencia GPLv2 o posterior" src="https://img.shields.io/badge/licencia-GPLv2%2B-1baf7a">
-  <img alt="Idiomas" src="https://img.shields.io/badge/idiomas-EN%20%C2%B7%20PT%20%C2%B7%20ES-eb6834">
+  <img alt="Idiomas" src="https://img.shields.io/badge/widget-15%20idiomas-eb6834">
 </p>
 
 <p align="center">
@@ -88,7 +88,7 @@ Los servicios de captcha alojados funcionan bien, pero tienen un precio: el nave
 
 **En todas partes**
 
-- 🌍 Inglés, portugués y español, en el widget y en el panel
+- 🌍 El widget en 15 idiomas (inglés, español, portugués, alemán, francés, italiano, neerlandés, japonés, chino, ruso, polaco, indonesio, turco, persa y sueco); el panel en los mismos idiomas a través de translate.wordpress.org
 - 🌗 Tema del widget claro, oscuro o automático
 - ☁️ IP real del visitante detrás de Cloudflare, de un balanceador de carga o de tu propio proxy
 - 🧹 Limpieza diaria de los datos antiguos y limpieza completa al eliminar el plugin

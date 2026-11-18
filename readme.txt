@@ -4,7 +4,7 @@ Tags: captcha, spam, security, woocommerce, anti-spam
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,7 +39,7 @@ Selfcap protects your forms with a simple "I'm not a robot" checkbox. Everything
 
 **Languages**
 
-The widget speaks English, Portuguese and Spanish, following the visitor's browser or a language you choose. The admin screen and the messages are translated on translate.wordpress.org: WordPress installs the translation for your site language automatically, and you can force English, Portuguese or Spanish in the settings once that translation is available.
+The widget speaks 15 languages: English, Spanish, Portuguese, German, French, Italian, Dutch, Japanese, Chinese, Russian, Polish, Indonesian, Turkish, Persian (right to left) and Swedish. It follows the visitor's browser, or a language you choose. The admin screen and the messages are translated on translate.wordpress.org: WordPress installs the translation for your site language automatically, and you can force any of those languages in the settings once its translation is available.
 
 **Privacy**
 
@@ -109,6 +109,10 @@ The readable source of `assets/widget.js` is in `assets/src/`. It is bundled wit
 
 == Changelog ==
 
+= 1.0.3 =
+* The widget speaks 15 languages: German, French, Italian, Dutch, Japanese, Chinese, Russian, Polish, Indonesian, Turkish, Persian (right to left) and Swedish join English, Spanish and Portuguese.
+* The widget and plugin language settings list all of them.
+
 = 1.0.2 =
 * Translations of the admin screen now come from translate.wordpress.org (language packs); the plugin no longer ships its own .po/.mo files in the directory package.
 
@@ -121,6 +125,9 @@ The readable source of `assets/widget.js` is in `assets/src/`. It is bundled wit
 * First release.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+The widget now speaks 15 languages.
 
 = 1.0.2 =
 Translations now come from translate.wordpress.org.

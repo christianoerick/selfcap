@@ -66,9 +66,9 @@ class Selfcap_Admin
             'enabled' => empty($input['enabled']) ? 0 : 1,
             'forms' => array_values(array_intersect(array_keys(Selfcap_Plugin::forms()), (array) ($input['forms'] ?? []))),
             'theme' => in_array($input['theme'] ?? '', ['auto', 'light', 'dark'], true) ? $input['theme'] : 'auto',
-            'language' => in_array($input['language'] ?? '', ['auto', 'en', 'pt', 'es'], true) ? $input['language'] : 'auto',
+            'language' => isset(Selfcap_Plugin::LANGUAGES[$input['language'] ?? '']) ? $input['language'] : 'auto',
             'align' => in_array($input['align'] ?? '', ['left', 'center', 'right'], true) ? $input['align'] : 'left',
-            'plugin_language' => in_array($input['plugin_language'] ?? '', ['auto', 'en', 'pt', 'es'], true) ? $input['plugin_language'] : 'auto',
+            'plugin_language' => isset(Selfcap_Plugin::LANGUAGES[$input['plugin_language'] ?? '']) ? $input['plugin_language'] : 'auto',
             'difficulty' => max(10, min(24, (int) ($input['difficulty'] ?? 18))),
             'auto_block' => empty($input['auto_block']) ? 0 : 1,
             'ip_headers' => empty($input['ip_headers']) ? 0 : 1,
@@ -766,7 +766,7 @@ class Selfcap_Admin
     {
         $options = Selfcap_Plugin::options();
         $name = Selfcap_Plugin::OPTION;
-        $languages = ['en' => 'English', 'pt' => 'Português', 'es' => 'Español'];
+        $languages = array_map(fn ($language) => $language[0], Selfcap_Plugin::LANGUAGES);
 
         settings_errors();
         ?>

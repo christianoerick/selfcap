@@ -7,7 +7,7 @@
   <img alt="PHP 7.4+" src="https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white">
   <img alt="WooCommerce ready" src="https://img.shields.io/badge/WooCommerce-block%20%26%20classic%20checkout-7f54b3?logo=woocommerce&logoColor=white">
   <img alt="License GPLv2 or later" src="https://img.shields.io/badge/license-GPLv2%2B-1baf7a">
-  <img alt="Languages" src="https://img.shields.io/badge/languages-EN%20%C2%B7%20PT%20%C2%B7%20ES-eb6834">
+  <img alt="Languages" src="https://img.shields.io/badge/widget-15%20languages-eb6834">
 </p>
 
 <p align="center">
@@ -88,7 +88,7 @@ Hosted captcha services work well, but they come with strings attached: every vi
 
 **Everywhere**
 
-- 🌍 English, Portuguese and Spanish, both in the widget and in the admin
+- 🌍 The widget in 15 languages (English, Spanish, Portuguese, German, French, Italian, Dutch, Japanese, Chinese, Russian, Polish, Indonesian, Turkish, Persian and Swedish); the admin in the same languages through translate.wordpress.org
 - 🌗 Light, dark or automatic widget theme
 - ☁️ Real visitor IP behind Cloudflare, a load balancer or your own proxy
 - 🧹 Daily cleanup of old data, and a full cleanup when you delete the plugin

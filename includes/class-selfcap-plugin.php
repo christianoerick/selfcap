@@ -65,10 +65,8 @@ class Selfcap_Plugin
     private static function translation(): ?string
     {
         $language = (string) self::options()['plugin_language'];
-        $forced = ['en' => '', 'pt' => 'pt_BR', 'es' => 'es_ES'];
-
-        if (isset($forced[$language])) {
-            $locales = [$forced[$language]];
+        if (isset(self::LANGUAGES[$language])) {
+            $locales = [self::LANGUAGES[$language][1]];
         } else {
             // Automatic: the WordPress locale, then the bundled file for its language.
             $locale = (string) determine_locale();
@@ -333,6 +331,25 @@ class Selfcap_Plugin
      * Where the widget can go on the WooCommerce checkout: setting value => [label, WooCommerce hook].
      * "button" and "selector" are printed before the submit button and moved by forms.js.
      */
+    /** Languages of the widget and of the plugin: code => [name in that language, WordPress locale]. */
+    public const LANGUAGES = [
+        'en' => ['English', ''],
+        'pt' => ['Português', 'pt_BR'],
+        'es' => ['Español', 'es_ES'],
+        'de' => ['Deutsch', 'de_DE'],
+        'fr' => ['Français', 'fr_FR'],
+        'it' => ['Italiano', 'it_IT'],
+        'nl' => ['Nederlands', 'nl_NL'],
+        'ja' => ['日本語', 'ja'],
+        'zh' => ['中文', 'zh_CN'],
+        'ru' => ['Русский', 'ru_RU'],
+        'pl' => ['Polski', 'pl_PL'],
+        'id' => ['Bahasa Indonesia', 'id_ID'],
+        'tr' => ['Türkçe', 'tr_TR'],
+        'fa' => ['فارسی', 'fa_IR'],
+        'sv' => ['Svenska', 'sv_SE'],
+    ];
+
     public const CHECKOUT_HOOKS = [
         'button' => 'woocommerce_review_order_before_submit',
         'before_payment' => 'woocommerce_review_order_before_payment',
@@ -378,7 +395,7 @@ class Selfcap_Plugin
         $options = self::options();
         $attributes = is_array($attributes) ? $attributes : [];
         $theme = in_array($attributes['theme'] ?? '', ['auto', 'light', 'dark'], true) ? $attributes['theme'] : $options['theme'];
-        $language = in_array($attributes['language'] ?? '', ['auto', 'en', 'pt', 'es'], true) ? $attributes['language'] : $options['language'];
+        $language = isset(self::LANGUAGES[$attributes['language'] ?? '']) || ($attributes['language'] ?? '') === 'auto' ? $attributes['language'] : $options['language'];
         $align = in_array($attributes['align'] ?? '', ['left', 'center', 'right'], true) ? $attributes['align'] : $options['align'];
         $justify = ['left' => 'flex-start', 'center' => 'center', 'right' => 'flex-end'][$align] ?? 'flex-start';
 

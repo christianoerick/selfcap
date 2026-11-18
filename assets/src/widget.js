@@ -62,7 +62,118 @@ const TEXTS = {
     blocked: 'Acceso bloqueado',
     retry: 'Reintentar',
   },
+  de: {
+    idle: 'Ich bin kein Roboter',
+    working: 'Wird geprüft…',
+    success: 'Verifiziert',
+    error: 'Überprüfung fehlgeschlagen',
+    unavailable: 'Überprüfung nicht verfügbar',
+    blocked: 'Zugriff gesperrt',
+    retry: 'Erneut versuchen',
+  },
+  fr: {
+    idle: 'Je ne suis pas un robot',
+    working: 'Vérification…',
+    success: 'Vérifié',
+    error: 'Échec de la vérification',
+    unavailable: 'Vérification indisponible',
+    blocked: 'Accès bloqué',
+    retry: 'Réessayer',
+  },
+  it: {
+    idle: 'Non sono un robot',
+    working: 'Verifica in corso…',
+    success: 'Verificato',
+    error: 'Verifica non riuscita',
+    unavailable: 'Verifica non disponibile',
+    blocked: 'Accesso bloccato',
+    retry: 'Riprova',
+  },
+  nl: {
+    idle: 'Ik ben geen robot',
+    working: 'Bezig met controleren…',
+    success: 'Geverifieerd',
+    error: 'Verificatie mislukt',
+    unavailable: 'Verificatie niet beschikbaar',
+    blocked: 'Toegang geblokkeerd',
+    retry: 'Opnieuw proberen',
+  },
+  ja: {
+    idle: 'ロボットではありません',
+    working: '確認中…',
+    success: '確認済み',
+    error: '確認に失敗しました',
+    unavailable: '確認を利用できません',
+    blocked: 'アクセスがブロックされました',
+    retry: '再試行',
+  },
+  zh: {
+    idle: '我不是机器人',
+    working: '正在验证…',
+    success: '已验证',
+    error: '验证失败',
+    unavailable: '验证不可用',
+    blocked: '访问已被阻止',
+    retry: '重试',
+  },
+  ru: {
+    idle: 'Я не робот',
+    working: 'Проверка…',
+    success: 'Проверено',
+    error: 'Проверка не пройдена',
+    unavailable: 'Проверка недоступна',
+    blocked: 'Доступ заблокирован',
+    retry: 'Повторить',
+  },
+  pl: {
+    idle: 'Nie jestem robotem',
+    working: 'Weryfikacja…',
+    success: 'Zweryfikowano',
+    error: 'Weryfikacja nie powiodła się',
+    unavailable: 'Weryfikacja niedostępna',
+    blocked: 'Dostęp zablokowany',
+    retry: 'Spróbuj ponownie',
+  },
+  id: {
+    idle: 'Saya bukan robot',
+    working: 'Memverifikasi…',
+    success: 'Terverifikasi',
+    error: 'Verifikasi gagal',
+    unavailable: 'Verifikasi tidak tersedia',
+    blocked: 'Akses diblokir',
+    retry: 'Coba lagi',
+  },
+  tr: {
+    idle: 'Ben robot değilim',
+    working: 'Doğrulanıyor…',
+    success: 'Doğrulandı',
+    error: 'Doğrulama başarısız',
+    unavailable: 'Doğrulama kullanılamıyor',
+    blocked: 'Erişim engellendi',
+    retry: 'Tekrar dene',
+  },
+  fa: {
+    idle: 'من ربات نیستم',
+    working: 'در حال بررسی…',
+    success: 'تأیید شد',
+    error: 'تأیید ناموفق بود',
+    unavailable: 'تأیید در دسترس نیست',
+    blocked: 'دسترسی مسدود شد',
+    retry: 'تلاش دوباره',
+  },
+  sv: {
+    idle: 'Jag är inte en robot',
+    working: 'Verifierar…',
+    success: 'Verifierad',
+    error: 'Verifieringen misslyckades',
+    unavailable: 'Verifieringen är inte tillgänglig',
+    blocked: 'Åtkomst blockerad',
+    retry: 'Försök igen',
+  },
 }
+
+// Languages written right to left.
+const RTL = ['fa']
 
 const STYLE = `
 :host{display:inline-block;--bg:#fafafa;--border:#d4d4d8;--text:#18181b;--muted:#71717a;--accent:#16a34a;--danger:#dc2626;--box:#fff}
@@ -222,7 +333,8 @@ class Widget {
     this.container = container
     this.options = options
     this.endpoint = safeEndpoint(options.endpoint)
-    this.texts = TEXTS[pickLanguage(options.language)]
+    this.language = pickLanguage(options.language)
+    this.texts = TEXTS[this.language]
     this.token = ''
     this.job = null
     this.expiry = null
@@ -233,6 +345,7 @@ class Widget {
     root.innerHTML = `<style>${STYLE}</style>${MARKUP}`
 
     this.card = root.querySelector('.card')
+    if (RTL.includes(this.language)) this.card.dir = 'rtl'
     this.check = root.querySelector('.check')
     this.text = root.querySelector('.text')
     this.retry = root.querySelector('.retry')
