@@ -65,16 +65,33 @@ class Selfcap_Plugin
     private static function translation(): ?string
     {
         $language = (string) self::options()['plugin_language'];
+        $forced = ['en' => '', 'pt' => 'pt_BR', 'es' => 'es_ES'];
 
-        if ($language === 'auto') {
-            $language = strtolower(substr((string) determine_locale(), 0, 2));
+        if (isset($forced[$language])) {
+            $locales = [$forced[$language]];
+        } else {
+            // Automatic: the WordPress locale, then the bundled file for its language.
+            $locale = (string) determine_locale();
+            $bundled = ['pt' => 'pt_BR', 'es' => 'es_ES'][strtolower(substr($locale, 0, 2))] ?? '';
+            $locales = array_unique(array_filter([$locale, $bundled]));
         }
 
-        $files = ['pt' => 'pt_BR', 'es' => 'es_ES'];
+        foreach ($locales as $locale) {
+            if ($locale === '' || strpos($locale, 'en') === 0) {
+                return null;
+            }
 
-        return isset($files[$language])
-            ? plugin_dir_path(SELFCAP_FILE).'languages/selfcap-'.$files[$language].'.mo'
-            : null;
+            // The language pack from translate.wordpress.org first, then a copy shipped with the plugin.
+            foreach ([WP_LANG_DIR.'/plugins', plugin_dir_path(SELFCAP_FILE).'languages'] as $dir) {
+                $file = $dir.'/selfcap-'.$locale.'.mo';
+
+                if (is_readable($file)) {
+                    return $file;
+                }
+            }
+        }
+
+        return null;
     }
 
     public static function load_translations(): void

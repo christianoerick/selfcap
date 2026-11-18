@@ -4,7 +4,7 @@ Tags: captcha, spam, security, woocommerce, anti-spam
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,7 +39,7 @@ Selfcap protects your forms with a simple "I'm not a robot" checkbox. Everything
 
 **Languages**
 
-The widget and the admin screen come in English, Portuguese and Spanish. The widget follows the visitor's browser and the admin follows WordPress, or you can force a language in the settings.
+The widget speaks English, Portuguese and Spanish, following the visitor's browser or a language you choose. The admin screen and the messages are translated on translate.wordpress.org: WordPress installs the translation for your site language automatically, and you can force English, Portuguese or Spanish in the settings once that translation is available.
 
 **Privacy**
 
@@ -109,6 +109,9 @@ The readable source of `assets/widget.js` is in `assets/src/`. It is bundled wit
 
 == Changelog ==
 
+= 1.0.2 =
+* Translations of the admin screen now come from translate.wordpress.org (language packs); the plugin no longer ships its own .po/.mo files in the directory package.
+
 = 1.0.1 =
 * Position of the widget on the WooCommerce checkout: above the Place order button (follows the button when the theme moves it), before or after payment, before or after billing, or before any element by CSS selector.
 * Widget alignment: left, center or right, in a full-width row.
@@ -118,6 +121,9 @@ The readable source of `assets/widget.js` is in `assets/src/`. It is bundled wit
 * First release.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Translations now come from translate.wordpress.org.
 
 = 1.0.1 =
 Choose where the captcha goes on the WooCommerce checkout, and its alignment.
