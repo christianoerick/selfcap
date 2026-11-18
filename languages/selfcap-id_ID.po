@@ -1,0 +1,626 @@
+# Copyright (C) 2026 Christiano Erick
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Selfcap – Self-Hosted Captcha 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/selfcap\n"
+"Last-Translator: Christiano Erick\n"
+"Language-Team: Indonesian\n"
+"Language: id_ID\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-13T19:15:39-03:00\n"
+"PO-Revision-Date: 2026-11-17 00:00+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: selfcap\n"
+
+#. Plugin Name of the plugin
+#: selfcap.php
+msgid "Selfcap – Self-Hosted Captcha"
+msgstr "Selfcap – Captcha Hosting Mandiri"
+
+#. Plugin URI of the plugin
+#: selfcap.php
+msgid "https://github.com/christianoerick/selfcap"
+msgstr "https://github.com/christianoerick/selfcap"
+
+#. Description of the plugin
+#: selfcap.php
+msgid "A privacy-friendly captcha that runs entirely inside your WordPress site: a checkbox widget backed by proof-of-work, with no third-party service and no external server."
+msgstr "Captcha yang ramah privasi dan berjalan sepenuhnya di dalam situs WordPress Anda: widget kotak centang yang didukung proof-of-work, tanpa layanan pihak ketiga dan tanpa server eksternal."
+
+#. Author of the plugin
+#: selfcap.php
+msgid "Christiano Erick"
+msgstr "Christiano Erick"
+
+#: includes/class-selfcap-admin.php:50
+#: includes/class-selfcap-admin.php:143
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: includes/class-selfcap-admin.php:94
+#: includes/class-selfcap-admin.php:118
+msgid "Not allowed."
+msgstr "Tidak diizinkan."
+
+#: includes/class-selfcap-admin.php:141
+msgid "Overview"
+msgstr "Ringkasan"
+
+#: includes/class-selfcap-admin.php:142
+msgid "IP rules"
+msgstr "Aturan IP"
+
+#: includes/class-selfcap-admin.php:160
+msgid "Your own captcha, running entirely on this site."
+msgstr "Captcha milik Anda sendiri, berjalan sepenuhnya di situs ini."
+
+#. translators: %d: number of protected forms
+#: includes/class-selfcap-admin.php:166
+#, php-format
+msgid "Protecting %d form"
+msgid_plural "Protecting %d forms"
+msgstr[0] "Melindungi %d formulir"
+
+#: includes/class-selfcap-admin.php:168
+msgid "Disabled"
+msgstr "Dinonaktifkan"
+
+#: includes/class-selfcap-admin.php:174
+msgid "Sections"
+msgstr "Bagian"
+
+#: includes/class-selfcap-admin.php:185
+msgid "Most recent visitors show up with a private IP address. Your site is probably behind a proxy or load balancer that is not recognised, so per-visitor limits and automatic blocking cannot work."
+msgstr "Sebagian besar pengunjung terbaru muncul dengan alamat IP privat. Situs Anda kemungkinan berada di balik proxy atau load balancer yang tidak dikenali, sehingga batas per pengunjung dan pemblokiran otomatis tidak dapat berfungsi."
+
+#: includes/class-selfcap-admin.php:186
+msgid "Check the visitor IP settings"
+msgstr "Periksa pengaturan IP pengunjung"
+
+#: includes/class-selfcap-admin.php:192
+msgid "The captcha is switched off by SELFCAP_DISABLE in wp-config.php."
+msgstr "Captcha dimatikan oleh SELFCAP_DISABLE di wp-config.php."
+
+#: includes/class-selfcap-admin.php:266
+#: includes/class-selfcap-admin.php:287
+msgid "Approved"
+msgstr "Disetujui"
+
+#: includes/class-selfcap-admin.php:267
+#: includes/class-selfcap-admin.php:291
+msgid "Refused"
+msgstr "Ditolak"
+
+#: includes/class-selfcap-admin.php:268
+#: includes/class-selfcap-admin.php:295
+msgid "Blocked"
+msgstr "Diblokir"
+
+#: includes/class-selfcap-admin.php:272
+msgid "Activity"
+msgstr "Aktivitas"
+
+#: includes/class-selfcap-admin.php:273
+msgid "Period"
+msgstr "Periode"
+
+#. translators: %d: number of days
+#: includes/class-selfcap-admin.php:278
+#, php-format
+msgid "%d days"
+msgstr "%d hari"
+
+#. translators: %s: percentage
+#: includes/class-selfcap-admin.php:289
+#: includes/class-selfcap-admin.php:293
+#, php-format
+msgid "%s of the answers"
+msgstr "%s dari jawaban"
+
+#: includes/class-selfcap-admin.php:290
+msgid "No answers yet"
+msgstr "Belum ada jawaban"
+
+#: includes/class-selfcap-admin.php:294
+msgid "Bots and failed checks"
+msgstr "Bot dan pemeriksaan yang gagal"
+
+#: includes/class-selfcap-admin.php:295
+msgid "Stopped by an IP rule"
+msgstr "Dihentikan oleh aturan IP"
+
+#: includes/class-selfcap-admin.php:296
+#: includes/class-selfcap-admin.php:323
+msgid "Challenges issued"
+msgstr "Tantangan diterbitkan"
+
+#: includes/class-selfcap-admin.php:296
+msgid "Times the widget was shown"
+msgstr "Berapa kali widget ditampilkan"
+
+#: includes/class-selfcap-admin.php:297
+#: includes/class-selfcap-admin.php:324
+msgid "Forms validated"
+msgstr "Formulir tervalidasi"
+
+#: includes/class-selfcap-admin.php:297
+msgid "Submissions that got through"
+msgstr "Kiriman yang lolos"
+
+#: includes/class-selfcap-admin.php:303
+#: includes/class-selfcap-admin.php:446
+msgid "Verifications per day"
+msgstr "Verifikasi per hari"
+
+#: includes/class-selfcap-admin.php:314
+msgid "View as table"
+msgstr "Lihat sebagai tabel"
+
+#: includes/class-selfcap-admin.php:319
+msgid "Day"
+msgstr "Hari"
+
+#: includes/class-selfcap-admin.php:344
+msgid "Verification log"
+msgstr "Log verifikasi"
+
+#: includes/class-selfcap-admin.php:348
+#: includes/class-selfcap-admin.php:369
+msgid "Result"
+msgstr "Hasil"
+
+#: includes/class-selfcap-admin.php:350
+msgid "All results"
+msgstr "Semua hasil"
+
+#: includes/class-selfcap-admin.php:355
+#: includes/class-selfcap-admin.php:356
+#: includes/class-selfcap-admin.php:370
+msgid "IP address"
+msgstr "Alamat IP"
+
+#: includes/class-selfcap-admin.php:357
+msgid "Filter"
+msgstr "Saring"
+
+#: includes/class-selfcap-admin.php:359
+msgid "Clear"
+msgstr "Bersihkan"
+
+#: includes/class-selfcap-admin.php:368
+msgid "When"
+msgstr "Waktu"
+
+#: includes/class-selfcap-admin.php:371
+msgid "Score"
+msgstr "Skor"
+
+#: includes/class-selfcap-admin.php:372
+#: includes/class-selfcap-admin.php:711
+msgid "Reason"
+msgstr "Alasan"
+
+#: includes/class-selfcap-admin.php:373
+msgid "Solved in"
+msgstr "Diselesaikan dalam"
+
+#: includes/class-selfcap-admin.php:374
+msgid "Browser"
+msgstr "Peramban"
+
+#: includes/class-selfcap-admin.php:375
+#: includes/class-selfcap-admin.php:714
+msgid "Actions"
+msgstr "Tindakan"
+
+#: includes/class-selfcap-admin.php:380
+msgid "No verifications to show yet."
+msgstr "Belum ada verifikasi untuk ditampilkan."
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:388
+#, php-format
+msgid "%s ago"
+msgstr "%s yang lalu"
+
+#: includes/class-selfcap-admin.php:402
+#: includes/class-selfcap-admin.php:672
+#: includes/class-selfcap-admin.php:730
+msgid "Block"
+msgstr "Blokir"
+
+#: includes/class-selfcap-admin.php:466
+msgid "No verifications in this period yet."
+msgstr "Belum ada verifikasi dalam periode ini."
+
+#. translators: %s: number of log entries
+#: includes/class-selfcap-admin.php:506
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] "%s entri"
+
+#. translators: 1: first entry shown, 2: last entry shown, 3: total entries
+#: includes/class-selfcap-admin.php:510
+#, php-format
+msgid "%1$s–%2$s of %3$s"
+msgstr "%1$s–%2$s dari %3$s"
+
+#: includes/class-selfcap-admin.php:519
+#: includes/class-selfcap-admin.php:520
+msgid "Per page"
+msgstr "Per halaman"
+
+#: includes/class-selfcap-admin.php:647
+msgid "Rule added."
+msgstr "Aturan ditambahkan."
+
+#: includes/class-selfcap-admin.php:648
+msgid "Rule removed."
+msgstr "Aturan dihapus."
+
+#: includes/class-selfcap-admin.php:649
+msgid "That is not a valid IP address or CIDR range."
+msgstr "Itu bukan alamat IP atau rentang CIDR yang valid."
+
+#: includes/class-selfcap-admin.php:657
+msgid "Add a rule"
+msgstr "Tambahkan aturan"
+
+#: includes/class-selfcap-admin.php:659
+msgid "A blocked address cannot solve the captcha, so it cannot send the protected forms. An allow rule always wins and also keeps the address out of automatic blocking."
+msgstr "Alamat yang diblokir tidak dapat menyelesaikan captcha, sehingga tidak dapat mengirim formulir yang dilindungi. Aturan izinkan selalu diutamakan dan juga mengecualikan alamat tersebut dari pemblokiran otomatis."
+
+#. translators: %s: IP address
+#: includes/class-selfcap-admin.php:662
+#, php-format
+msgid "Your address right now: %s"
+msgstr "Alamat Anda saat ini: %s"
+
+#: includes/class-selfcap-admin.php:670
+#: includes/class-selfcap-admin.php:708
+msgid "Action"
+msgstr "Aksi"
+
+#: includes/class-selfcap-admin.php:673
+#: includes/class-selfcap-admin.php:730
+msgid "Allow"
+msgstr "Izinkan"
+
+#: includes/class-selfcap-admin.php:677
+#: includes/class-selfcap-admin.php:709
+msgid "IP address or range"
+msgstr "Alamat IP atau rentang"
+
+#: includes/class-selfcap-admin.php:681
+msgid "Reason (optional)"
+msgstr "Alasan (opsional)"
+
+#: includes/class-selfcap-admin.php:685
+msgid "Duration"
+msgstr "Durasi"
+
+#: includes/class-selfcap-admin.php:687
+msgid "Until removed"
+msgstr "Sampai dihapus"
+
+#: includes/class-selfcap-admin.php:688
+msgid "1 hour"
+msgstr "1 jam"
+
+#: includes/class-selfcap-admin.php:689
+msgid "24 hours"
+msgstr "24 jam"
+
+#: includes/class-selfcap-admin.php:690
+msgid "7 days"
+msgstr "7 hari"
+
+#: includes/class-selfcap-admin.php:691
+msgid "30 days"
+msgstr "30 hari"
+
+#: includes/class-selfcap-admin.php:695
+msgid "Add rule"
+msgstr "Tambah aturan"
+
+#: includes/class-selfcap-admin.php:702
+msgid "Rules"
+msgstr "Aturan"
+
+#: includes/class-selfcap-admin.php:710
+msgid "Source"
+msgstr "Sumber"
+
+#: includes/class-selfcap-admin.php:712
+msgid "Created"
+msgstr "Dibuat"
+
+#: includes/class-selfcap-admin.php:713
+msgid "Expires"
+msgstr "Kedaluwarsa"
+
+#: includes/class-selfcap-admin.php:719
+msgid "No rules yet. Attackers blocked automatically will show up here."
+msgstr "Belum ada aturan. Penyerang yang diblokir secara otomatis akan muncul di sini."
+
+#: includes/class-selfcap-admin.php:734
+#: includes/class-selfcap-admin.php:832
+#: includes/class-selfcap-admin.php:846
+#: includes/class-selfcap-admin.php:875
+msgid "Automatic"
+msgstr "Otomatis"
+
+#: includes/class-selfcap-admin.php:734
+msgid "Manual"
+msgstr "Manual"
+
+#: includes/class-selfcap-admin.php:740
+msgid "Never"
+msgstr "Tidak pernah"
+
+#: includes/class-selfcap-admin.php:742
+msgid "Expired"
+msgstr "Sudah kedaluwarsa"
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:745
+#, php-format
+msgid "In %s"
+msgstr "Dalam %s"
+
+#: includes/class-selfcap-admin.php:750
+msgid "Remove this rule?"
+msgstr "Hapus aturan ini?"
+
+#: includes/class-selfcap-admin.php:750
+msgid "Remove"
+msgstr "Hapus"
+
+#: includes/class-selfcap-admin.php:778
+msgid "Protection"
+msgstr "Perlindungan"
+
+#: includes/class-selfcap-admin.php:779
+msgid "Turn the captcha on and choose where it shows up."
+msgstr "Aktifkan captcha dan pilih tempat captcha ditampilkan."
+
+#: includes/class-selfcap-admin.php:782
+msgid "Captcha enabled"
+msgstr "Captcha diaktifkan"
+
+#: includes/class-selfcap-admin.php:782
+msgid "Locked out of the login? Add define('SELFCAP_DISABLE', true); to wp-config.php."
+msgstr "Tidak bisa masuk? Tambahkan define('SELFCAP_DISABLE', true); ke wp-config.php."
+
+#: includes/class-selfcap-admin.php:787
+msgid "Protected forms"
+msgstr "Formulir yang dilindungi"
+
+#: includes/class-selfcap-admin.php:788
+msgid "For any other form use the [selfcap] shortcode and selfcap_verify() in its handler."
+msgstr "Untuk formulir lain, gunakan shortcode [selfcap] dan selfcap_verify() di kode yang memproses kirimannya."
+
+#: includes/class-selfcap-admin.php:805
+msgid "Position on the WooCommerce checkout"
+msgstr "Posisi di checkout WooCommerce"
+
+#: includes/class-selfcap-admin.php:806
+msgid "\"Above the Place order button\" finds the visible button even when the theme moves it. The custom element option takes a CSS selector, for layouts the other options do not fit."
+msgstr "\"Di atas tombol Buat pesanan\" menemukan tombol yang terlihat meskipun tema memindahkannya. Opsi elemen khusus menerima selektor CSS, untuk tata letak yang tidak cocok dengan opsi lainnya."
+
+#: includes/class-selfcap-admin.php:814
+msgid "CSS selector (custom element only)"
+msgstr "Selektor CSS (hanya untuk elemen khusus)"
+
+#: includes/class-selfcap-admin.php:822
+msgid "Appearance and language"
+msgstr "Tampilan dan bahasa"
+
+#: includes/class-selfcap-admin.php:823
+msgid "How the widget looks to visitors and which language this plugin speaks."
+msgstr "Tampilan widget bagi pengunjung dan bahasa yang digunakan plugin ini."
+
+#: includes/class-selfcap-admin.php:827
+msgid "Widget theme"
+msgstr "Tema widget"
+
+#: includes/class-selfcap-admin.php:828
+msgid "Automatic follows the visitor's system."
+msgstr "Otomatis mengikuti sistem pengunjung."
+
+#: includes/class-selfcap-admin.php:832
+msgid "Light"
+msgstr "Terang"
+
+#: includes/class-selfcap-admin.php:832
+msgid "Dark"
+msgstr "Gelap"
+
+#: includes/class-selfcap-admin.php:841
+msgid "Widget language"
+msgstr "Bahasa widget"
+
+#: includes/class-selfcap-admin.php:842
+msgid "Automatic follows the visitor's browser."
+msgstr "Otomatis mengikuti peramban pengunjung."
+
+#: includes/class-selfcap-admin.php:856
+msgid "Widget alignment"
+msgstr "Perataan widget"
+
+#: includes/class-selfcap-admin.php:857
+msgid "The widget sits in a full-width row on every form; choose where it lines up."
+msgstr "Widget berada di baris selebar penuh pada setiap formulir; pilih posisi perataannya."
+
+#: includes/class-selfcap-admin.php:861
+msgid "Left"
+msgstr "Kiri"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Center"
+msgstr "Tengah"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Right"
+msgstr "Kanan"
+
+#: includes/class-selfcap-admin.php:870
+msgid "Plugin language"
+msgstr "Bahasa plugin"
+
+#: includes/class-selfcap-admin.php:871
+msgid "This screen and the messages shown when a form is refused. Automatic follows the WordPress language."
+msgstr "Layar ini dan pesan yang ditampilkan saat formulir ditolak. Otomatis mengikuti bahasa WordPress."
+
+#: includes/class-selfcap-admin.php:885
+msgid "Security"
+msgstr "Keamanan"
+
+#: includes/class-selfcap-admin.php:886
+msgid "How hard the captcha is for bots and what happens to attackers."
+msgstr "Seberapa sulit captcha bagi bot dan apa yang terjadi pada penyerang."
+
+#: includes/class-selfcap-admin.php:890
+msgid "Difficulty"
+msgstr "Tingkat kesulitan"
+
+#: includes/class-selfcap-admin.php:891
+msgid "Work the visitor's browser does in the background, from 10 to 24. Each step doubles it. 18 takes well under a second on a phone."
+msgstr "Kerja yang dilakukan peramban pengunjung di latar belakang, dari 10 hingga 24. Setiap tingkat menggandakannya. Nilai 18 butuh jauh kurang dari satu detik di ponsel."
+
+#: includes/class-selfcap-admin.php:899
+msgid "Block logins over XML-RPC"
+msgstr "Blokir login melalui XML-RPC"
+
+#: includes/class-selfcap-admin.php:899
+msgid "XML-RPC accepts a username and password without any form, so attackers use it to get around the login captcha. Turn this off only if you use the WordPress mobile app or a service that logs in over XML-RPC."
+msgstr "XML-RPC menerima nama pengguna dan kata sandi tanpa formulir apa pun, sehingga penyerang menggunakannya untuk menghindari captcha login. Matikan opsi ini hanya jika Anda menggunakan aplikasi seluler WordPress atau layanan yang masuk melalui XML-RPC."
+
+#: includes/class-selfcap-admin.php:900
+msgid "Automatic blocking"
+msgstr "Pemblokiran otomatis"
+
+#: includes/class-selfcap-admin.php:900
+msgid "Temporarily blocks addresses that behave like an attack, only on attack-like volume inside 10 minutes. Blocks last 15 minutes, then 1 hour, then 24 hours for repeat offenders."
+msgstr "Memblokir sementara alamat yang berperilaku seperti serangan, hanya jika volumenya menyerupai serangan dalam 10 menit. Blokir berlaku 15 menit, lalu 1 jam, lalu 24 jam bagi pelanggar berulang."
+
+#: includes/class-selfcap-admin.php:905
+msgid "Keep the log for (days)"
+msgstr "Simpan log selama (hari)"
+
+#: includes/class-selfcap-admin.php:906
+msgid "Older verification log entries are deleted every day."
+msgstr "Entri log verifikasi yang lebih lama dihapus setiap hari."
+
+#: includes/class-selfcap-admin.php:915
+msgid "Visitor IP address"
+msgstr "Alamat IP pengunjung"
+
+#: includes/class-selfcap-admin.php:916
+msgid "Needed when the site is behind Cloudflare, a load balancer or another proxy."
+msgstr "Diperlukan jika situs berada di balik Cloudflare, load balancer, atau proxy lain."
+
+#: includes/class-selfcap-admin.php:919
+msgid "Read the real IP behind a proxy"
+msgstr "Baca IP asli di balik proxy"
+
+#: includes/class-selfcap-admin.php:919
+msgid "Forwarding headers are only believed when the connection comes from Cloudflare, a private address or a proxy listed below."
+msgstr "Header penerusan hanya dipercaya jika koneksi berasal dari Cloudflare, alamat privat, atau proxy yang tercantum di bawah."
+
+#: includes/class-selfcap-admin.php:924
+msgid "Address detected for you now"
+msgstr "Alamat yang terdeteksi untuk Anda saat ini"
+
+#: includes/class-selfcap-admin.php:925
+msgid "If this is not your own public IP, add your proxy to the list below."
+msgstr "Jika ini bukan IP publik Anda sendiri, tambahkan proxy Anda ke daftar di bawah."
+
+#: includes/class-selfcap-admin.php:932
+msgid "Other trusted proxies"
+msgstr "Proxy tepercaya lainnya"
+
+#: includes/class-selfcap-admin.php:933
+msgid "IP address or CIDR range, one per line."
+msgstr "Alamat IP atau rentang CIDR, satu per baris."
+
+#: includes/class-selfcap-admin.php:943
+msgid "Save changes"
+msgstr "Simpan Perubahan"
+
+#: includes/class-selfcap-plugin.php:110
+msgid "To protect forms against bots, this site runs its own captcha. When you see the captcha, your browser solves a small computation and sends technical signals (browser type, screen size, how the checkbox was clicked). The site stores your IP address, browser user agent and the result of each verification for a limited time, to detect attacks and block abusive addresses. This data stays on this site and is not shared with any third party."
+msgstr "Untuk melindungi formulir dari bot, situs ini menjalankan captcha sendiri. Saat Anda melihat captcha, peramban Anda menyelesaikan perhitungan kecil dan mengirim sinyal teknis (jenis peramban, ukuran layar, cara kotak centang diklik). Situs ini menyimpan alamat IP Anda, user agent peramban, dan hasil setiap verifikasi untuk waktu terbatas, guna mendeteksi serangan dan memblokir alamat yang menyalahgunakan. Data ini tetap berada di situs ini dan tidak dibagikan kepada pihak ketiga mana pun."
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login (WordPress and WooCommerce)"
+msgstr "Masuk (WordPress dan WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login"
+msgstr "Masuk"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration (WordPress and WooCommerce)"
+msgstr "Pendaftaran (WordPress dan WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration"
+msgstr "Pendaftaran"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password (WordPress and WooCommerce)"
+msgstr "Lupa kata sandi (WordPress dan WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password"
+msgstr "Lupa kata sandi"
+
+#: includes/class-selfcap-plugin.php:126
+msgid "Comments"
+msgstr "Komentar"
+
+#: includes/class-selfcap-plugin.php:130
+msgid "WooCommerce checkout"
+msgstr "Checkout WooCommerce"
+
+#: includes/class-selfcap-plugin.php:134
+msgid "Contact Form 7 (add the [selfcap] tag to the form)"
+msgstr "Contact Form 7 (tambahkan tag [selfcap] ke formulir)"
+
+#: includes/class-selfcap-plugin.php:332
+msgid "Above the Place order button"
+msgstr "Di atas tombol Buat pesanan"
+
+#: includes/class-selfcap-plugin.php:333
+msgid "Before payment"
+msgstr "Sebelum pembayaran"
+
+#: includes/class-selfcap-plugin.php:334
+msgid "After payment"
+msgstr "Setelah pembayaran"
+
+#: includes/class-selfcap-plugin.php:335
+msgid "Before billing"
+msgstr "Sebelum penagihan"
+
+#: includes/class-selfcap-plugin.php:336
+msgid "After billing"
+msgstr "Setelah penagihan"
+
+#: includes/class-selfcap-plugin.php:337
+msgid "Before a custom element (CSS selector)"
+msgstr "Sebelum elemen khusus (selektor CSS)"
+
+#: includes/class-selfcap-plugin.php:406
+msgid "Please confirm you are not a robot."
+msgstr "Konfirmasikan bahwa Anda bukan robot."
+
+#: includes/class-selfcap-plugin.php:412
+msgid "Captcha verification failed. Please try again."
+msgstr "Verifikasi captcha gagal. Silakan coba lagi."

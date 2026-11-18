@@ -1,0 +1,626 @@
+# Copyright (C) 2026 Christiano Erick
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Selfcap – Self-Hosted Captcha 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/selfcap\n"
+"Last-Translator: Christiano Erick\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-13T19:15:39-03:00\n"
+"PO-Revision-Date: 2026-11-17 00:00+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: selfcap\n"
+
+#. Plugin Name of the plugin
+#: selfcap.php
+msgid "Selfcap – Self-Hosted Captcha"
+msgstr "Selfcap – 自托管验证码"
+
+#. Plugin URI of the plugin
+#: selfcap.php
+msgid "https://github.com/christianoerick/selfcap"
+msgstr "https://github.com/christianoerick/selfcap"
+
+#. Description of the plugin
+#: selfcap.php
+msgid "A privacy-friendly captcha that runs entirely inside your WordPress site: a checkbox widget backed by proof-of-work, with no third-party service and no external server."
+msgstr "一款注重隐私的验证码，完全在您的 WordPress 站点内运行：基于工作量证明的复选框小工具，无需第三方服务，也无需外部服务器。"
+
+#. Author of the plugin
+#: selfcap.php
+msgid "Christiano Erick"
+msgstr "Christiano Erick"
+
+#: includes/class-selfcap-admin.php:50
+#: includes/class-selfcap-admin.php:143
+msgid "Settings"
+msgstr "设置"
+
+#: includes/class-selfcap-admin.php:94
+#: includes/class-selfcap-admin.php:118
+msgid "Not allowed."
+msgstr "无权执行此操作。"
+
+#: includes/class-selfcap-admin.php:141
+msgid "Overview"
+msgstr "概览"
+
+#: includes/class-selfcap-admin.php:142
+msgid "IP rules"
+msgstr "IP 规则"
+
+#: includes/class-selfcap-admin.php:160
+msgid "Your own captcha, running entirely on this site."
+msgstr "您自己的验证码，完全在本站点上运行。"
+
+#. translators: %d: number of protected forms
+#: includes/class-selfcap-admin.php:166
+#, php-format
+msgid "Protecting %d form"
+msgid_plural "Protecting %d forms"
+msgstr[0] "正在保护 %d 个表单"
+
+#: includes/class-selfcap-admin.php:168
+msgid "Disabled"
+msgstr "已禁用"
+
+#: includes/class-selfcap-admin.php:174
+msgid "Sections"
+msgstr "分区"
+
+#: includes/class-selfcap-admin.php:185
+msgid "Most recent visitors show up with a private IP address. Your site is probably behind a proxy or load balancer that is not recognised, so per-visitor limits and automatic blocking cannot work."
+msgstr "最近的大多数访客都显示为私有 IP 地址。您的站点可能位于未被识别的代理或负载均衡器之后，因此按访客的限制和自动封禁都无法生效。"
+
+#: includes/class-selfcap-admin.php:186
+msgid "Check the visitor IP settings"
+msgstr "检查访客 IP 设置"
+
+#: includes/class-selfcap-admin.php:192
+msgid "The captcha is switched off by SELFCAP_DISABLE in wp-config.php."
+msgstr "验证码已被 wp-config.php 中的 SELFCAP_DISABLE 关闭。"
+
+#: includes/class-selfcap-admin.php:266
+#: includes/class-selfcap-admin.php:287
+msgid "Approved"
+msgstr "已通过"
+
+#: includes/class-selfcap-admin.php:267
+#: includes/class-selfcap-admin.php:291
+msgid "Refused"
+msgstr "已拒绝"
+
+#: includes/class-selfcap-admin.php:268
+#: includes/class-selfcap-admin.php:295
+msgid "Blocked"
+msgstr "已封禁"
+
+#: includes/class-selfcap-admin.php:272
+msgid "Activity"
+msgstr "活动"
+
+#: includes/class-selfcap-admin.php:273
+msgid "Period"
+msgstr "时段"
+
+#. translators: %d: number of days
+#: includes/class-selfcap-admin.php:278
+#, php-format
+msgid "%d days"
+msgstr "%d 天"
+
+#. translators: %s: percentage
+#: includes/class-selfcap-admin.php:289
+#: includes/class-selfcap-admin.php:293
+#, php-format
+msgid "%s of the answers"
+msgstr "占回答的 %s"
+
+#: includes/class-selfcap-admin.php:290
+msgid "No answers yet"
+msgstr "暂无回答"
+
+#: includes/class-selfcap-admin.php:294
+msgid "Bots and failed checks"
+msgstr "机器人和未通过的检查"
+
+#: includes/class-selfcap-admin.php:295
+msgid "Stopped by an IP rule"
+msgstr "被 IP 规则拦截"
+
+#: includes/class-selfcap-admin.php:296
+#: includes/class-selfcap-admin.php:323
+msgid "Challenges issued"
+msgstr "已发出的挑战"
+
+#: includes/class-selfcap-admin.php:296
+msgid "Times the widget was shown"
+msgstr "小工具显示次数"
+
+#: includes/class-selfcap-admin.php:297
+#: includes/class-selfcap-admin.php:324
+msgid "Forms validated"
+msgstr "已验证的表单"
+
+#: includes/class-selfcap-admin.php:297
+msgid "Submissions that got through"
+msgstr "成功通过的提交"
+
+#: includes/class-selfcap-admin.php:303
+#: includes/class-selfcap-admin.php:446
+msgid "Verifications per day"
+msgstr "每日验证次数"
+
+#: includes/class-selfcap-admin.php:314
+msgid "View as table"
+msgstr "以表格查看"
+
+#: includes/class-selfcap-admin.php:319
+msgid "Day"
+msgstr "日期"
+
+#: includes/class-selfcap-admin.php:344
+msgid "Verification log"
+msgstr "验证日志"
+
+#: includes/class-selfcap-admin.php:348
+#: includes/class-selfcap-admin.php:369
+msgid "Result"
+msgstr "结果"
+
+#: includes/class-selfcap-admin.php:350
+msgid "All results"
+msgstr "所有结果"
+
+#: includes/class-selfcap-admin.php:355
+#: includes/class-selfcap-admin.php:356
+#: includes/class-selfcap-admin.php:370
+msgid "IP address"
+msgstr "IP 地址"
+
+#: includes/class-selfcap-admin.php:357
+msgid "Filter"
+msgstr "筛选"
+
+#: includes/class-selfcap-admin.php:359
+msgid "Clear"
+msgstr "清除"
+
+#: includes/class-selfcap-admin.php:368
+msgid "When"
+msgstr "时间"
+
+#: includes/class-selfcap-admin.php:371
+msgid "Score"
+msgstr "分数"
+
+#: includes/class-selfcap-admin.php:372
+#: includes/class-selfcap-admin.php:711
+msgid "Reason"
+msgstr "原因"
+
+#: includes/class-selfcap-admin.php:373
+msgid "Solved in"
+msgstr "用时"
+
+#: includes/class-selfcap-admin.php:374
+msgid "Browser"
+msgstr "浏览器"
+
+#: includes/class-selfcap-admin.php:375
+#: includes/class-selfcap-admin.php:714
+msgid "Actions"
+msgstr "操作"
+
+#: includes/class-selfcap-admin.php:380
+msgid "No verifications to show yet."
+msgstr "暂无可显示的验证记录。"
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:388
+#, php-format
+msgid "%s ago"
+msgstr "%s前"
+
+#: includes/class-selfcap-admin.php:402
+#: includes/class-selfcap-admin.php:672
+#: includes/class-selfcap-admin.php:730
+msgid "Block"
+msgstr "封禁"
+
+#: includes/class-selfcap-admin.php:466
+msgid "No verifications in this period yet."
+msgstr "此时段内暂无验证记录。"
+
+#. translators: %s: number of log entries
+#: includes/class-selfcap-admin.php:506
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] "%s 条记录"
+
+#. translators: 1: first entry shown, 2: last entry shown, 3: total entries
+#: includes/class-selfcap-admin.php:510
+#, php-format
+msgid "%1$s–%2$s of %3$s"
+msgstr "第 %1$s–%2$s 条，共 %3$s 条"
+
+#: includes/class-selfcap-admin.php:519
+#: includes/class-selfcap-admin.php:520
+msgid "Per page"
+msgstr "每页数量"
+
+#: includes/class-selfcap-admin.php:647
+msgid "Rule added."
+msgstr "规则已添加。"
+
+#: includes/class-selfcap-admin.php:648
+msgid "Rule removed."
+msgstr "规则已移除。"
+
+#: includes/class-selfcap-admin.php:649
+msgid "That is not a valid IP address or CIDR range."
+msgstr "这不是有效的 IP 地址或 CIDR 范围。"
+
+#: includes/class-selfcap-admin.php:657
+msgid "Add a rule"
+msgstr "添加规则"
+
+#: includes/class-selfcap-admin.php:659
+msgid "A blocked address cannot solve the captcha, so it cannot send the protected forms. An allow rule always wins and also keeps the address out of automatic blocking."
+msgstr "被封禁的地址无法完成验证码，因此无法提交受保护的表单。允许规则始终优先，并且会让该地址免于自动封禁。"
+
+#. translators: %s: IP address
+#: includes/class-selfcap-admin.php:662
+#, php-format
+msgid "Your address right now: %s"
+msgstr "您当前的地址：%s"
+
+#: includes/class-selfcap-admin.php:670
+#: includes/class-selfcap-admin.php:708
+msgid "Action"
+msgstr "动作"
+
+#: includes/class-selfcap-admin.php:673
+#: includes/class-selfcap-admin.php:730
+msgid "Allow"
+msgstr "允许"
+
+#: includes/class-selfcap-admin.php:677
+#: includes/class-selfcap-admin.php:709
+msgid "IP address or range"
+msgstr "IP 地址或范围"
+
+#: includes/class-selfcap-admin.php:681
+msgid "Reason (optional)"
+msgstr "原因（可选）"
+
+#: includes/class-selfcap-admin.php:685
+msgid "Duration"
+msgstr "时长"
+
+#: includes/class-selfcap-admin.php:687
+msgid "Until removed"
+msgstr "直到移除"
+
+#: includes/class-selfcap-admin.php:688
+msgid "1 hour"
+msgstr "1 小时"
+
+#: includes/class-selfcap-admin.php:689
+msgid "24 hours"
+msgstr "24 小时"
+
+#: includes/class-selfcap-admin.php:690
+msgid "7 days"
+msgstr "7 天"
+
+#: includes/class-selfcap-admin.php:691
+msgid "30 days"
+msgstr "30 天"
+
+#: includes/class-selfcap-admin.php:695
+msgid "Add rule"
+msgstr "添加规则"
+
+#: includes/class-selfcap-admin.php:702
+msgid "Rules"
+msgstr "规则"
+
+#: includes/class-selfcap-admin.php:710
+msgid "Source"
+msgstr "来源"
+
+#: includes/class-selfcap-admin.php:712
+msgid "Created"
+msgstr "创建时间"
+
+#: includes/class-selfcap-admin.php:713
+msgid "Expires"
+msgstr "过期时间"
+
+#: includes/class-selfcap-admin.php:719
+msgid "No rules yet. Attackers blocked automatically will show up here."
+msgstr "暂无规则。被自动封禁的攻击者会显示在这里。"
+
+#: includes/class-selfcap-admin.php:734
+#: includes/class-selfcap-admin.php:832
+#: includes/class-selfcap-admin.php:846
+#: includes/class-selfcap-admin.php:875
+msgid "Automatic"
+msgstr "自动"
+
+#: includes/class-selfcap-admin.php:734
+msgid "Manual"
+msgstr "手动"
+
+#: includes/class-selfcap-admin.php:740
+msgid "Never"
+msgstr "永不"
+
+#: includes/class-selfcap-admin.php:742
+msgid "Expired"
+msgstr "已过期"
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:745
+#, php-format
+msgid "In %s"
+msgstr "%s后"
+
+#: includes/class-selfcap-admin.php:750
+msgid "Remove this rule?"
+msgstr "要移除此规则吗？"
+
+#: includes/class-selfcap-admin.php:750
+msgid "Remove"
+msgstr "移除"
+
+#: includes/class-selfcap-admin.php:778
+msgid "Protection"
+msgstr "防护"
+
+#: includes/class-selfcap-admin.php:779
+msgid "Turn the captcha on and choose where it shows up."
+msgstr "启用验证码并选择其显示位置。"
+
+#: includes/class-selfcap-admin.php:782
+msgid "Captcha enabled"
+msgstr "启用验证码"
+
+#: includes/class-selfcap-admin.php:782
+msgid "Locked out of the login? Add define('SELFCAP_DISABLE', true); to wp-config.php."
+msgstr "无法登录了？请在 wp-config.php 中添加 define('SELFCAP_DISABLE', true);"
+
+#: includes/class-selfcap-admin.php:787
+msgid "Protected forms"
+msgstr "受保护的表单"
+
+#: includes/class-selfcap-admin.php:788
+msgid "For any other form use the [selfcap] shortcode and selfcap_verify() in its handler."
+msgstr "其他表单请使用 [selfcap] 短代码，并在其处理代码中调用 selfcap_verify()。"
+
+#: includes/class-selfcap-admin.php:805
+msgid "Position on the WooCommerce checkout"
+msgstr "在 WooCommerce 结账页面中的位置"
+
+#: includes/class-selfcap-admin.php:806
+msgid "\"Above the Place order button\" finds the visible button even when the theme moves it. The custom element option takes a CSS selector, for layouts the other options do not fit."
+msgstr "“在下单按钮上方”即使在主题移动了按钮的情况下，也能找到可见的按钮。自定义元素选项接受一个 CSS 选择器，适用于其他选项都不合适的布局。"
+
+#: includes/class-selfcap-admin.php:814
+msgid "CSS selector (custom element only)"
+msgstr "CSS 选择器（仅限自定义元素）"
+
+#: includes/class-selfcap-admin.php:822
+msgid "Appearance and language"
+msgstr "外观和语言"
+
+#: includes/class-selfcap-admin.php:823
+msgid "How the widget looks to visitors and which language this plugin speaks."
+msgstr "小工具在访客面前的外观，以及本插件使用的语言。"
+
+#: includes/class-selfcap-admin.php:827
+msgid "Widget theme"
+msgstr "小工具主题"
+
+#: includes/class-selfcap-admin.php:828
+msgid "Automatic follows the visitor's system."
+msgstr "“自动”将跟随访客的系统设置。"
+
+#: includes/class-selfcap-admin.php:832
+msgid "Light"
+msgstr "浅色"
+
+#: includes/class-selfcap-admin.php:832
+msgid "Dark"
+msgstr "深色"
+
+#: includes/class-selfcap-admin.php:841
+msgid "Widget language"
+msgstr "小工具语言"
+
+#: includes/class-selfcap-admin.php:842
+msgid "Automatic follows the visitor's browser."
+msgstr "“自动”将跟随访客的浏览器。"
+
+#: includes/class-selfcap-admin.php:856
+msgid "Widget alignment"
+msgstr "小工具对齐方式"
+
+#: includes/class-selfcap-admin.php:857
+msgid "The widget sits in a full-width row on every form; choose where it lines up."
+msgstr "小工具在每个表单中独占一整行，请选择其对齐位置。"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Left"
+msgstr "左对齐"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Center"
+msgstr "居中"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Right"
+msgstr "右对齐"
+
+#: includes/class-selfcap-admin.php:870
+msgid "Plugin language"
+msgstr "插件语言"
+
+#: includes/class-selfcap-admin.php:871
+msgid "This screen and the messages shown when a form is refused. Automatic follows the WordPress language."
+msgstr "本页面以及表单被拒绝时显示的消息。“自动”将跟随 WordPress 的语言。"
+
+#: includes/class-selfcap-admin.php:885
+msgid "Security"
+msgstr "安全"
+
+#: includes/class-selfcap-admin.php:886
+msgid "How hard the captcha is for bots and what happens to attackers."
+msgstr "验证码对机器人的难度，以及如何处置攻击者。"
+
+#: includes/class-selfcap-admin.php:890
+msgid "Difficulty"
+msgstr "难度"
+
+#: includes/class-selfcap-admin.php:891
+msgid "Work the visitor's browser does in the background, from 10 to 24. Each step doubles it. 18 takes well under a second on a phone."
+msgstr "访客浏览器在后台完成的计算量，范围为 10 到 24。每增加一级，计算量翻倍。设为 18 时，在手机上也远不到一秒。"
+
+#: includes/class-selfcap-admin.php:899
+msgid "Block logins over XML-RPC"
+msgstr "阻止通过 XML-RPC 登录"
+
+#: includes/class-selfcap-admin.php:899
+msgid "XML-RPC accepts a username and password without any form, so attackers use it to get around the login captcha. Turn this off only if you use the WordPress mobile app or a service that logs in over XML-RPC."
+msgstr "XML-RPC 无需任何表单即可接受用户名和密码，因此攻击者常用它绕过登录验证码。仅当您使用 WordPress 移动应用或通过 XML-RPC 登录的服务时，才关闭此项。"
+
+#: includes/class-selfcap-admin.php:900
+msgid "Automatic blocking"
+msgstr "自动封禁"
+
+#: includes/class-selfcap-admin.php:900
+msgid "Temporarily blocks addresses that behave like an attack, only on attack-like volume inside 10 minutes. Blocks last 15 minutes, then 1 hour, then 24 hours for repeat offenders."
+msgstr "临时封禁行为类似攻击的地址，仅在 10 分钟内出现攻击级别的请求量时触发。封禁时长为 15 分钟，再犯则为 1 小时，之后为 24 小时。"
+
+#: includes/class-selfcap-admin.php:905
+msgid "Keep the log for (days)"
+msgstr "日志保留时长（天）"
+
+#: includes/class-selfcap-admin.php:906
+msgid "Older verification log entries are deleted every day."
+msgstr "较早的验证日志每天都会被删除。"
+
+#: includes/class-selfcap-admin.php:915
+msgid "Visitor IP address"
+msgstr "访客 IP 地址"
+
+#: includes/class-selfcap-admin.php:916
+msgid "Needed when the site is behind Cloudflare, a load balancer or another proxy."
+msgstr "当站点位于 Cloudflare、负载均衡器或其他代理之后时需要设置。"
+
+#: includes/class-selfcap-admin.php:919
+msgid "Read the real IP behind a proxy"
+msgstr "读取代理之后的真实 IP"
+
+#: includes/class-selfcap-admin.php:919
+msgid "Forwarding headers are only believed when the connection comes from Cloudflare, a private address or a proxy listed below."
+msgstr "仅当连接来自 Cloudflare、私有地址或下方列出的代理时，才会信任转发标头。"
+
+#: includes/class-selfcap-admin.php:924
+msgid "Address detected for you now"
+msgstr "当前检测到的您的地址"
+
+#: includes/class-selfcap-admin.php:925
+msgid "If this is not your own public IP, add your proxy to the list below."
+msgstr "如果这不是您自己的公网 IP，请将您的代理添加到下方列表中。"
+
+#: includes/class-selfcap-admin.php:932
+msgid "Other trusted proxies"
+msgstr "其他受信任的代理"
+
+#: includes/class-selfcap-admin.php:933
+msgid "IP address or CIDR range, one per line."
+msgstr "IP 地址或 CIDR 范围，每行一个。"
+
+#: includes/class-selfcap-admin.php:943
+msgid "Save changes"
+msgstr "保存更改"
+
+#: includes/class-selfcap-plugin.php:110
+msgid "To protect forms against bots, this site runs its own captcha. When you see the captcha, your browser solves a small computation and sends technical signals (browser type, screen size, how the checkbox was clicked). The site stores your IP address, browser user agent and the result of each verification for a limited time, to detect attacks and block abusive addresses. This data stays on this site and is not shared with any third party."
+msgstr "为保护表单免受机器人攻击，本站使用自有的验证码。当您看到验证码时，您的浏览器会完成一个小型计算，并发送技术信号（浏览器类型、屏幕尺寸、复选框的点击方式）。本站会在有限时间内保存您的 IP 地址、浏览器用户代理和每次验证的结果，用于检测攻击和封禁滥用的地址。这些数据保留在本站，不会与任何第三方共享。"
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login (WordPress and WooCommerce)"
+msgstr "登录（WordPress 和 WooCommerce）"
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login"
+msgstr "登录"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration (WordPress and WooCommerce)"
+msgstr "注册（WordPress 和 WooCommerce）"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration"
+msgstr "注册"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password (WordPress and WooCommerce)"
+msgstr "忘记密码（WordPress 和 WooCommerce）"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password"
+msgstr "忘记密码"
+
+#: includes/class-selfcap-plugin.php:126
+msgid "Comments"
+msgstr "评论"
+
+#: includes/class-selfcap-plugin.php:130
+msgid "WooCommerce checkout"
+msgstr "WooCommerce 结账"
+
+#: includes/class-selfcap-plugin.php:134
+msgid "Contact Form 7 (add the [selfcap] tag to the form)"
+msgstr "Contact Form 7（在表单中添加 [selfcap] 标签）"
+
+#: includes/class-selfcap-plugin.php:332
+msgid "Above the Place order button"
+msgstr "在下单按钮上方"
+
+#: includes/class-selfcap-plugin.php:333
+msgid "Before payment"
+msgstr "支付之前"
+
+#: includes/class-selfcap-plugin.php:334
+msgid "After payment"
+msgstr "支付之后"
+
+#: includes/class-selfcap-plugin.php:335
+msgid "Before billing"
+msgstr "账单信息之前"
+
+#: includes/class-selfcap-plugin.php:336
+msgid "After billing"
+msgstr "账单信息之后"
+
+#: includes/class-selfcap-plugin.php:337
+msgid "Before a custom element (CSS selector)"
+msgstr "在自定义元素之前（CSS 选择器）"
+
+#: includes/class-selfcap-plugin.php:406
+msgid "Please confirm you are not a robot."
+msgstr "请确认您不是机器人。"
+
+#: includes/class-selfcap-plugin.php:412
+msgid "Captcha verification failed. Please try again."
+msgstr "验证码验证失败，请重试。"

@@ -1,0 +1,626 @@
+# Copyright (C) 2026 Christiano Erick
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Selfcap – Self-Hosted Captcha 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/selfcap\n"
+"Last-Translator: Christiano Erick\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-13T19:15:39-03:00\n"
+"PO-Revision-Date: 2026-11-17 00:00+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: selfcap\n"
+
+#. Plugin Name of the plugin
+#: selfcap.php
+msgid "Selfcap – Self-Hosted Captcha"
+msgstr "Selfcap – セルフホスト型キャプチャ"
+
+#. Plugin URI of the plugin
+#: selfcap.php
+msgid "https://github.com/christianoerick/selfcap"
+msgstr "https://github.com/christianoerick/selfcap"
+
+#. Description of the plugin
+#: selfcap.php
+msgid "A privacy-friendly captcha that runs entirely inside your WordPress site: a checkbox widget backed by proof-of-work, with no third-party service and no external server."
+msgstr "プライバシーに配慮したキャプチャで、WordPress サイト内だけで動作します。プルーフ・オブ・ワークに基づくチェックボックス型ウィジェットで、サードパーティのサービスや外部サーバーは一切使用しません。"
+
+#. Author of the plugin
+#: selfcap.php
+msgid "Christiano Erick"
+msgstr "Christiano Erick"
+
+#: includes/class-selfcap-admin.php:50
+#: includes/class-selfcap-admin.php:143
+msgid "Settings"
+msgstr "設定"
+
+#: includes/class-selfcap-admin.php:94
+#: includes/class-selfcap-admin.php:118
+msgid "Not allowed."
+msgstr "権限がありません。"
+
+#: includes/class-selfcap-admin.php:141
+msgid "Overview"
+msgstr "概要"
+
+#: includes/class-selfcap-admin.php:142
+msgid "IP rules"
+msgstr "IP ルール"
+
+#: includes/class-selfcap-admin.php:160
+msgid "Your own captcha, running entirely on this site."
+msgstr "このサイト内だけで動作する、独自のキャプチャ。"
+
+#. translators: %d: number of protected forms
+#: includes/class-selfcap-admin.php:166
+#, php-format
+msgid "Protecting %d form"
+msgid_plural "Protecting %d forms"
+msgstr[0] "%d 件のフォームを保護中"
+
+#: includes/class-selfcap-admin.php:168
+msgid "Disabled"
+msgstr "無効"
+
+#: includes/class-selfcap-admin.php:174
+msgid "Sections"
+msgstr "セクション"
+
+#: includes/class-selfcap-admin.php:185
+msgid "Most recent visitors show up with a private IP address. Your site is probably behind a proxy or load balancer that is not recognised, so per-visitor limits and automatic blocking cannot work."
+msgstr "最近の訪問者の多くがプライベート IP アドレスとして記録されています。サイトが認識されていないプロキシやロードバランサーの背後にある可能性が高く、訪問者ごとの制限や自動ブロックが機能しません。"
+
+#: includes/class-selfcap-admin.php:186
+msgid "Check the visitor IP settings"
+msgstr "訪問者 IP の設定を確認"
+
+#: includes/class-selfcap-admin.php:192
+msgid "The captcha is switched off by SELFCAP_DISABLE in wp-config.php."
+msgstr "wp-config.php の SELFCAP_DISABLE によりキャプチャが無効になっています。"
+
+#: includes/class-selfcap-admin.php:266
+#: includes/class-selfcap-admin.php:287
+msgid "Approved"
+msgstr "承認"
+
+#: includes/class-selfcap-admin.php:267
+#: includes/class-selfcap-admin.php:291
+msgid "Refused"
+msgstr "拒否"
+
+#: includes/class-selfcap-admin.php:268
+#: includes/class-selfcap-admin.php:295
+msgid "Blocked"
+msgstr "ブロック"
+
+#: includes/class-selfcap-admin.php:272
+msgid "Activity"
+msgstr "アクティビティ"
+
+#: includes/class-selfcap-admin.php:273
+msgid "Period"
+msgstr "期間"
+
+#. translators: %d: number of days
+#: includes/class-selfcap-admin.php:278
+#, php-format
+msgid "%d days"
+msgstr "%d日間"
+
+#. translators: %s: percentage
+#: includes/class-selfcap-admin.php:289
+#: includes/class-selfcap-admin.php:293
+#, php-format
+msgid "%s of the answers"
+msgstr "回答の %s"
+
+#: includes/class-selfcap-admin.php:290
+msgid "No answers yet"
+msgstr "まだ回答がありません"
+
+#: includes/class-selfcap-admin.php:294
+msgid "Bots and failed checks"
+msgstr "ボットと失敗したチェック"
+
+#: includes/class-selfcap-admin.php:295
+msgid "Stopped by an IP rule"
+msgstr "IP ルールで阻止"
+
+#: includes/class-selfcap-admin.php:296
+#: includes/class-selfcap-admin.php:323
+msgid "Challenges issued"
+msgstr "発行したチャレンジ"
+
+#: includes/class-selfcap-admin.php:296
+msgid "Times the widget was shown"
+msgstr "ウィジェットの表示回数"
+
+#: includes/class-selfcap-admin.php:297
+#: includes/class-selfcap-admin.php:324
+msgid "Forms validated"
+msgstr "検証済みフォーム"
+
+#: includes/class-selfcap-admin.php:297
+msgid "Submissions that got through"
+msgstr "通過した送信"
+
+#: includes/class-selfcap-admin.php:303
+#: includes/class-selfcap-admin.php:446
+msgid "Verifications per day"
+msgstr "1日あたりの検証数"
+
+#: includes/class-selfcap-admin.php:314
+msgid "View as table"
+msgstr "表で表示"
+
+#: includes/class-selfcap-admin.php:319
+msgid "Day"
+msgstr "日付"
+
+#: includes/class-selfcap-admin.php:344
+msgid "Verification log"
+msgstr "検証ログ"
+
+#: includes/class-selfcap-admin.php:348
+#: includes/class-selfcap-admin.php:369
+msgid "Result"
+msgstr "結果"
+
+#: includes/class-selfcap-admin.php:350
+msgid "All results"
+msgstr "すべての結果"
+
+#: includes/class-selfcap-admin.php:355
+#: includes/class-selfcap-admin.php:356
+#: includes/class-selfcap-admin.php:370
+msgid "IP address"
+msgstr "IP アドレス"
+
+#: includes/class-selfcap-admin.php:357
+msgid "Filter"
+msgstr "絞り込み"
+
+#: includes/class-selfcap-admin.php:359
+msgid "Clear"
+msgstr "クリア"
+
+#: includes/class-selfcap-admin.php:368
+msgid "When"
+msgstr "日時"
+
+#: includes/class-selfcap-admin.php:371
+msgid "Score"
+msgstr "スコア"
+
+#: includes/class-selfcap-admin.php:372
+#: includes/class-selfcap-admin.php:711
+msgid "Reason"
+msgstr "理由"
+
+#: includes/class-selfcap-admin.php:373
+msgid "Solved in"
+msgstr "解決時間"
+
+#: includes/class-selfcap-admin.php:374
+msgid "Browser"
+msgstr "ブラウザー"
+
+#: includes/class-selfcap-admin.php:375
+#: includes/class-selfcap-admin.php:714
+msgid "Actions"
+msgstr "操作"
+
+#: includes/class-selfcap-admin.php:380
+msgid "No verifications to show yet."
+msgstr "表示する検証はまだありません。"
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:388
+#, php-format
+msgid "%s ago"
+msgstr "%s前"
+
+#: includes/class-selfcap-admin.php:402
+#: includes/class-selfcap-admin.php:672
+#: includes/class-selfcap-admin.php:730
+msgid "Block"
+msgstr "ブロック"
+
+#: includes/class-selfcap-admin.php:466
+msgid "No verifications in this period yet."
+msgstr "この期間の検証はまだありません。"
+
+#. translators: %s: number of log entries
+#: includes/class-selfcap-admin.php:506
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] "%s 件"
+
+#. translators: 1: first entry shown, 2: last entry shown, 3: total entries
+#: includes/class-selfcap-admin.php:510
+#, php-format
+msgid "%1$s–%2$s of %3$s"
+msgstr "%1$s–%2$s / %3$s 件"
+
+#: includes/class-selfcap-admin.php:519
+#: includes/class-selfcap-admin.php:520
+msgid "Per page"
+msgstr "表示件数"
+
+#: includes/class-selfcap-admin.php:647
+msgid "Rule added."
+msgstr "ルールを追加しました。"
+
+#: includes/class-selfcap-admin.php:648
+msgid "Rule removed."
+msgstr "ルールを削除しました。"
+
+#: includes/class-selfcap-admin.php:649
+msgid "That is not a valid IP address or CIDR range."
+msgstr "有効な IP アドレスまたは CIDR 範囲ではありません。"
+
+#: includes/class-selfcap-admin.php:657
+msgid "Add a rule"
+msgstr "ルールを追加"
+
+#: includes/class-selfcap-admin.php:659
+msgid "A blocked address cannot solve the captcha, so it cannot send the protected forms. An allow rule always wins and also keeps the address out of automatic blocking."
+msgstr "ブロックされたアドレスはキャプチャを解けないため、保護されたフォームを送信できません。許可ルールは常に優先され、そのアドレスを自動ブロックの対象からも外します。"
+
+#. translators: %s: IP address
+#: includes/class-selfcap-admin.php:662
+#, php-format
+msgid "Your address right now: %s"
+msgstr "現在のあなたのアドレス: %s"
+
+#: includes/class-selfcap-admin.php:670
+#: includes/class-selfcap-admin.php:708
+msgid "Action"
+msgstr "アクション"
+
+#: includes/class-selfcap-admin.php:673
+#: includes/class-selfcap-admin.php:730
+msgid "Allow"
+msgstr "許可"
+
+#: includes/class-selfcap-admin.php:677
+#: includes/class-selfcap-admin.php:709
+msgid "IP address or range"
+msgstr "IP アドレスまたは範囲"
+
+#: includes/class-selfcap-admin.php:681
+msgid "Reason (optional)"
+msgstr "理由 (任意)"
+
+#: includes/class-selfcap-admin.php:685
+msgid "Duration"
+msgstr "有効期間"
+
+#: includes/class-selfcap-admin.php:687
+msgid "Until removed"
+msgstr "削除するまで"
+
+#: includes/class-selfcap-admin.php:688
+msgid "1 hour"
+msgstr "1時間"
+
+#: includes/class-selfcap-admin.php:689
+msgid "24 hours"
+msgstr "24時間"
+
+#: includes/class-selfcap-admin.php:690
+msgid "7 days"
+msgstr "7日間"
+
+#: includes/class-selfcap-admin.php:691
+msgid "30 days"
+msgstr "30日間"
+
+#: includes/class-selfcap-admin.php:695
+msgid "Add rule"
+msgstr "ルールを追加"
+
+#: includes/class-selfcap-admin.php:702
+msgid "Rules"
+msgstr "ルール"
+
+#: includes/class-selfcap-admin.php:710
+msgid "Source"
+msgstr "作成元"
+
+#: includes/class-selfcap-admin.php:712
+msgid "Created"
+msgstr "作成日時"
+
+#: includes/class-selfcap-admin.php:713
+msgid "Expires"
+msgstr "有効期限"
+
+#: includes/class-selfcap-admin.php:719
+msgid "No rules yet. Attackers blocked automatically will show up here."
+msgstr "ルールはまだありません。自動的にブロックされた攻撃者はここに表示されます。"
+
+#: includes/class-selfcap-admin.php:734
+#: includes/class-selfcap-admin.php:832
+#: includes/class-selfcap-admin.php:846
+#: includes/class-selfcap-admin.php:875
+msgid "Automatic"
+msgstr "自動"
+
+#: includes/class-selfcap-admin.php:734
+msgid "Manual"
+msgstr "手動"
+
+#: includes/class-selfcap-admin.php:740
+msgid "Never"
+msgstr "無期限"
+
+#: includes/class-selfcap-admin.php:742
+msgid "Expired"
+msgstr "期限切れ"
+
+#. translators: %s: time span, like "5 minutes"
+#: includes/class-selfcap-admin.php:745
+#, php-format
+msgid "In %s"
+msgstr "%s後"
+
+#: includes/class-selfcap-admin.php:750
+msgid "Remove this rule?"
+msgstr "このルールを削除しますか?"
+
+#: includes/class-selfcap-admin.php:750
+msgid "Remove"
+msgstr "削除"
+
+#: includes/class-selfcap-admin.php:778
+msgid "Protection"
+msgstr "保護"
+
+#: includes/class-selfcap-admin.php:779
+msgid "Turn the captcha on and choose where it shows up."
+msgstr "キャプチャを有効にして、表示する場所を選択します。"
+
+#: includes/class-selfcap-admin.php:782
+msgid "Captcha enabled"
+msgstr "キャプチャを有効化"
+
+#: includes/class-selfcap-admin.php:782
+msgid "Locked out of the login? Add define('SELFCAP_DISABLE', true); to wp-config.php."
+msgstr "ログインできなくなった場合は、wp-config.php に define('SELFCAP_DISABLE', true); を追加してください。"
+
+#: includes/class-selfcap-admin.php:787
+msgid "Protected forms"
+msgstr "保護するフォーム"
+
+#: includes/class-selfcap-admin.php:788
+msgid "For any other form use the [selfcap] shortcode and selfcap_verify() in its handler."
+msgstr "その他のフォームでは [selfcap] ショートコードを使用し、送信を処理するコードで selfcap_verify() を呼び出してください。"
+
+#: includes/class-selfcap-admin.php:805
+msgid "Position on the WooCommerce checkout"
+msgstr "WooCommerce の購入手続きでの位置"
+
+#: includes/class-selfcap-admin.php:806
+msgid "\"Above the Place order button\" finds the visible button even when the theme moves it. The custom element option takes a CSS selector, for layouts the other options do not fit."
+msgstr "『「注文する」ボタンの上』は、テーマがボタンを移動していても表示中のボタンを見つけます。カスタム要素オプションでは CSS セレクターを指定でき、他のオプションが合わないレイアウトに使えます。"
+
+#: includes/class-selfcap-admin.php:814
+msgid "CSS selector (custom element only)"
+msgstr "CSS セレクター (カスタム要素のみ)"
+
+#: includes/class-selfcap-admin.php:822
+msgid "Appearance and language"
+msgstr "外観と言語"
+
+#: includes/class-selfcap-admin.php:823
+msgid "How the widget looks to visitors and which language this plugin speaks."
+msgstr "訪問者に表示されるウィジェットの外観と、このプラグインの表示言語。"
+
+#: includes/class-selfcap-admin.php:827
+msgid "Widget theme"
+msgstr "ウィジェットのテーマ"
+
+#: includes/class-selfcap-admin.php:828
+msgid "Automatic follows the visitor's system."
+msgstr "「自動」では訪問者のシステム設定に従います。"
+
+#: includes/class-selfcap-admin.php:832
+msgid "Light"
+msgstr "ライト"
+
+#: includes/class-selfcap-admin.php:832
+msgid "Dark"
+msgstr "ダーク"
+
+#: includes/class-selfcap-admin.php:841
+msgid "Widget language"
+msgstr "ウィジェットの言語"
+
+#: includes/class-selfcap-admin.php:842
+msgid "Automatic follows the visitor's browser."
+msgstr "「自動」では訪問者のブラウザーに従います。"
+
+#: includes/class-selfcap-admin.php:856
+msgid "Widget alignment"
+msgstr "ウィジェットの配置"
+
+#: includes/class-selfcap-admin.php:857
+msgid "The widget sits in a full-width row on every form; choose where it lines up."
+msgstr "ウィジェットはすべてのフォームで全幅の行に配置されます。揃える位置を選択してください。"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Left"
+msgstr "左"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Center"
+msgstr "中央"
+
+#: includes/class-selfcap-admin.php:861
+msgid "Right"
+msgstr "右"
+
+#: includes/class-selfcap-admin.php:870
+msgid "Plugin language"
+msgstr "プラグインの言語"
+
+#: includes/class-selfcap-admin.php:871
+msgid "This screen and the messages shown when a form is refused. Automatic follows the WordPress language."
+msgstr "この画面と、フォームが拒否されたときに表示されるメッセージの言語です。「自動」では WordPress の言語に従います。"
+
+#: includes/class-selfcap-admin.php:885
+msgid "Security"
+msgstr "セキュリティ"
+
+#: includes/class-selfcap-admin.php:886
+msgid "How hard the captcha is for bots and what happens to attackers."
+msgstr "ボットにとってのキャプチャの難しさと、攻撃者への対処。"
+
+#: includes/class-selfcap-admin.php:890
+msgid "Difficulty"
+msgstr "難易度"
+
+#: includes/class-selfcap-admin.php:891
+msgid "Work the visitor's browser does in the background, from 10 to 24. Each step doubles it. 18 takes well under a second on a phone."
+msgstr "訪問者のブラウザーがバックグラウンドで行う処理量です (10〜24)。1段階上げるごとに2倍になります。18 ならスマートフォンでも1秒を大きく下回ります。"
+
+#: includes/class-selfcap-admin.php:899
+msgid "Block logins over XML-RPC"
+msgstr "XML-RPC 経由のログインをブロック"
+
+#: includes/class-selfcap-admin.php:899
+msgid "XML-RPC accepts a username and password without any form, so attackers use it to get around the login captcha. Turn this off only if you use the WordPress mobile app or a service that logs in over XML-RPC."
+msgstr "XML-RPC はフォームを介さずにユーザー名とパスワードを受け付けるため、攻撃者がログインのキャプチャを回避するのに使われます。WordPress モバイルアプリや XML-RPC でログインするサービスを使用している場合のみ、オフにしてください。"
+
+#: includes/class-selfcap-admin.php:900
+msgid "Automatic blocking"
+msgstr "自動ブロック"
+
+#: includes/class-selfcap-admin.php:900
+msgid "Temporarily blocks addresses that behave like an attack, only on attack-like volume inside 10 minutes. Blocks last 15 minutes, then 1 hour, then 24 hours for repeat offenders."
+msgstr "攻撃のような挙動をするアドレスを一時的にブロックします。10分以内に攻撃並みの量があった場合のみ対象となります。ブロックは15分間、繰り返す場合は1時間、さらに24時間と延長されます。"
+
+#: includes/class-selfcap-admin.php:905
+msgid "Keep the log for (days)"
+msgstr "ログの保存期間 (日)"
+
+#: includes/class-selfcap-admin.php:906
+msgid "Older verification log entries are deleted every day."
+msgstr "古い検証ログは毎日削除されます。"
+
+#: includes/class-selfcap-admin.php:915
+msgid "Visitor IP address"
+msgstr "訪問者の IP アドレス"
+
+#: includes/class-selfcap-admin.php:916
+msgid "Needed when the site is behind Cloudflare, a load balancer or another proxy."
+msgstr "サイトが Cloudflare、ロードバランサー、その他のプロキシの背後にある場合に必要です。"
+
+#: includes/class-selfcap-admin.php:919
+msgid "Read the real IP behind a proxy"
+msgstr "プロキシの背後にある実際の IP を読み取る"
+
+#: includes/class-selfcap-admin.php:919
+msgid "Forwarding headers are only believed when the connection comes from Cloudflare, a private address or a proxy listed below."
+msgstr "転送ヘッダーは、接続元が Cloudflare、プライベートアドレス、または下記のプロキシの場合にのみ信頼されます。"
+
+#: includes/class-selfcap-admin.php:924
+msgid "Address detected for you now"
+msgstr "現在検出されているあなたのアドレス"
+
+#: includes/class-selfcap-admin.php:925
+msgid "If this is not your own public IP, add your proxy to the list below."
+msgstr "これがあなたのパブリック IP でない場合は、下のリストにプロキシを追加してください。"
+
+#: includes/class-selfcap-admin.php:932
+msgid "Other trusted proxies"
+msgstr "その他の信頼するプロキシ"
+
+#: includes/class-selfcap-admin.php:933
+msgid "IP address or CIDR range, one per line."
+msgstr "IP アドレスまたは CIDR 範囲を1行に1つずつ入力します。"
+
+#: includes/class-selfcap-admin.php:943
+msgid "Save changes"
+msgstr "変更を保存"
+
+#: includes/class-selfcap-plugin.php:110
+msgid "To protect forms against bots, this site runs its own captcha. When you see the captcha, your browser solves a small computation and sends technical signals (browser type, screen size, how the checkbox was clicked). The site stores your IP address, browser user agent and the result of each verification for a limited time, to detect attacks and block abusive addresses. This data stays on this site and is not shared with any third party."
+msgstr "ボットからフォームを保護するため、このサイトでは独自のキャプチャを使用しています。キャプチャが表示されると、ブラウザーが小さな計算を行い、技術的な情報 (ブラウザーの種類、画面サイズ、チェックボックスのクリック方法) を送信します。サイトは攻撃の検出と悪質なアドレスのブロックのため、IP アドレス、ブラウザーのユーザーエージェント、各検証の結果を一定期間保存します。これらのデータはこのサイト内にとどまり、第三者と共有されることはありません。"
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login (WordPress and WooCommerce)"
+msgstr "ログイン (WordPress と WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:123
+msgid "Login"
+msgstr "ログイン"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration (WordPress and WooCommerce)"
+msgstr "ユーザー登録 (WordPress と WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:124
+msgid "Registration"
+msgstr "ユーザー登録"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password (WordPress and WooCommerce)"
+msgstr "パスワードリセット (WordPress と WooCommerce)"
+
+#: includes/class-selfcap-plugin.php:125
+msgid "Lost password"
+msgstr "パスワードリセット"
+
+#: includes/class-selfcap-plugin.php:126
+msgid "Comments"
+msgstr "コメント"
+
+#: includes/class-selfcap-plugin.php:130
+msgid "WooCommerce checkout"
+msgstr "WooCommerce の購入手続き"
+
+#: includes/class-selfcap-plugin.php:134
+msgid "Contact Form 7 (add the [selfcap] tag to the form)"
+msgstr "Contact Form 7 (フォームに [selfcap] タグを追加)"
+
+#: includes/class-selfcap-plugin.php:332
+msgid "Above the Place order button"
+msgstr "「注文する」ボタンの上"
+
+#: includes/class-selfcap-plugin.php:333
+msgid "Before payment"
+msgstr "支払いの前"
+
+#: includes/class-selfcap-plugin.php:334
+msgid "After payment"
+msgstr "支払いの後"
+
+#: includes/class-selfcap-plugin.php:335
+msgid "Before billing"
+msgstr "請求先情報の前"
+
+#: includes/class-selfcap-plugin.php:336
+msgid "After billing"
+msgstr "請求先情報の後"
+
+#: includes/class-selfcap-plugin.php:337
+msgid "Before a custom element (CSS selector)"
+msgstr "カスタム要素の前 (CSS セレクター)"
+
+#: includes/class-selfcap-plugin.php:406
+msgid "Please confirm you are not a robot."
+msgstr "ロボットではないことを確認してください。"
+
+#: includes/class-selfcap-plugin.php:412
+msgid "Captcha verification failed. Please try again."
+msgstr "キャプチャの検証に失敗しました。もう一度お試しください。"
